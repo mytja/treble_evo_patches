@@ -1,7 +1,7 @@
-From 4ac6d660bb9172f3584f3893d49a4aff9a3c4b3f Mon Sep 17 00:00:00 2001
+From f44fb054a761bf1c27efb863ddc7ab0848591a6c Mon Sep 17 00:00:00 2001
 From: Michael Bestas <mkbestas@gmail.com>
 Date: Fri, 15 Mar 2024 14:59:21 +0200
-Subject: [PATCH 8/9] netd: Remove <4.14 kernel restrictions
+Subject: [PATCH 08/10] netd: Remove <4.14 kernel restrictions
 
 Change-Id: I4d4abbacd6b9589260de06663e2143bc37d8ea0f
 ---
@@ -30,5 +30,5 @@ index aaaa41c6d7..b8333526d8 100644
          // V bumps the kernel requirement up to 4.19
          // see also: //system/netd/tests/kernel_test.cpp TestKernel419
 -- 
-2.25.1
+2.34.1
 
