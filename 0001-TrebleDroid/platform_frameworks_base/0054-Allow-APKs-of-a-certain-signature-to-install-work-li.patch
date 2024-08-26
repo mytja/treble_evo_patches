@@ -1,7 +1,7 @@
 From 1713f8ea95cef6acaaefd19370c248f9a393e44f Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sun, 7 Jul 2024 21:55:42 +0800
-Subject: [PATCH] Allow APKs of a certain signature to install/work like
+Subject: [PATCH 54/54] Allow APKs of a certain signature to install/work like
  platform-signed
 
 Intended usecase - one authoritative set of signed IMS APKs for any GSI, regardless of their signature
@@ -14,7 +14,7 @@ Change-Id: Ia1a13edec8eb8ecf0ea25fffaee4aeff9c75a5e1
  3 files changed, 20 insertions(+), 1 deletion(-)
 
 diff --git a/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java b/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java
-index 189a138a191a7..523eb59ec7038 100644
+index 189a138a191a..523eb59ec703 100644
 --- a/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java
 +++ b/services/core/java/com/android/server/pm/PackageManagerServiceUtils.java
 @@ -221,6 +221,8 @@ public class PackageManagerServiceUtils {
@@ -26,7 +26,7 @@ index 189a138a191a7..523eb59ec7038 100644
      /**
       * Returns the registered PackageManagerLocal instance, or else throws an unchecked error.
       */
-@@ -306,6 +308,11 @@ public static long getLastModifiedTime(AndroidPackage pkg) {
+@@ -306,6 +308,11 @@ public class PackageManagerServiceUtils {
          return maxModifiedTime;
      }
  
@@ -38,7 +38,7 @@ index 189a138a191a7..523eb59ec7038 100644
      private static File getSettingsProblemFile() {
          File dataDir = Environment.getDataDirectory();
          File systemDir = new File(dataDir, "system");
-@@ -579,6 +586,10 @@ public static boolean verifySignatures(PackageSetting pkgSetting,
+@@ -579,6 +586,10 @@ public class PackageManagerServiceUtils {
              boolean compareCompat, boolean compareRecover, boolean isRollback)
              throws PackageManagerException {
          final String packageName = pkgSetting.getPackageName();
@@ -50,10 +50,10 @@ index 189a138a191a7..523eb59ec7038 100644
          if (pkgSetting.getSigningDetails().getSignatures() != null) {
              // For an already existing package, make sure the parsed signatures from the package
 diff --git a/services/core/java/com/android/server/pm/SELinuxMMAC.java b/services/core/java/com/android/server/pm/SELinuxMMAC.java
-index e667bfe36d186..e08a6ba248072 100644
+index e667bfe36d18..e08a6ba24807 100644
 --- a/services/core/java/com/android/server/pm/SELinuxMMAC.java
 +++ b/services/core/java/com/android/server/pm/SELinuxMMAC.java
-@@ -448,6 +448,11 @@ public static String getSeInfo(PackageState packageState, AndroidPackage pkg,
+@@ -448,6 +448,11 @@ public final class SELinuxMMAC {
              }
          }
  
@@ -66,10 +66,10 @@ index e667bfe36d186..e08a6ba248072 100644
              seInfo = DEFAULT_SEINFO;
          }
 diff --git a/services/core/java/com/android/server/pm/ScanPackageUtils.java b/services/core/java/com/android/server/pm/ScanPackageUtils.java
-index 2e67b2f415207..20a614235e6e9 100644
+index 2e67b2f41520..20a614235e6e 100644
 --- a/services/core/java/com/android/server/pm/ScanPackageUtils.java
 +++ b/services/core/java/com/android/server/pm/ScanPackageUtils.java
-@@ -47,6 +47,7 @@
+@@ -47,6 +47,7 @@ import static com.android.server.pm.PackageManagerService.TAG;
  import static com.android.server.pm.PackageManagerServiceUtils.compareSignatures;
  import static com.android.server.pm.PackageManagerServiceUtils.compressedFileExists;
  import static com.android.server.pm.PackageManagerServiceUtils.deriveAbiOverride;
@@ -77,7 +77,7 @@ index 2e67b2f415207..20a614235e6e9 100644
  import static com.android.server.pm.PackageManagerServiceUtils.getLastModifiedTime;
  
  import android.annotation.NonNull;
-@@ -918,7 +919,9 @@ public static void applyPolicy(ParsedPackage parsedPackage,
+@@ -918,7 +919,9 @@ final class ScanPackageUtils {
                          || (platformPkg != null && compareSignatures(
                          platformPkg.getSigningDetails(),
                          parsedPackage.getSigningDetails()
@@ -88,3 +88,6 @@ index 2e67b2f415207..20a614235e6e9 100644
          );
  
          if (!isSystemApp) {
+-- 
+2.34.1
+
