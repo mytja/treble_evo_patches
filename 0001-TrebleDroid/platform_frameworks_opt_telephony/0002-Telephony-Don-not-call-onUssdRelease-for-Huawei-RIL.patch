@@ -1,7 +1,7 @@
-From ee9ad0472008edf6213cdb49932f986299a7cb46 Mon Sep 17 00:00:00 2001
+From 885a28a7e2bee3000dc7f2a3d7db052ecb0de463 Mon Sep 17 00:00:00 2001
 From: Artem Borisov <dedsa2002@gmail.com>
 Date: Sat, 10 Nov 2018 17:19:17 +0000
-Subject: [PATCH 02/16] Telephony: Don not call onUssdRelease for Huawei RIL
+Subject: [PATCH 02/15] Telephony: Don not call onUssdRelease for Huawei RIL
 
 Huawei RIL doesn't seem to work properly with USSD_MODE_NW_RELEASE,
 always releasing USSD when it should be finished instead.
@@ -30,5 +30,5 @@ index 4c7a3d3ffa..42d5d0fdcf 100644
                  found.onUssdFinishedError();
              } else {
 -- 
-2.34.1
+2.25.1
 

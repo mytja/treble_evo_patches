@@ -1,7 +1,7 @@
-From ae164a473cb945a0e09828136c722048c44e87c9 Mon Sep 17 00:00:00 2001
+From aabb4e958aa69bbf4f32aa24b20e394c94ba8dcc Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 5 Oct 2021 17:59:16 -0400
-Subject: [PATCH 02/54] Fallback to stupid autobrightness if brightness values
+Subject: [PATCH 02/47] Fallback to stupid autobrightness if brightness values
  are broken
 
 This is needed because of:
@@ -35,5 +35,5 @@ index 9b2dcc53f456..04e06b99d3ee 100644
              config = getConfigFromPmValues(context, flags);
          }
 -- 
-2.34.1
+2.25.1
 
