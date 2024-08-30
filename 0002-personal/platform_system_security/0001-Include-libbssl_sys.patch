@@ -1,0 +1,25 @@
+From b8f5dce5ffaca5194a285b980a163444a3c951aa Mon Sep 17 00:00:00 2001
+From: chiteroman <querveros999@gmail.com>
+Date: Fri, 30 Aug 2024 12:31:57 +0200
+Subject: [PATCH 1/2] Include libbssl_sys
+
+Change-Id: I1c927dcae8db7f17e94822fcea04dd694f58e271
+---
+ keystore2/Android.bp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/keystore2/Android.bp b/keystore2/Android.bp
+index 7cb7c37a..2c3cdadf 100644
+--- a/keystore2/Android.bp
++++ b/keystore2/Android.bp
+@@ -65,6 +65,7 @@ rust_defaults {
+         "libthiserror",
+         "libtokio",
+         "libwatchdog_rs",
++        "libbssl_sys",
+     ],
+     shared_libs: [
+         "libcutils",
+-- 
+2.25.1
+
