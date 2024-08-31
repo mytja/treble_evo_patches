@@ -1,7 +1,7 @@
-From d3540c1de63236aa90721eafffbae7d21fd74819 Mon Sep 17 00:00:00 2001
+From 170e02ff062db2c67a9cc4b64ce988c2e1359687 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 24 Sep 2022 07:44:20 +0000
-Subject: [PATCH 3/3] Skip mounting /my_manifest on GSIs
+Subject: [PATCH 3/4] Skip mounting /my_manifest on GSIs
 
 On OPlus devices, /my_manifest/build.prop unnecessarily overrides a ton of props
 All my_* partitions are supposedly useless on GSIs, but only skip this for now
