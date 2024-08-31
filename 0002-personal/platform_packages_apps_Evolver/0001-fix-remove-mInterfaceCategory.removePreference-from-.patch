@@ -1,0 +1,25 @@
+From 6c10d42a724944744101a98214bcf7c1fedb83fb Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sat, 31 Aug 2024 12:26:31 +0200
+Subject: [PATCH] fix: remove mInterfaceCategory.removePreference from Evolver
+
+---
+ .../settings/fragments/quicksettings/QuickSettings.java         | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/org/evolution/settings/fragments/quicksettings/QuickSettings.java b/src/org/evolution/settings/fragments/quicksettings/QuickSettings.java
+index 4e962bc..f764114 100644
+--- a/src/org/evolution/settings/fragments/quicksettings/QuickSettings.java
++++ b/src/org/evolution/settings/fragments/quicksettings/QuickSettings.java
+@@ -108,8 +108,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements
+                 com.android.internal.R.bool.config_automatic_brightness_available);
+         if (autoBrightnessAvailable) {
+             mShowAutoBrightness.setEnabled(showSlider);
+-        } else {
+-            mInterfaceCategory.removePreference(mShowAutoBrightness);
+         }
+ 
+         mTileAnimationStyle.setOnPreferenceChangeListener(this);
+-- 
+2.25.1
+
