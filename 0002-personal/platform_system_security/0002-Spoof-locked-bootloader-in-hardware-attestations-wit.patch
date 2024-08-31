@@ -1,7 +1,7 @@
-From ba9e9df1dd1b55b25574cd0e51fa4517f930a796 Mon Sep 17 00:00:00 2001
+From 4461094d702ab12b9213d6704dedcfe43a9cc06e Mon Sep 17 00:00:00 2001
 From: chiteroman <querveros999@gmail.com>
 Date: Fri, 30 Aug 2024 12:57:18 +0200
-Subject: [PATCH 2/2] Spoof locked bootloader in hardware attestations with
+Subject: [PATCH 2/3] Spoof locked bootloader in hardware attestations with
  valid certificate chain
 
 Change-Id: Ib186759186259b82ce78ed8f3c1ae9651bdc2ba8
