@@ -1,0 +1,63 @@
+From dcd20c8a75b2a43fff751a4e75c8c78fa9eee0fa Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Thu, 5 Sep 2024 15:33:39 +0200
+Subject: [PATCH] remove Gemini
+
+---
+ gms_full.mk                 | 1 -
+ gms_full_tablet_wifionly.mk | 1 -
+ gms_mini.mk                 | 1 -
+ gms_pico.mk                 | 1 -
+ 4 files changed, 4 deletions(-)
+
+diff --git a/gms_full.mk b/gms_full.mk
+index 024abc5..37f7f10 100644
+--- a/gms_full.mk
++++ b/gms_full.mk
+@@ -27,7 +27,6 @@ PRODUCT_PACKAGES += \
+     Chrome \
+     Chrome-Stub \
+     DevicePolicyPrebuilt \
+-    GeminiPrebuilt \
+     GoogleContacts \
+     GoogleTTS \
+     LatinIMEGooglePrebuilt \
+diff --git a/gms_full_tablet_wifionly.mk b/gms_full_tablet_wifionly.mk
+index 9d9d3ea..a6bc65b 100644
+--- a/gms_full_tablet_wifionly.mk
++++ b/gms_full_tablet_wifionly.mk
+@@ -26,7 +26,6 @@ PRODUCT_PACKAGES += \
+     Chrome-Stub \
+     Chrome \
+     DevicePolicyPrebuilt \
+-    GeminiPrebuilt \
+     GoogleContacts \
+     GoogleKeepPrebuilt \
+     GoogleTTS \
+diff --git a/gms_mini.mk b/gms_mini.mk
+index d60d65b..1dec656 100644
+--- a/gms_mini.mk
++++ b/gms_mini.mk
+@@ -25,7 +25,6 @@ PRODUCT_PACKAGES += \
+     CalendarGooglePrebuilt \
+     Chrome \
+     Chrome-Stub \
+-    GeminiPrebuilt \
+     GoogleContacts \
+     GoogleTTS \
+     LatinIMEGooglePrebuilt \
+diff --git a/gms_pico.mk b/gms_pico.mk
+index 0eee23b..3a54782 100644
+--- a/gms_pico.mk
++++ b/gms_pico.mk
+@@ -24,7 +24,6 @@ PRODUCT_PACKAGES += \
+     CalculatorGooglePrebuilt_85005407 \
+     Chrome \
+     Chrome-Stub \
+-    GeminiPrebuilt \
+     GoogleContacts \
+     GoogleTTS \
+     LatinIMEGooglePrebuilt \
+-- 
+2.25.1
+

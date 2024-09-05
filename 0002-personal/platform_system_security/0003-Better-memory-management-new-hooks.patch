@@ -1,7 +1,7 @@
-From 0387e64d6145f5e9ed8d7994bca5a088aadfe1cc Mon Sep 17 00:00:00 2001
+From b4c340d677766d6ca473e8a8d03e6840c2fb11fe Mon Sep 17 00:00:00 2001
 From: chiteroman <querveros999@gmail.com>
 Date: Sat, 31 Aug 2024 14:28:22 +0200
-Subject: [PATCH 3/3] Better memory management + new hooks
+Subject: [PATCH 3/5] Better memory management + new hooks
 
 Fix the shit code I wrote
 

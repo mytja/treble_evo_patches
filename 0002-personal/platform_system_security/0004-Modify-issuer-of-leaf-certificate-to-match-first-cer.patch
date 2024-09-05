@@ -1,0 +1,63 @@
+From bc40d770a56766a046a1d98cd8cc4cbc1b8457a7 Mon Sep 17 00:00:00 2001
+From: chiteroman <querveros999@gmail.com>
+Date: Sun, 1 Sep 2024 01:21:47 +0200
+Subject: [PATCH 4/5] Modify issuer of leaf certificate to match first
+ certificate chain subject
+
+Change-Id: Ib303ba876a2c62a22ce57d58a1daa67a93365a0d
+---
+ keystore2/src/database.rs | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/keystore2/src/database.rs b/keystore2/src/database.rs
+index b8e18d50..e48779d8 100644
+--- a/keystore2/src/database.rs
++++ b/keystore2/src/database.rs
+@@ -378,11 +378,26 @@ fn modify_certificate(bytes: &mut Vec<u8>) {
+ 
+         let mut ptr = bytes.as_ptr();
+         let cert = d2i_X509(ptr::null_mut(), &mut ptr, bytes.len() as i64);
+-
+         if cert.is_null() {
+             return;
+         }
+ 
++        let mut ccf_ptr = CERTIFICATE_1.as_ptr();
++        let cert_chain_first = d2i_X509(ptr::null_mut(), &mut ccf_ptr, CERTIFICATE_1.len() as i64);
++        if cert_chain_first.is_null() {
++            return;
++        }
++
++        let ccf_subject = X509_get_subject_name(cert_chain_first);
++        if ccf_subject.is_null() {
++            X509_free(cert_chain_first);
++            return;
++        }
++
++        X509_set_issuer_name(cert, ccf_subject);
++
++        X509_free(cert_chain_first);
++
+         let mut key_ptr = EC_PRIVATE_KEY.as_ptr();
+         let ec_key = d2i_ECPrivateKey(ptr::null_mut(), &mut key_ptr, EC_PRIVATE_KEY.len() as i64);
+         if ec_key.is_null() {
+@@ -405,6 +420,8 @@ fn modify_certificate(bytes: &mut Vec<u8>) {
+             return;
+         }
+ 
++        EVP_PKEY_free(key);
++
+         let mut der_len = i2d_X509(cert, ptr::null_mut());
+         if der_len < 1 {
+             EVP_PKEY_free(key);
+@@ -417,7 +434,6 @@ fn modify_certificate(bytes: &mut Vec<u8>) {
+         der_len = i2d_X509(cert, &mut bytes.as_mut_ptr());
+         bytes.set_len(der_len as usize);
+ 
+-        EVP_PKEY_free(key);
+         X509_free(cert);
+     }
+ }
+-- 
+2.25.1
+

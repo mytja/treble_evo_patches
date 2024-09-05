@@ -1,7 +1,7 @@
-From ace89cc56dd7f2d0e07a06bd91a6a67b7d41d1ed Mon Sep 17 00:00:00 2001
+From 628ec7247bc93d859e9422ac63946be6632976a6 Mon Sep 17 00:00:00 2001
 From: chiteroman <querveros999@gmail.com>
 Date: Fri, 30 Aug 2024 12:31:57 +0200
-Subject: [PATCH 1/3] Include libbssl_sys
+Subject: [PATCH 1/5] Include libbssl_sys
 
 Change-Id: I1c927dcae8db7f17e94822fcea04dd694f58e271
 ---
