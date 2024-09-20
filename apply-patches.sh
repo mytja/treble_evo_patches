@@ -13,9 +13,9 @@ apply_directory=$2
 if [[ -z "$apply_directory" ]]; then
 	apply_directory=$(cd $patches_directory; echo *)
 elif [[ "$apply_directory" == trebledroid ]]; then
-	apply_directory="trebledroid"
+	apply_directory="0001-TrebleDroid"
 elif [[ "$apply_directory" == personal ]]; then
-	apply_directory="personal"
+	apply_directory="0002-personal"
 elif [[ ! -d "$apply_directory" ]]; then
 	echo "The directory $apply_directory doesn't exist!"
 	exit 1
@@ -27,11 +27,6 @@ for patch_source in $apply_directory; do
 	fi
 	if [[ "$patch_source" == README.md ]]; then
 		continue
-	fi
-	if [[ "$apply_directory" == trebledroid ]]; then
-		patch_source="0001-TrebleDroid"
-	elif [[ "$apply_directory" == personal ]]; then
-		patch_source="0002-personal"
 	fi
 
 	printf "\n ### APPLYING $patch_source PATCHES ###\n";
