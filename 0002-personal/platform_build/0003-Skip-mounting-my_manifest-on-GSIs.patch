@@ -1,4 +1,4 @@
-From 170e02ff062db2c67a9cc4b64ce988c2e1359687 Mon Sep 17 00:00:00 2001
+From 5c62c2b6f3ba82b234373834a514464022071e03 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 24 Sep 2022 07:44:20 +0000
 Subject: [PATCH 3/4] Skip mounting /my_manifest on GSIs

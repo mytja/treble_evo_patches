@@ -1,0 +1,28 @@
+From 27275e53090ffd889c002fad4521300564943520 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Fri, 20 Sep 2024 17:24:51 +0200
+Subject: [PATCH 4/4] remove su from builds
+
+---
+ target/product/base_system.mk | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/target/product/base_system.mk b/target/product/base_system.mk
+index 53badb7440..2222fab24a 100644
+--- a/target/product/base_system.mk
++++ b/target/product/base_system.mk
+@@ -481,11 +481,6 @@ PRODUCT_PACKAGES_DEBUG := \
+     unwind_reg_info \
+     unwind_symbols \
+ 
+-ifeq ($(LINEAGE_BUILD),)
+-PRODUCT_PACKAGES_DEBUG += \
+-    su
+-endif
+-
+ # The set of packages whose code can be loaded by the system server.
+ PRODUCT_SYSTEM_SERVER_APPS += \
+     SettingsProvider \
+-- 
+2.25.1
+

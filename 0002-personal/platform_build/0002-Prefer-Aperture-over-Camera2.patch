@@ -1,4 +1,4 @@
-From 20e4eee40508a718aecd4bab64f01d26e7baaf46 Mon Sep 17 00:00:00 2001
+From 53d1ff6b2ec17527831ce30f8da38252f7e64278 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Wed, 7 Aug 2024 08:58:45 +0000
 Subject: [PATCH 2/4] Prefer Aperture over Camera2
