@@ -1,0 +1,53 @@
+From 175750c12f2487fdbca403ac71375fdc6a3a8f98 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Fri, 20 Sep 2024 23:45:19 +0200
+Subject: [PATCH 5/5] set persist.sys.phh.status_bar_padding_top to 0 by
+ default
+
+---
+ .../systemui/statusbar/phone/PhoneStatusBarView.java     | 6 +++---
+ .../systemui/statusbar/phone/PhoneStatusBarView.java.rej | 9 ---------
+ 2 files changed, 3 insertions(+), 12 deletions(-)
+ delete mode 100644 packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java.rej
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
+index 1652ed56ba04..71d82a94af55 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
+@@ -357,15 +357,15 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
+     private void updatePaddings() {
+         int statusBarPaddingTop = SystemProperties.getInt("persist.sys.phh.status_bar_padding_top", -1);
+         if(statusBarPaddingTop == -1)
+-        statusBarPaddingTop = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_top);
++            statusBarPaddingTop = 0;
+ 
+         int statusBarPaddingStart = SystemProperties.getInt("persist.sys.phh.status_bar_padding_start", -1);
+         if(statusBarPaddingStart == -1)
+-        statusBarPaddingStart = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_start);
++            statusBarPaddingStart = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_start);
+ 
+         int statusBarPaddingEnd = SystemProperties.getInt("persist.sys.phh.status_bar_padding_end", -1);
+         if(statusBarPaddingEnd == -1)
+-        statusBarPaddingEnd = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_end);
++            statusBarPaddingEnd = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_end);
+ 
+         mStatusBarContents.setPaddingRelative(
+                 (int) statusBarPaddingStart,
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java.rej b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java.rej
+deleted file mode 100644
+index ea84de93b34b..000000000000
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java.rej
++++ /dev/null
+@@ -1,9 +0,0 @@
+-diff a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java	(rejected hunks)
+-@@ -22,6 +22,7 @@ import android.content.Context;
+- import android.content.res.Configuration;
+- import android.content.res.Resources;
+- import android.graphics.Rect;
+-+import android.os.SystemProperties;
+- import android.util.AttributeSet;
+- import android.util.Log;
+- import android.util.Pair;
+-- 
+2.25.1
+

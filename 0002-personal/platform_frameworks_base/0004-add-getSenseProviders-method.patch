@@ -1,7 +1,7 @@
 From 86f812d3de6c51fb37ea1c84fcbb5214af69c7c9 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 8 Sep 2024 16:06:44 +0200
-Subject: [PATCH 4/4] add getSenseProviders() method
+Subject: [PATCH 4/5] add getSenseProviders() method
 
 Co-authored-by: Chris Crump <chriscrawford893@gmail.com>
 Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
