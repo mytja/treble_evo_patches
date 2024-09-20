@@ -21,6 +21,9 @@ for patch_source in $apply_directory; do
 	if [[ "$patch_source" == apply-patches.sh ]]; then
 		continue
 	fi
+	if [[ "$patch_source" == README.md ]]; then
+		continue
+	fi
 
 	printf "\n ### APPLYING $patch_source PATCHES ###\n";
 	sleep 1.0;
