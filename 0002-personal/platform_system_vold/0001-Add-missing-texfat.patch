@@ -1,14 +1,14 @@
-From 0c635e35c47a9f09be5afc292d3038800cd7b92a Mon Sep 17 00:00:00 2001
+From 29eec444afdf6f786334ee5b5b1c6610809679db Mon Sep 17 00:00:00 2001
 From: Huy Hoang <boydaihungst@gmail.com>
 Date: Tue, 24 Oct 2023 20:30:39 +0700
-Subject: [PATCH] Add-missing-texfat
+Subject: [PATCH 1/2] Add-missing-texfat
 
 ---
  main.cpp | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/main.cpp b/main.cpp
-index a45215f..7bdefe1 100644
+index 4f02e83..960e101 100644
 --- a/main.cpp
 +++ b/main.cpp
 @@ -72,6 +72,7 @@ int main(int argc, char** argv) {

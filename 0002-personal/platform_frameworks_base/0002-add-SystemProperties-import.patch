@@ -1,7 +1,7 @@
-From ccfcdc0503532d216cda262b29a5cad5b36dcd3b Mon Sep 17 00:00:00 2001
+From e4cdb13803c41fafe59a21e6b7debe8b930efcf4 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 5 Sep 2024 17:51:08 +0200
-Subject: [PATCH 2/5] add SystemProperties import
+Subject: [PATCH 2/6] add SystemProperties import
 
 ---
  .../com/android/systemui/statusbar/phone/PhoneStatusBarView.java | 1 +
