@@ -42,7 +42,7 @@ for patch_source in $apply_directory; do
 		for patch in $patches_directory/$patch_source/$path/*.patch; do
 			# Check if patch is already applied
 			if patch -f -p1 --dry-run -R < $patch > /dev/null; then
-				printf "### ALREDY APPLIED: $patch \n";
+				printf "### RECHECK IF APPLIED!!!!!!!!!!!!: $patch \n";
 				continue
 			fi
 
