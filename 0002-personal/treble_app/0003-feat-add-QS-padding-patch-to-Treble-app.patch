@@ -1,7 +1,7 @@
 From 0e13f337a3e86a7832d93c3de808220a4ca4aa84 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 11 Oct 2024 21:38:39 +0200
-Subject: [PATCH 3/3] feat: add QS padding patch to Treble app
+Subject: [PATCH 3/5] feat: add QS padding patch to Treble app
 
 This commit uses the patch, available in frameworks/base, in order to modify padding of QS clock.
 
@@ -94,5 +94,5 @@ index d154836..529be77 100644
      <PreferenceCategory android:title="Display">
          <ListPreference
 -- 
-2.25.1
+2.34.1
 

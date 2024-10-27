@@ -1,7 +1,7 @@
 From 43a2216acbf34991b80c300d37b93d7c1ad78ea8 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 20 Sep 2024 23:45:19 +0200
-Subject: [PATCH 5/6] set persist.sys.phh.status_bar_padding_top to 0 by
+Subject: [PATCH 5/7] set persist.sys.phh.status_bar_padding_top to 0 by
  default
 
 ---
@@ -49,5 +49,5 @@ index ea84de93b34b..000000000000
 - import android.util.Log;
 - import android.util.Pair;
 -- 
-2.25.1
+2.34.1
 

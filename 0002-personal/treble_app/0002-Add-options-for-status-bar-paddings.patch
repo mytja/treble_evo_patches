@@ -1,7 +1,7 @@
 From 224beb4986f6c15176310da0260d978b7fc663f9 Mon Sep 17 00:00:00 2001
 From: ChonDoit <thphantomblog@gmail.com>
 Date: Fri, 25 Aug 2023 09:18:32 -0300
-Subject: [PATCH 2/3] Add options for status bar paddings
+Subject: [PATCH 2/5] Add options for status bar paddings
 
 ---
  app/src/main/java/me/phh/treble/app/Misc.kt   | 26 +++++++++++++++++++
@@ -108,5 +108,5 @@ index d066265..d154836 100644
              android:defaultValue="-1"
              android:entries="@array/pref_misc_display_fps"
 -- 
-2.25.1
+2.34.1
 

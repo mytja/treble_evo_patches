@@ -1,7 +1,7 @@
 From 5dbf888261f449104c552effd88bd05c9f50671b Mon Sep 17 00:00:00 2001
 From: ChonDoit <thphantomblog@gmail.com>
 Date: Thu, 10 Aug 2023 00:24:43 +0000
-Subject: [PATCH 1/6] Make status bar paddings overridables
+Subject: [PATCH 1/7] Make status bar paddings overridables
 
 with
 persist.sys.phh.status_bar_padding_top
@@ -106,5 +106,5 @@ index 000000000000..ea84de93b34b
 + import android.util.Log;
 + import android.util.Pair;
 -- 
-2.25.1
+2.34.1
 

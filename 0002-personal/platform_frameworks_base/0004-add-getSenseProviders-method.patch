@@ -1,7 +1,7 @@
 From b259ffc36ebf46fa6fc9c3cd47166161184d366e Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 8 Sep 2024 16:06:44 +0200
-Subject: [PATCH 4/6] add getSenseProviders() method
+Subject: [PATCH 4/7] add getSenseProviders() method
 
 Co-authored-by: Chris Crump <chriscrawford893@gmail.com>
 Co-authored-by: Adithya R <gh0strider.2k18.reborn@gmail.com>
@@ -40,5 +40,5 @@ index 08caa649ebf3..6ada92b5d021 100644
          public void registerAuthenticators(
                  @NonNull List<FaceSensorPropertiesInternal> hidlSensors) {
 -- 
-2.25.1
+2.34.1
 

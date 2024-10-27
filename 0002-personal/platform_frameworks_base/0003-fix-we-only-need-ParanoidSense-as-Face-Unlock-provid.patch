@@ -1,7 +1,7 @@
 From 8af56b6ecfc300eace03a584b885d6dd236e9fe6 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 8 Sep 2024 14:51:25 +0200
-Subject: [PATCH 3/6] fix: we only need ParanoidSense as Face Unlock provider
+Subject: [PATCH 3/7] fix: we only need ParanoidSense as Face Unlock provider
 
 Co-authored-by: Alberto Ponces <ponces26@gmail.com>
 ---
@@ -58,5 +58,5 @@ index 1d41f52cad8c..08caa649ebf3 100644
                  return providers;
              });
 -- 
-2.25.1
+2.34.1
 
