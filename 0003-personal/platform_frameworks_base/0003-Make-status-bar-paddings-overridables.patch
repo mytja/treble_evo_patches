@@ -1,7 +1,7 @@
-From 5f35372df4d80f4a3b7885a8b03d3ab049740202 Mon Sep 17 00:00:00 2001
+From f129211f3b2cba60c167a5c2a2576f2970073027 Mon Sep 17 00:00:00 2001
 From: ChonDoit <thphantomblog@gmail.com>
 Date: Sun, 27 Oct 2024 21:52:42 +0100
-Subject: [PATCH 4/5] Make status bar paddings overridables
+Subject: [PATCH 3/4] Make status bar paddings overridables
 
 with
 persist.sys.phh.status_bar_padding_top
@@ -13,7 +13,7 @@ persist.sys.phh.status_bar_padding_end
  2 files changed, 23 insertions(+), 10 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/KeyguardStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/KeyguardStatusBarView.java
-index 2f6954622..dccf47439 100644
+index 2f695462282a..dccf47439673 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/KeyguardStatusBarView.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/KeyguardStatusBarView.java
 @@ -28,6 +28,7 @@ import android.graphics.Color;
@@ -45,7 +45,7 @@ index 2f6954622..dccf47439 100644
          mMinDotWidth = res.getDimensionPixelSize(
                  R.dimen.ongoing_appops_dot_min_padding);
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
-index 54c0c8016..c10928c7a 100644
+index 54c0c80161bd..c10928c7abc0 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
 @@ -27,6 +27,7 @@ import android.graphics.Rect;
