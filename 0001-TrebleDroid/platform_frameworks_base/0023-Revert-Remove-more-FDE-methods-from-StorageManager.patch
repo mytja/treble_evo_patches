@@ -1,7 +1,7 @@
-From 78dafe53083cf7f98d55f2a2327615ab96f296cf Mon Sep 17 00:00:00 2001
+From ef5e31ef822f95a07f02a0909ba3243dd28fcc72 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 15 Oct 2022 09:33:56 +0000
-Subject: [PATCH 23/48] Revert "Remove more FDE methods from StorageManager"
+Subject: [PATCH 23/47] Revert "Remove more FDE methods from StorageManager"
 
 This reverts commit bd13f84152449a3ead6fa8604fd31f48c0224676.
 
@@ -12,7 +12,7 @@ Change-Id: Ic394934ec27b1a486c60123130825d44dad73412
  2 files changed, 78 insertions(+)
 
 diff --git a/core/java/android/os/storage/StorageManager.java b/core/java/android/os/storage/StorageManager.java
-index d45a17f7194e..6850e261e6ad 100644
+index d45a17f71..6850e261e 100644
 --- a/core/java/android/os/storage/StorageManager.java
 +++ b/core/java/android/os/storage/StorageManager.java
 @@ -1709,6 +1709,15 @@ public class StorageManager {
@@ -104,7 +104,7 @@ index d45a17f7194e..6850e261e6ad 100644
      public static boolean hasAdoptable() {
          switch (SystemProperties.get(PROP_ADOPTABLE)) {
 diff --git a/core/java/com/android/internal/os/RoSystemProperties.java b/core/java/com/android/internal/os/RoSystemProperties.java
-index 40d5c4761dff..66288706b0f1 100644
+index 40d5c4761..66288706b 100644
 --- a/core/java/com/android/internal/os/RoSystemProperties.java
 +++ b/core/java/com/android/internal/os/RoSystemProperties.java
 @@ -68,10 +68,14 @@ public class RoSystemProperties {
@@ -123,5 +123,5 @@ index 40d5c4761dff..66288706b0f1 100644
      public static final boolean CONTROL_PRIVAPP_PERMISSIONS_LOG =
              "log".equalsIgnoreCase(CONTROL_PRIVAPP_PERMISSIONS);
 -- 
-2.25.1
+2.34.1
 

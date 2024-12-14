@@ -1,4 +1,4 @@
-From 2173a01298d5e2bfa4958716d90028286416ab1b Mon Sep 17 00:00:00 2001
+From 1e641248f02a0c0df8ca916f2e1e52b5d9946dfc Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 15 May 2024 05:56:59 -0400
 Subject: [PATCH 5/6] More bpf errors ignore -- there are some 4.14 without the
@@ -9,7 +9,7 @@ Subject: [PATCH 5/6] More bpf errors ignore -- there are some 4.14 without the
  1 file changed, 3 insertions(+), 6 deletions(-)
 
 diff --git a/netbpfload/NetBpfLoad.cpp b/netbpfload/NetBpfLoad.cpp
-index 2953859760..ed628a14e1 100644
+index 2953859..ed628a1 100644
 --- a/netbpfload/NetBpfLoad.cpp
 +++ b/netbpfload/NetBpfLoad.cpp
 @@ -345,8 +345,7 @@ int main(int argc, char** argv, char * const envp[]) {
@@ -40,5 +40,5 @@ index 2953859760..ed628a14e1 100644
  
      // Create all the pin subdirectories
 -- 
-2.25.1
+2.34.1
 

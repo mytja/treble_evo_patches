@@ -1,4 +1,4 @@
-From 5aee0e8138f55e3de9889f12b2c48b08da8ceb97 Mon Sep 17 00:00:00 2001
+From 7aaec5a6dc684de7ca24cbed592bd1b86fcced85 Mon Sep 17 00:00:00 2001
 From: danielzhang130 <37479705+danielzhang130@users.noreply.github.com>
 Date: Fri, 12 Apr 2024 13:01:08 -0400
 Subject: [PATCH 2/2] Fix sepolicy for kernel < 5.10 that doesn't support bpf
@@ -12,7 +12,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/private/network_stack.te b/private/network_stack.te
-index 7587c1f46..9e6bd4b12 100644
+index 7587c1f..9e6bd4b 100644
 --- a/private/network_stack.te
 +++ b/private/network_stack.te
 @@ -61,8 +61,8 @@ hal_client_domain(network_stack, hal_tetheroffload)

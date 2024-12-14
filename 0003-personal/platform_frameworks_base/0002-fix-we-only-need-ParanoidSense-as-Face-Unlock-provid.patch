@@ -1,0 +1,37 @@
+From 0e535413f57c71e671d209bbe945c548b3c08794 Mon Sep 17 00:00:00 2001
+From: Alberto Ponces <ponces26@gmail.com>
+Date: Sun, 27 Oct 2024 21:56:11 +0100
+Subject: [PATCH 2/5] fix: we only need ParanoidSense as Face Unlock provider
+
+---
+ .../server/biometrics/sensors/face/FaceService.java | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/services/core/java/com/android/server/biometrics/sensors/face/FaceService.java b/services/core/java/com/android/server/biometrics/sensors/face/FaceService.java
+index 1d41f52ca..6ada92b5d 100644
+--- a/services/core/java/com/android/server/biometrics/sensors/face/FaceService.java
++++ b/services/core/java/com/android/server/biometrics/sensors/face/FaceService.java
+@@ -720,20 +720,7 @@ public class FaceService extends SystemService {
+             super.registerAuthenticators_enforcePermission();
+ 
+             mRegistry.registerAll(() -> {
+-                List<String> aidlSensors = new ArrayList<>();
+-                final String[] instances = mAidlInstanceNameSupplier.get();
+-                if (instances != null) {
+-                    aidlSensors.addAll(Lists.newArrayList(instances));
+-                }
+-
+-                final Pair<List<FaceSensorPropertiesInternal>, List<String>>
+-                        filteredInstances = filterAvailableHalInstances(hidlSensors, aidlSensors);
+-
+                 final List<ServiceProvider> providers = new ArrayList<>();
+-                /*
+-                providers.addAll(getHidlProviders(filteredInstances.first));
+-                providers.addAll(getAidlProviders(filteredInstances.second));
+-                */
+                 providers.addAll(getSenseProviders());
+                 return providers;
+             });
+-- 
+2.34.1
+

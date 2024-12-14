@@ -1,4 +1,4 @@
-From aef25cc312ebefc77a5e722ad9ca797c61a424bd Mon Sep 17 00:00:00 2001
+From 2fed82d5e2cc6a19e7831a76b3f2cbeb03946161 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 25 Feb 2024 10:23:29 -0500
 Subject: [PATCH 15/15] When reading SMSC, ignore invalid SMSC
@@ -18,7 +18,7 @@ This commit fixes sending SMS on OrangeF on my S24
  2 files changed, 4 insertions(+)
 
 diff --git a/src/java/com/android/internal/telephony/MessagingResponse.java b/src/java/com/android/internal/telephony/MessagingResponse.java
-index 19211e15f5..3ddf6762dd 100644
+index 19211e1..3ddf676 100644
 --- a/src/java/com/android/internal/telephony/MessagingResponse.java
 +++ b/src/java/com/android/internal/telephony/MessagingResponse.java
 @@ -170,6 +170,8 @@ public class MessagingResponse extends IRadioMessagingResponse.Stub {
@@ -31,7 +31,7 @@ index 19211e15f5..3ddf6762dd 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioResponse.java b/src/java/com/android/internal/telephony/RadioResponse.java
-index fe0ea2db93..729e95918c 100644
+index fe0ea2d..729e959 100644
 --- a/src/java/com/android/internal/telephony/RadioResponse.java
 +++ b/src/java/com/android/internal/telephony/RadioResponse.java
 @@ -1267,6 +1267,8 @@ public class RadioResponse extends IRadioResponse.Stub {
@@ -44,5 +44,5 @@ index fe0ea2db93..729e95918c 100644
      }
  
 -- 
-2.25.1
+2.34.1
 

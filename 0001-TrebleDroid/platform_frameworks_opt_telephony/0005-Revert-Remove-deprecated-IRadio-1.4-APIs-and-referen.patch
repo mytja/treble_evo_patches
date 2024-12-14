@@ -1,4 +1,4 @@
-From 1fe7936b6b8b0927a31d472f44000d6d12610704 Mon Sep 17 00:00:00 2001
+From f885626190359084a3dcc471374c6fc05faa8500 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Mar 2024 14:05:14 -0400
 Subject: [PATCH 05/15] Revert "Remove deprecated IRadio <1.4 APIs and
@@ -25,7 +25,7 @@ Change-Id: I6802400fb4ffcf0181441662c267f9eabc4e5cf7
  14 files changed, 740 insertions(+), 58 deletions(-)
 
 diff --git a/src/java/com/android/internal/telephony/BaseCommands.java b/src/java/com/android/internal/telephony/BaseCommands.java
-index 6f66545e1a..54066553a1 100644
+index 6f66545..5406655 100644
 --- a/src/java/com/android/internal/telephony/BaseCommands.java
 +++ b/src/java/com/android/internal/telephony/BaseCommands.java
 @@ -68,6 +68,8 @@ public abstract class BaseCommands implements CommandsInterface {
@@ -75,7 +75,7 @@ index 6f66545e1a..54066553a1 100644
      public void registerForLceInfo(Handler h, int what, Object obj) {
          synchronized (mStateMonitor) {
 diff --git a/src/java/com/android/internal/telephony/CommandsInterface.java b/src/java/com/android/internal/telephony/CommandsInterface.java
-index ee7447cf99..0f0455f005 100644
+index ee7447c..0f0455f 100644
 --- a/src/java/com/android/internal/telephony/CommandsInterface.java
 +++ b/src/java/com/android/internal/telephony/CommandsInterface.java
 @@ -898,6 +898,18 @@ public interface CommandsInterface {
@@ -321,7 +321,7 @@ index ee7447cf99..0f0455f005 100644
       * Register a LCE info listener.
       *
 diff --git a/src/java/com/android/internal/telephony/GsmCdmaPhone.java b/src/java/com/android/internal/telephony/GsmCdmaPhone.java
-index 79a23ec160..ed4bbe32ce 100644
+index 79a23ec..ed4bbe3 100644
 --- a/src/java/com/android/internal/telephony/GsmCdmaPhone.java
 +++ b/src/java/com/android/internal/telephony/GsmCdmaPhone.java
 @@ -3209,6 +3209,7 @@ public class GsmCdmaPhone extends Phone {
@@ -341,7 +341,7 @@ index 79a23ec160..ed4bbe32ce 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/Phone.java b/src/java/com/android/internal/telephony/Phone.java
-index c088406505..8bf98aa1e7 100644
+index c088406..8bf98aa 100644
 --- a/src/java/com/android/internal/telephony/Phone.java
 +++ b/src/java/com/android/internal/telephony/Phone.java
 @@ -222,6 +222,7 @@ public abstract class Phone extends Handler implements PhoneInternalInterface {
@@ -467,7 +467,7 @@ index c088406505..8bf98aa1e7 100644
       * Control the data throttling at modem.
       *
 diff --git a/src/java/com/android/internal/telephony/RIL.java b/src/java/com/android/internal/telephony/RIL.java
-index 53cd45c168..a84e9fc1c2 100644
+index 53cd45c..a84e9fc 100644
 --- a/src/java/com/android/internal/telephony/RIL.java
 +++ b/src/java/com/android/internal/telephony/RIL.java
 @@ -1330,6 +1330,16 @@ public class RIL extends BaseCommands implements CommandsInterface {
@@ -667,7 +667,7 @@ index 53cd45c168..a84e9fc1c2 100644
       * {@inheritDoc}
       */
 diff --git a/src/java/com/android/internal/telephony/data/CellularDataService.java b/src/java/com/android/internal/telephony/data/CellularDataService.java
-index 80d6b531b9..c5923aae01 100644
+index 80d6b53..c5923aa 100644
 --- a/src/java/com/android/internal/telephony/data/CellularDataService.java
 +++ b/src/java/com/android/internal/telephony/data/CellularDataService.java
 @@ -167,7 +167,6 @@ public class CellularDataService extends DataService {
@@ -727,7 +727,7 @@ index 80d6b531b9..c5923aae01 100644
  
          @Override
 diff --git a/src/java/com/android/internal/telephony/imsphone/ImsPhoneCommandInterface.java b/src/java/com/android/internal/telephony/imsphone/ImsPhoneCommandInterface.java
-index a7a9129196..71257636ef 100644
+index a7a9129..7125763 100644
 --- a/src/java/com/android/internal/telephony/imsphone/ImsPhoneCommandInterface.java
 +++ b/src/java/com/android/internal/telephony/imsphone/ImsPhoneCommandInterface.java
 @@ -56,6 +56,14 @@ class ImsPhoneCommandInterface extends BaseCommands implements CommandsInterface
@@ -854,7 +854,7 @@ index a7a9129196..71257636ef 100644
      public void setCarrierInfoForImsiEncryption(ImsiEncryptionInfo imsiEncryptionInfo,
                                                  Message result) {
 diff --git a/src/java/com/android/internal/telephony/uicc/UiccController.java b/src/java/com/android/internal/telephony/uicc/UiccController.java
-index 0459bf676e..ec35774eda 100644
+index 0459bf6..ec35774 100644
 --- a/src/java/com/android/internal/telephony/uicc/UiccController.java
 +++ b/src/java/com/android/internal/telephony/uicc/UiccController.java
 @@ -601,7 +601,7 @@ public class UiccController extends Handler {
@@ -879,7 +879,7 @@ index 0459bf676e..ec35774eda 100644
  
          if (VDBG) logPhoneIdToSlotIdMapping();
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/GsmCdmaPhoneTest.java b/tests/telephonytests/src/com/android/internal/telephony/GsmCdmaPhoneTest.java
-index 9f96ce49b1..17dcac5943 100644
+index 9f96ce4..17dcac5 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/GsmCdmaPhoneTest.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/GsmCdmaPhoneTest.java
 @@ -1013,6 +1013,9 @@ public class GsmCdmaPhoneTest extends TelephonyTest {
@@ -902,7 +902,7 @@ index 9f96ce49b1..17dcac5943 100644
          // EVENT_RADIO_ON
          verify(mSimulatedCommandsVerifier, times(2)).getVoiceRadioTechnology(
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/RILTest.java b/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
-index bfe9649e78..b285f0f8d2 100644
+index bfe9649..b285f0f 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
 @@ -64,6 +64,7 @@ import static com.android.internal.telephony.RILConstants.RIL_REQUEST_NV_READ_IT
@@ -1048,7 +1048,7 @@ index bfe9649e78..b285f0f8d2 100644
          verify(mDataProxy).setupDataCall(mSerialNumberCaptor.capture(),
                  eq(AccessNetworkConstants.AccessNetworkType.EUTRAN), dpiCaptor.capture(),
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
-index 39c0cacf8a..e56b0a80a1 100644
+index 39c0cac..e56b0a8 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
 @@ -77,6 +77,7 @@ import com.android.internal.telephony.uicc.AdnCapacity;
@@ -1317,7 +1317,7 @@ index 39c0cacf8a..e56b0a80a1 100644
      public void getSimPhonebookCapacity(Message result) {
          resultSuccess(result, new AdnCapacity(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommandsVerifier.java b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommandsVerifier.java
-index 6fc56169f3..1883513218 100644
+index 6fc5616..1883513 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommandsVerifier.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommandsVerifier.java
 @@ -687,6 +687,11 @@ public class SimulatedCommandsVerifier implements CommandsInterface {
@@ -1472,7 +1472,7 @@ index 6fc56169f3..1883513218 100644
      public void registerForLceInfo(Handler h, int what, Object obj) {
  
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/data/DataServiceManagerTest.java b/tests/telephonytests/src/com/android/internal/telephony/data/DataServiceManagerTest.java
-index 30f49ad63b..8b6ccfc908 100644
+index 30f49ad..8b6ccfc 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/data/DataServiceManagerTest.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/data/DataServiceManagerTest.java
 @@ -155,7 +155,7 @@ public class DataServiceManagerTest extends TelephonyTest {
@@ -1530,7 +1530,7 @@ index 30f49ad63b..8b6ccfc908 100644
  
      @Test
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/uicc/UiccControllerTest.java b/tests/telephonytests/src/com/android/internal/telephony/uicc/UiccControllerTest.java
-index 9265a62ccb..2ab23f3f19 100644
+index 9265a62..2ab23f3 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/uicc/UiccControllerTest.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/uicc/UiccControllerTest.java
 @@ -495,6 +495,40 @@ public class UiccControllerTest extends TelephonyTest {
@@ -1575,5 +1575,5 @@ index 9265a62ccb..2ab23f3f19 100644
       * The default eUICC should not be the removable slot if there is a built-in eUICC.
       */
 -- 
-2.25.1
+2.34.1
 

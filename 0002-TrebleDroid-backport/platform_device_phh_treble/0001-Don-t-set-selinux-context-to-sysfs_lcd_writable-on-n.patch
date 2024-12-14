@@ -1,0 +1,28 @@
+From 46f434fd80a7bc7a88866f94fe6ca6d3a7433ec7 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Thu, 31 Oct 2024 15:21:20 -0400
+Subject: [PATCH 1/4] Don't set selinux context to sysfs_lcd_writable on newer
+ Samsung vendors that use vendor_sysfs_graphics context instead
+
+---
+ rw-system.sh | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/rw-system.sh b/rw-system.sh
+index 9a1eea5..8d092a1 100644
+--- a/rw-system.sh
++++ b/rw-system.sh
+@@ -976,7 +976,9 @@ if getprop ro.vendor.build.fingerprint |grep -qiE '^xiaomi/';then
+     setprop persist.sys.phh.fod.xiaomi true
+ fi
+ 
+-if getprop ro.vendor.build.fingerprint |grep -qiE '^samsung/';then
++if getprop ro.vendor.build.fingerprint |grep -qiE '^samsung/' && \
++        grep -q sysfs_lcd_writable /vendor/etc/selinux/vendor_file_contexts && \
++        ! grep -q vendor_sysfs_graphics /vendor/etc/selinux/vendor_file_contexts ;then
+     for f in /sys/class/lcd/panel/actual_mask_brightness /sys/class/lcd/panel/mask_brightness /sys/class/lcd/panel/device/backlight/panel/brightness /sys/class/backlight/panel0-backlight/brightness;do
+         if [ "$(stat -c '%U' "$f")" == "root" ] || [ "$(ls -lZ "$f" | grep -oE 'u:object_r:[^:]*:s0')" == "u:object_r:sysfs:s0" ];then
+             chcon u:object_r:sysfs_lcd_writable:s0 $f
+-- 
+2.34.1
+

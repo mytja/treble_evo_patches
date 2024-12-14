@@ -1,4 +1,4 @@
-From b129b54281d5cfef74f38b9fd9ad2d8954f76c77 Mon Sep 17 00:00:00 2001
+From f57647b3f88c140989d22f7ce302f46b18ecdb5b Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 16 Mar 2024 15:27:27 -0400
 Subject: [PATCH 4/6] Revert "drop support for V gsi on pixel 5 R base kernel"
@@ -9,7 +9,7 @@ This reverts commit bbbd18a71368a80f689b924dcf82062c2ee351b2.
  1 file changed, 13 insertions(+)
 
 diff --git a/service/jni/com_android_server_connectivity_ClatCoordinator.cpp b/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
-index c125bd6479..787ef8fd69 100644
+index c125bd6..787ef8f 100644
 --- a/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
 +++ b/service/jni/com_android_server_connectivity_ClatCoordinator.cpp
 @@ -90,6 +90,11 @@ static void verifyPerms(const char * const path,
@@ -40,5 +40,5 @@ index c125bd6479..787ef8fd69 100644
  }
  
 -- 
-2.25.1
+2.34.1
 

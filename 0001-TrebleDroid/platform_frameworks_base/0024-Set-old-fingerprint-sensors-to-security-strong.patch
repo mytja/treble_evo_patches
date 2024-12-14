@@ -1,7 +1,7 @@
-From cee297a3b40995526db7f88403ce0af6337a2a6b Mon Sep 17 00:00:00 2001
+From a5f2c5dd761a203e9b3b2d9930eb14e4bd04707f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 3 Dec 2022 17:13:24 -0500
-Subject: [PATCH 24/48] Set old fingerprint sensors to security "strong"
+Subject: [PATCH 24/47] Set old fingerprint sensors to security "strong"
 
 This allows removing config_biometric_sensors from overlays, which led
 to Pixels not booting, because they are using AIDL biometric sensor, and
@@ -11,7 +11,7 @@ despite its name, config_biometric_sensors is HIDL-specific
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
-index 755b64e97a6d..eef5e79e4ed5 100644
+index 755b64e97..eef5e79e4 100644
 --- a/services/core/java/com/android/server/biometrics/AuthService.java
 +++ b/services/core/java/com/android/server/biometrics/AuthService.java
 @@ -765,7 +765,7 @@ public class AuthService extends SystemService {
@@ -33,5 +33,5 @@ index 755b64e97a6d..eef5e79e4ed5 100644
          for (int i = 0; i < modalities.size(); ++i) {
              final String id = String.valueOf(i);
 -- 
-2.25.1
+2.34.1
 

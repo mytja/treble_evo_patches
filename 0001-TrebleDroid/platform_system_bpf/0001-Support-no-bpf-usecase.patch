@@ -1,4 +1,4 @@
-From b8293de8e437b945893ce365f6019e50834b7013 Mon Sep 17 00:00:00 2001
+From 5cc253d3c71e9c1117e823ee359b1e34708860e4 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 13 Oct 2021 10:56:52 -0400
 Subject: [PATCH] Support no-bpf usecase
@@ -51,5 +51,5 @@ index 08fd72d..07bf6f3 100644
      return 0;
  }
 -- 
-2.25.1
+2.34.1
 

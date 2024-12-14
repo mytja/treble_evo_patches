@@ -1,4 +1,4 @@
-From a32841d80b53a8ed4e164b673ae0e832011a67bf Mon Sep 17 00:00:00 2001
+From 7b15dbcb2be0e466a9d82e8908064aea4e732ca5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Mar 2024 14:44:57 -0400
 Subject: [PATCH 06/15] Revert "Remove deprecated HAL versions for IRadio"
@@ -29,7 +29,7 @@ Change-Id: Ia3aa57286fb5cce42065f7db8133fa3caf1fcd61
  19 files changed, 3397 insertions(+), 1677 deletions(-)
 
 diff --git a/Android.bp b/Android.bp
-index c3b43735f1..331b722ace 100644
+index c3b4373..331b722 100644
 --- a/Android.bp
 +++ b/Android.bp
 @@ -99,6 +99,7 @@ java_library {
@@ -41,7 +41,7 @@ index c3b43735f1..331b722ace 100644
          "libphonenumber-nogeocoder",
          "PlatformProperties",
 diff --git a/src/java/com/android/internal/telephony/CellularNetworkService.java b/src/java/com/android/internal/telephony/CellularNetworkService.java
-index bff1d41327..41cbb662e4 100644
+index bff1d41..41cbb66 100644
 --- a/src/java/com/android/internal/telephony/CellularNetworkService.java
 +++ b/src/java/com/android/internal/telephony/CellularNetworkService.java
 @@ -286,6 +286,27 @@ public class CellularNetworkService extends NetworkService {
@@ -186,7 +186,7 @@ index bff1d41327..41cbb662e4 100644
  
          private @NonNull NetworkRegistrationInfo getNetworkRegistrationInfo(
 diff --git a/src/java/com/android/internal/telephony/NetworkIndication.java b/src/java/com/android/internal/telephony/NetworkIndication.java
-index 5c492349cd..0d5d871020 100644
+index 5c49234..0d5d871 100644
 --- a/src/java/com/android/internal/telephony/NetworkIndication.java
 +++ b/src/java/com/android/internal/telephony/NetworkIndication.java
 @@ -132,7 +132,7 @@ public class NetworkIndication extends IRadioNetworkIndication.Stub {
@@ -210,7 +210,7 @@ index 5c492349cd..0d5d871020 100644
          if (mRil.isLogvOrTrace()) mRil.unsljLogvRet(RIL_UNSOL_SIGNAL_STRENGTH, ss);
  
 diff --git a/src/java/com/android/internal/telephony/NetworkResponse.java b/src/java/com/android/internal/telephony/NetworkResponse.java
-index b4a37b3d60..b2571d981a 100644
+index b4a37b3..b2571d9 100644
 --- a/src/java/com/android/internal/telephony/NetworkResponse.java
 +++ b/src/java/com/android/internal/telephony/NetworkResponse.java
 @@ -25,10 +25,12 @@ import android.os.AsyncResult;
@@ -251,7 +251,7 @@ index b4a37b3d60..b2571d981a 100644
       * @param responseInfo Response info struct containing response type, serial no. and error
       */
 diff --git a/src/java/com/android/internal/telephony/RIL.java b/src/java/com/android/internal/telephony/RIL.java
-index a84e9fc1c2..897fb1de33 100644
+index a84e9fc..897fb1d 100644
 --- a/src/java/com/android/internal/telephony/RIL.java
 +++ b/src/java/com/android/internal/telephony/RIL.java
 @@ -60,6 +60,13 @@ import android.telephony.AccessNetworkConstants;
@@ -4501,7 +4501,7 @@ index a84e9fc1c2..897fb1de33 100644
          mLastBarringInfo = barringInfo;
          mBarringInfoChangedRegistrants.notifyRegistrants(new AsyncResult(null, barringInfo, null));
 diff --git a/src/java/com/android/internal/telephony/RILUtils.java b/src/java/com/android/internal/telephony/RILUtils.java
-index 8897db4e45..04e90f7f83 100644
+index 8897db4..04e90f7 100644
 --- a/src/java/com/android/internal/telephony/RILUtils.java
 +++ b/src/java/com/android/internal/telephony/RILUtils.java
 @@ -886,6 +886,41 @@ public class RILUtils {
@@ -5151,7 +5151,7 @@ index 8897db4e45..04e90f7f83 100644
          return dc;
      }
 diff --git a/src/java/com/android/internal/telephony/RadioConfig.java b/src/java/com/android/internal/telephony/RadioConfig.java
-index 13f65028b6..1b8b15628e 100644
+index 13f6502..1b8b156 100644
 --- a/src/java/com/android/internal/telephony/RadioConfig.java
 +++ b/src/java/com/android/internal/telephony/RadioConfig.java
 @@ -62,6 +62,7 @@ public class RadioConfig extends Handler {
@@ -5178,7 +5178,7 @@ index 13f65028b6..1b8b15628e 100644
  
          if (!mRadioConfigProxy.isEmpty()) {
 diff --git a/src/java/com/android/internal/telephony/RadioConfigProxy.java b/src/java/com/android/internal/telephony/RadioConfigProxy.java
-index b6c6d68470..79f3d70b9e 100644
+index b6c6d68..79f3d70 100644
 --- a/src/java/com/android/internal/telephony/RadioConfigProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioConfigProxy.java
 @@ -35,7 +35,7 @@ public class RadioConfigProxy {
@@ -5255,7 +5255,7 @@ index b6c6d68470..79f3d70b9e 100644
          }
  
 diff --git a/src/java/com/android/internal/telephony/RadioDataProxy.java b/src/java/com/android/internal/telephony/RadioDataProxy.java
-index 40db9e5b3d..9671077b0f 100644
+index 40db9e5..9671077 100644
 --- a/src/java/com/android/internal/telephony/RadioDataProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioDataProxy.java
 @@ -22,7 +22,9 @@ import android.os.AsyncResult;
@@ -5457,7 +5457,7 @@ index 40db9e5b3d..9671077b0f 100644
      }
  }
 diff --git a/src/java/com/android/internal/telephony/RadioIndication.java b/src/java/com/android/internal/telephony/RadioIndication.java
-index aadfe62499..b29a7bf434 100644
+index aadfe62..b29a7bf 100644
 --- a/src/java/com/android/internal/telephony/RadioIndication.java
 +++ b/src/java/com/android/internal/telephony/RadioIndication.java
 @@ -240,18 +240,28 @@ public class RadioIndication extends IRadioIndication.Stub {
@@ -5669,7 +5669,7 @@ index aadfe62499..b29a7bf434 100644
          mRil.processIndication(HAL_SERVICE_RADIO, indicationType);
  
 diff --git a/src/java/com/android/internal/telephony/RadioMessagingProxy.java b/src/java/com/android/internal/telephony/RadioMessagingProxy.java
-index 424e4ac2f4..0430a2ddd5 100644
+index 424e4ac..0430a2d 100644
 --- a/src/java/com/android/internal/telephony/RadioMessagingProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioMessagingProxy.java
 @@ -25,8 +25,8 @@ import com.android.internal.telephony.gsm.SmsBroadcastConfigInfo;
@@ -5684,7 +5684,7 @@ index 424e4ac2f4..0430a2ddd5 100644
  public class RadioMessagingProxy extends RadioServiceProxy {
      private static final String TAG = "RadioMessagingProxy";
 diff --git a/src/java/com/android/internal/telephony/RadioModemProxy.java b/src/java/com/android/internal/telephony/RadioModemProxy.java
-index cdcbcc063e..4178293d06 100644
+index cdcbcc0..4178293 100644
 --- a/src/java/com/android/internal/telephony/RadioModemProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioModemProxy.java
 @@ -20,8 +20,8 @@ import android.os.RemoteException;
@@ -5727,7 +5727,7 @@ index cdcbcc063e..4178293d06 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioNetworkProxy.java b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
-index 4acc71acee..069e0667df 100644
+index 4acc71a..069e066 100644
 --- a/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 @@ -33,17 +33,19 @@ import java.util.List;
@@ -5941,7 +5941,7 @@ index 4acc71acee..069e0667df 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioResponse.java b/src/java/com/android/internal/telephony/RadioResponse.java
-index 127d876557..8a52dfbbb2 100644
+index 127d876..8a52dfb 100644
 --- a/src/java/com/android/internal/telephony/RadioResponse.java
 +++ b/src/java/com/android/internal/telephony/RadioResponse.java
 @@ -43,9 +43,11 @@ import android.telephony.AnomalyReporter;
@@ -6521,7 +6521,7 @@ index 127d876557..8a52dfbbb2 100644
       * @param responseInfo Response info struct containing response type, serial number and error.
       */
 diff --git a/src/java/com/android/internal/telephony/RadioServiceProxy.java b/src/java/com/android/internal/telephony/RadioServiceProxy.java
-index 02fc751484..4257327330 100644
+index 02fc751..4257327 100644
 --- a/src/java/com/android/internal/telephony/RadioServiceProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioServiceProxy.java
 @@ -19,13 +19,13 @@ package com.android.internal.telephony;
@@ -6560,7 +6560,7 @@ index 02fc751484..4257327330 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioSimProxy.java b/src/java/com/android/internal/telephony/RadioSimProxy.java
-index 5265692167..7c8ee7b6ea 100644
+index 5265692..7c8ee7b 100644
 --- a/src/java/com/android/internal/telephony/RadioSimProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioSimProxy.java
 @@ -16,17 +16,22 @@
@@ -6720,7 +6720,7 @@ index 5265692167..7c8ee7b6ea 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioVoiceProxy.java b/src/java/com/android/internal/telephony/RadioVoiceProxy.java
-index e57a61d81c..7f46424485 100644
+index e57a61d..7f46424 100644
 --- a/src/java/com/android/internal/telephony/RadioVoiceProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioVoiceProxy.java
 @@ -24,8 +24,8 @@ import android.telephony.emergency.EmergencyNumber;
@@ -6753,7 +6753,7 @@ index e57a61d81c..7f46424485 100644
                      emergencyNumberInfo.getEmergencyServiceCategoryBitmaskInternalDial(),
                      emergencyNumberInfo.getEmergencyUrns() != null
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/RILTest.java b/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
-index b285f0f8d2..c0e5d67a0d 100644
+index b285f0f..c0e5d67 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/RILTest.java
 @@ -142,7 +142,6 @@ import android.os.RemoteException;
@@ -8415,7 +8415,7 @@ index b285f0f8d2..c0e5d67a0d 100644
                              ((CommandException) (ar.exception)).getCommandError();
                      if (err == CommandException.Error.RADIO_NOT_AVAILABLE) {
 diff --git a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
-index e56b0a80a1..9f3483550e 100644
+index e56b0a8..9f34835 100644
 --- a/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
 +++ b/tests/telephonytests/src/com/android/internal/telephony/SimulatedCommands.java
 @@ -18,10 +18,9 @@ package com.android.internal.telephony.test;
@@ -8482,5 +8482,5 @@ index e56b0a80a1..9f3483550e 100644
              } catch (Exception e) {
                  Rlog.e(LOG_TAG, "setupDataCall: e=" + e);
 -- 
-2.25.1
+2.34.1
 

@@ -1,4 +1,4 @@
-From 45be83007b441255158b789927ef635ce2f01046 Mon Sep 17 00:00:00 2001
+From 9268e8cb19afb95c5f021c7dc025d413afbb0782 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 26 Oct 2022 18:11:10 -0400
 Subject: [PATCH 2/6] Support non-working BPF maps on old BPF-less kernel
@@ -13,7 +13,7 @@ Subject: [PATCH 2/6] Support non-working BPF maps on old BPF-less kernel
  6 files changed, 91 insertions(+), 44 deletions(-)
 
 diff --git a/framework/src/android/net/BpfNetMapsReader.java b/framework/src/android/net/BpfNetMapsReader.java
-index ee422abd9c..d31024c686 100644
+index ee422ab..d31024c 100644
 --- a/framework/src/android/net/BpfNetMapsReader.java
 +++ b/framework/src/android/net/BpfNetMapsReader.java
 @@ -124,7 +124,7 @@ public class BpfNetMapsReader {
@@ -79,7 +79,7 @@ index ee422abd9c..d31024c686 100644
              return mDataSaverEnabledMap.getValue(DATA_SAVER_ENABLED_KEY).val == DATA_SAVER_ENABLED;
          } catch (ErrnoException e) {
 diff --git a/netbpfload/NetBpfLoad.cpp b/netbpfload/NetBpfLoad.cpp
-index 8af4dd49a7..2953859760 100644
+index 8af4dd4..2953859 100644
 --- a/netbpfload/NetBpfLoad.cpp
 +++ b/netbpfload/NetBpfLoad.cpp
 @@ -242,6 +242,7 @@ int main(int argc, char** argv, char * const envp[]) {
@@ -160,7 +160,7 @@ index 8af4dd49a7..2953859760 100644
      ALOGI("done, transferring control to platform bpfloader.");
  
 diff --git a/service-t/native/libs/libnetworkstats/BpfNetworkStats.cpp b/service-t/native/libs/libnetworkstats/BpfNetworkStats.cpp
-index d3e331ec81..541b8c8f01 100644
+index d3e331e..541b8c8 100644
 --- a/service-t/native/libs/libnetworkstats/BpfNetworkStats.cpp
 +++ b/service-t/native/libs/libnetworkstats/BpfNetworkStats.cpp
 @@ -195,6 +195,7 @@ int parseBpfNetworkStatsDetail(std::vector<stats_line>* lines) {
@@ -172,7 +172,7 @@ index d3e331ec81..541b8c8f01 100644
      if (!configuration.ok()) {
          ALOGE("Cannot read the old configuration from map: %s",
 diff --git a/service-t/src/com/android/server/net/NetworkStatsService.java b/service-t/src/com/android/server/net/NetworkStatsService.java
-index f7f133c5a1..90cc39040a 100644
+index f7f133c..90cc390 100644
 --- a/service-t/src/com/android/server/net/NetworkStatsService.java
 +++ b/service-t/src/com/android/server/net/NetworkStatsService.java
 @@ -433,12 +433,12 @@ public class NetworkStatsService extends INetworkStatsService.Stub {
@@ -226,7 +226,7 @@ index f7f133c5a1..90cc39040a 100644
              mCookieTagMap.forEach((key, value) -> {
                  // If SkDestroyListener deletes the socket tag while this code is running,
 diff --git a/service/src/com/android/server/BpfNetMaps.java b/service/src/com/android/server/BpfNetMaps.java
-index a7fddd08f0..833a6a9a5a 100644
+index a7fddd0..833a6a9 100644
 --- a/service/src/com/android/server/BpfNetMaps.java
 +++ b/service/src/com/android/server/BpfNetMaps.java
 @@ -366,7 +366,11 @@ public class BpfNetMaps {
@@ -374,7 +374,7 @@ index a7fddd08f0..833a6a9a5a 100644
              final short config = sDataSaverEnabledMap.getValue(DATA_SAVER_ENABLED_KEY).val;
              // Any non-zero value converted from short to boolean is true by convention.
 diff --git a/staticlibs/native/bpf_headers/include/bpf/BpfMap.h b/staticlibs/native/bpf_headers/include/bpf/BpfMap.h
-index 1037bebf29..b8e8991c57 100644
+index 1037beb..b8e8991 100644
 --- a/staticlibs/native/bpf_headers/include/bpf/BpfMap.h
 +++ b/staticlibs/native/bpf_headers/include/bpf/BpfMap.h
 @@ -60,21 +60,24 @@ class BpfMapRO {
@@ -412,5 +412,5 @@ index 1037bebf29..b8e8991c57 100644
  
      Result<Key> getFirstKey() const {
 -- 
-2.25.1
+2.34.1
 

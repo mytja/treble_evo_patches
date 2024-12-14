@@ -1,4 +1,4 @@
-From 1b6e0989e7c8fdd3d4813f4aa19aa40d39b43d79 Mon Sep 17 00:00:00 2001
+From 5b94903966765af8f1f5c48e599ad6b686998e13 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 24 May 2020 17:22:22 +0200
 Subject: [PATCH 06/10] Allow mismatches of exfat genfscon
@@ -8,7 +8,7 @@ Subject: [PATCH 06/10] Allow mismatches of exfat genfscon
  1 file changed, 4 insertions(+)
 
 diff --git a/libsepol/cil/src/cil_post.c b/libsepol/cil/src/cil_post.c
-index 99410da0..7f614c03 100644
+index 99410da..7f614c0 100644
 --- a/libsepol/cil/src/cil_post.c
 +++ b/libsepol/cil/src/cil_post.c
 @@ -502,6 +502,10 @@ static int cil_post_genfscon_context_compare(const void *a, const void *b)

@@ -1,4 +1,4 @@
-From 11abd6721f406a79b923d40534c668f929288b77 Mon Sep 17 00:00:00 2001
+From 645fa08cce23bbc9ef14cf7cf2f0f2cb2b96c159 Mon Sep 17 00:00:00 2001
 From: koron393 <koron393@gmail.com>
 Date: Fri, 20 Jan 2023 05:41:13 +0900
 Subject: [PATCH 3/6] Bring back traffic indicators for legacy devices
@@ -16,7 +16,7 @@ Signed-off-by: koron393 <koron393@gmail.com>
  1 file changed, 81 insertions(+), 3 deletions(-)
 
 diff --git a/service-t/jni/com_android_server_net_NetworkStatsService.cpp b/service-t/jni/com_android_server_net_NetworkStatsService.cpp
-index c99939864d..741f13c7ed 100644
+index c999398..741f13c 100644
 --- a/service-t/jni/com_android_server_net_NetworkStatsService.cpp
 +++ b/service-t/jni/com_android_server_net_NetworkStatsService.cpp
 @@ -39,6 +39,9 @@ using android::bpf::NetworkTraceHandler;
@@ -138,5 +138,5 @@ index c99939864d..741f13c7ed 100644
  }
  
 -- 
-2.25.1
+2.34.1
 

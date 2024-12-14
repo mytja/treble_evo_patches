@@ -1,4 +1,4 @@
-From d05ebef011c100a23e1411f33b227c1e528e5239 Mon Sep 17 00:00:00 2001
+From a41f4e1193a90d8cca7b7c021d974cd86e7132eb Mon Sep 17 00:00:00 2001
 From: Christian Hoffmann <chrmhoffmann@gmail.com>
 Date: Fri, 21 Oct 2022 12:58:04 +0200
 Subject: [PATCH 10/15] Fix NPE with 1.0 and 1.1 CardStatus
@@ -9,7 +9,7 @@ Change-Id: I965f6ef419b7aef828da02f5d4745bd33d09fe3a
  1 file changed, 2 insertions(+)
 
 diff --git a/src/java/com/android/internal/telephony/RadioResponse.java b/src/java/com/android/internal/telephony/RadioResponse.java
-index 8a52dfbbb2..fe0ea2db93 100644
+index 8a52dfb..fe0ea2d 100644
 --- a/src/java/com/android/internal/telephony/RadioResponse.java
 +++ b/src/java/com/android/internal/telephony/RadioResponse.java
 @@ -1879,6 +1879,8 @@ public class RadioResponse extends IRadioResponse.Stub {
@@ -22,5 +22,5 @@ index 8a52dfbbb2..fe0ea2db93 100644
              if (responseInfo.error == RadioError.NONE) {
                  sendMessageResponse(rr.mResult, iccCardStatus);
 -- 
-2.25.1
+2.34.1
 

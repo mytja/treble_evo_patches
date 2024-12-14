@@ -1,0 +1,62 @@
+From f3df0a948f801f69a07a56e081f3f1d600e5e655 Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Fri, 29 Nov 2024 20:13:49 -0500
+Subject: [PATCH 2/4] Add agold-cmd to toy with agold hal
+
+---
+ cmds/Android.bp    | 12 ++++++++++++
+ cmds/agold-cmd.cpp | 22 ++++++++++++++++++++++
+ 2 files changed, 34 insertions(+)
+ create mode 100644 cmds/agold-cmd.cpp
+
+diff --git a/cmds/Android.bp b/cmds/Android.bp
+index 18788e9..df2625f 100644
+--- a/cmds/Android.bp
++++ b/cmds/Android.bp
+@@ -313,3 +313,15 @@ cc_binary {
+ 		"re-libged_sys.cpp",
+ 	],
+ }
++
++cc_binary {
++	name: "agold-cmd",
++	srcs: [
++		"agold-cmd.cpp",
++	],
++	shared_libs: [
++        "vendor.mediatek.hardware.agolddaemon-V1-cpp",
++		"libutils",
++		"libbinder",
++	],
++}
+diff --git a/cmds/agold-cmd.cpp b/cmds/agold-cmd.cpp
+new file mode 100644
+index 0000000..9943557
+--- /dev/null
++++ b/cmds/agold-cmd.cpp
+@@ -0,0 +1,22 @@
++#include <iostream>
++#include <vendor/mediatek/hardware/agolddaemon/IAgoldDaemon.h>
++#include <binder/IServiceManager.h>
++
++using ::vendor::mediatek::hardware::agolddaemon::IAgoldDaemon;
++using ::android::sp;
++
++int main(int argc, char **argv) {
++	auto svc = android::checkVintfService<IAgoldDaemon>();
++    android::String16 a;
++    svc->getNotGsi(&a);
++    std::cout << "notgsi is " << a << std::endl;
++    if (argc >= 2) {
++        android::String16 b(argv[1]);
++        svc->setNotGsi(b);
++    }
++    svc->getNotGsi(&a);
++    std::cout << "notgsi is " << a << std::endl;
++
++    svc->setCameraClientPackageName(android::String16("com.mediatek.camera"));
++
++}
+-- 
+2.34.1
+

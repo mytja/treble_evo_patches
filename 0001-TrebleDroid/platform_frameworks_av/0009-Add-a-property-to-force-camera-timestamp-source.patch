@@ -1,4 +1,4 @@
-From f68a9116bf275bcc8c2c6fdb72f0dadd637411ce Mon Sep 17 00:00:00 2001
+From 503af87661d7bcaf791ad810ef06745dcc3cf1bd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 19 May 2020 14:01:14 +0200
 Subject: [PATCH 09/23] Add a property to force camera timestamp source
@@ -18,7 +18,7 @@ timestamp source.
  1 file changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/services/camera/libcameraservice/device3/Camera3Device.cpp b/services/camera/libcameraservice/device3/Camera3Device.cpp
-index aa17941b54..fdbf7ba0b7 100644
+index aa17941..fdbf7ba 100644
 --- a/services/camera/libcameraservice/device3/Camera3Device.cpp
 +++ b/services/camera/libcameraservice/device3/Camera3Device.cpp
 @@ -243,8 +243,16 @@ status_t Camera3Device::initializeCommonLocked() {
@@ -41,5 +41,5 @@ index aa17941b54..fdbf7ba0b7 100644
      }
  
 -- 
-2.25.1
+2.34.1
 

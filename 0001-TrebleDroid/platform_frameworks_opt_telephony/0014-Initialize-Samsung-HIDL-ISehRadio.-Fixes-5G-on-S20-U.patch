@@ -1,4 +1,4 @@
-From 258f4896912a3d9fc5849a868e3bd9a0b057ab35 Mon Sep 17 00:00:00 2001
+From 9d75fc0f35776e7d8f6ab0891f147ea1d0907548 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 21 Feb 2024 16:21:51 -0500
 Subject: [PATCH 14/15] Initialize Samsung HIDL ISehRadio. Fixes 5G on S20
@@ -12,7 +12,7 @@ Subject: [PATCH 14/15] Initialize Samsung HIDL ISehRadio. Fixes 5G on S20
  4 files changed, 127 insertions(+), 4 deletions(-)
 
 diff --git a/Android.bp b/Android.bp
-index 6e2c045bd1..2370555150 100644
+index 6e2c045..2370555 100644
 --- a/Android.bp
 +++ b/Android.bp
 @@ -82,6 +82,7 @@ java_library {
@@ -24,7 +24,7 @@ index 6e2c045bd1..2370555150 100644
          "android.hardware.radio.data-V3-java",
          "android.hardware.radio.ims-V2-java",
 diff --git a/src/java/com/android/internal/telephony/RIL.java b/src/java/com/android/internal/telephony/RIL.java
-index 82a3b583c5..b42f258044 100644
+index 82a3b58..b42f258 100644
 --- a/src/java/com/android/internal/telephony/RIL.java
 +++ b/src/java/com/android/internal/telephony/RIL.java
 @@ -810,6 +810,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
@@ -45,7 +45,7 @@ index 82a3b583c5..b42f258044 100644
                          break;
                      case HAL_SERVICE_SIM:
 diff --git a/src/java/com/android/internal/telephony/RadioNetworkProxy.java b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
-index 6acc90ed63..ed623744ad 100644
+index 6acc90e..ed62374 100644
 --- a/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 @@ -32,6 +32,7 @@ import java.util.ArrayList;
@@ -213,7 +213,7 @@ index 6acc90ed63..ed623744ad 100644
       * Call IRadioNetwork#startNetworkScan
       * @param serial Serial number of request
 diff --git a/src/java/com/android/internal/telephony/RadioServiceProxy.java b/src/java/com/android/internal/telephony/RadioServiceProxy.java
-index 4257327330..b3d43ea635 100644
+index 4257327..b3d43ea 100644
 --- a/src/java/com/android/internal/telephony/RadioServiceProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioServiceProxy.java
 @@ -83,4 +83,9 @@ public abstract class RadioServiceProxy {
@@ -227,5 +227,5 @@ index 4257327330..b3d43ea635 100644
 +    }
  }
 -- 
-2.25.1
+2.34.1
 

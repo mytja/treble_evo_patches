@@ -1,4 +1,4 @@
-From 9199bcc009aae59a36572e9df9aca41b516b031f Mon Sep 17 00:00:00 2001
+From b738ff12a224630dfd7e5c66be61612104144d26 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Mon, 1 Apr 2024 09:15:33 +0000
 Subject: [PATCH] Revert "Remove deprecated IRadio <1.4 APIs and references"
@@ -9,7 +9,7 @@ This reverts commit b4a31f92a15ccf1f74c804ab3706ef8e4b59c8df.
  1 file changed, 48 insertions(+)
 
 diff --git a/src/com/android/phone/PhoneInterfaceManager.java b/src/com/android/phone/PhoneInterfaceManager.java
-index e18818c0f..3a6a96725 100644
+index e18818c..3a6a967 100644
 --- a/src/com/android/phone/PhoneInterfaceManager.java
 +++ b/src/com/android/phone/PhoneInterfaceManager.java
 @@ -312,6 +312,8 @@ public class PhoneInterfaceManager extends ITelephony.Stub {

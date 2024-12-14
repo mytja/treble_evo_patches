@@ -1,4 +1,4 @@
-From 103de24cd29541250188cb26be11200cfee0d978 Mon Sep 17 00:00:00 2001
+From 964c118c624970260907dbaa4fd02fcd54d79709 Mon Sep 17 00:00:00 2001
 From: LuK1337 <priv.luk@gmail.com>
 Date: Fri, 21 Oct 2022 20:55:05 +0200
 Subject: [PATCH 09/15] Pass correct value to setPreferredNetworkType() for RIL
@@ -11,7 +11,7 @@ Change-Id: Id14be66a2ea4e85b6504bc03fd7d2f038185c17d
  2 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/src/java/com/android/internal/telephony/RIL.java b/src/java/com/android/internal/telephony/RIL.java
-index 69d5fcd8ca..d41349645c 100644
+index 69d5fcd..d413496 100644
 --- a/src/java/com/android/internal/telephony/RIL.java
 +++ b/src/java/com/android/internal/telephony/RIL.java
 @@ -3180,7 +3180,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
@@ -25,7 +25,7 @@ index 69d5fcd8ca..d41349645c 100644
      }
  
 diff --git a/src/java/com/android/internal/telephony/RadioNetworkProxy.java b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
-index 069e0667df..708b1850c9 100644
+index 069e066..708b185 100644
 --- a/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 +++ b/src/java/com/android/internal/telephony/RadioNetworkProxy.java
 @@ -389,16 +389,17 @@ public class RadioNetworkProxy extends RadioServiceProxy {
@@ -49,5 +49,5 @@ index 069e0667df..708b1850c9 100644
      }
  
 -- 
-2.25.1
+2.34.1
 

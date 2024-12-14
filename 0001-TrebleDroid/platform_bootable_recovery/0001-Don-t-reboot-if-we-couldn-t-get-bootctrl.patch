@@ -1,4 +1,4 @@
-From 48f0b520ddb023295740c43fd10d88bd43eb4973 Mon Sep 17 00:00:00 2001
+From 2e2c46f776dde4b3389d14b9da5a182d44e8e00c Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 12 Sep 2019 20:31:07 +0200
 Subject: [PATCH] Don't reboot if we couldn't get bootctrl
@@ -9,7 +9,7 @@ Change-Id: Id1793660bd1c97ab369607f58a772ca3512ec1af
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/update_verifier/update_verifier.cpp b/update_verifier/update_verifier.cpp
-index a0160e2f..24d6ccab 100644
+index a0160e2..24d6cca 100644
 --- a/update_verifier/update_verifier.cpp
 +++ b/update_verifier/update_verifier.cpp
 @@ -324,7 +324,7 @@ int update_verifier(int argc, char** argv) {

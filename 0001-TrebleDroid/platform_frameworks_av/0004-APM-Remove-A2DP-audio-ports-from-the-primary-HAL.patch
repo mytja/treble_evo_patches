@@ -1,4 +1,4 @@
-From a92fb1af9dfb8af25c2e51b57acafa0845ac6d04 Mon Sep 17 00:00:00 2001
+From da24b2dd9a530841208edf6826f8904505581b34 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Thu, 25 Aug 2022 13:30:29 -0400
 Subject: [PATCH 04/23] APM: Remove A2DP audio ports from the primary HAL
@@ -16,7 +16,7 @@ Change-Id: I3305594a17285da113167b419543543f0ef71122
  1 file changed, 22 insertions(+), 4 deletions(-)
 
 diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-index 29d36ca00b..839974b9d3 100644
+index 29d36ca..839974b 100644
 --- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -26,6 +26,7 @@
@@ -75,5 +75,5 @@ index 29d36ca00b..839974b9d3 100644
  
      RouteTraits::Collection routes;
 -- 
-2.25.1
+2.34.1
 

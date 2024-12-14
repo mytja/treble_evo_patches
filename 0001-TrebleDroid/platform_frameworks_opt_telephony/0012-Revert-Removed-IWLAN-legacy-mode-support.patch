@@ -1,4 +1,4 @@
-From 9114f14723c14e1a3870df25064e55b3ec7b84ce Mon Sep 17 00:00:00 2001
+From 90afd731124abd346b6e4f035973056a09f905d2 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Fri, 20 Oct 2023 09:11:55 +0000
 Subject: [PATCH 12/15] Revert "Removed IWLAN legacy mode support"
@@ -14,7 +14,7 @@ Change-Id: I1fd5a803ea3b01f902ff14e1ee6225312b2d3206
  4 files changed, 189 insertions(+), 36 deletions(-)
 
 diff --git a/src/java/com/android/internal/telephony/ServiceStateTracker.java b/src/java/com/android/internal/telephony/ServiceStateTracker.java
-index 871d6e5312..c5ca387a63 100644
+index 871d6e5..c5ca387 100644
 --- a/src/java/com/android/internal/telephony/ServiceStateTracker.java
 +++ b/src/java/com/android/internal/telephony/ServiceStateTracker.java
 @@ -671,7 +671,7 @@ public class ServiceStateTracker extends Handler {
@@ -145,7 +145,7 @@ index 871d6e5312..c5ca387a63 100644
  
      private void updateNtnCapability() {
 diff --git a/src/java/com/android/internal/telephony/data/AccessNetworksManager.java b/src/java/com/android/internal/telephony/data/AccessNetworksManager.java
-index 3d3fbe959c..8ba5581bf6 100644
+index 3d3fbe9..8ba5581 100644
 --- a/src/java/com/android/internal/telephony/data/AccessNetworksManager.java
 +++ b/src/java/com/android/internal/telephony/data/AccessNetworksManager.java
 @@ -16,9 +16,12 @@
@@ -334,7 +334,7 @@ index 3d3fbe959c..8ba5581bf6 100644
          pw.increaseIndent();
          mLocalLog.dump(fd, pw, args);
 diff --git a/src/java/com/android/internal/telephony/data/DataNetworkController.java b/src/java/com/android/internal/telephony/data/DataNetworkController.java
-index 70d3b23142..fa67c0daf5 100644
+index 70d3b23..fa67c0d 100644
 --- a/src/java/com/android/internal/telephony/data/DataNetworkController.java
 +++ b/src/java/com/android/internal/telephony/data/DataNetworkController.java
 @@ -1039,10 +1039,12 @@ public class DataNetworkController extends Handler {
@@ -355,7 +355,7 @@ index 70d3b23142..fa67c0daf5 100644
          mPhone.getContext().getSystemService(TelephonyRegistryManager.class)
                  .addOnSubscriptionsChangedListener(new OnSubscriptionsChangedListener() {
 diff --git a/src/java/com/android/internal/telephony/imsphone/ImsPhone.java b/src/java/com/android/internal/telephony/imsphone/ImsPhone.java
-index a6bb1d66f0..2ebaca52ad 100644
+index a6bb1d6..2ebaca5 100644
 --- a/src/java/com/android/internal/telephony/imsphone/ImsPhone.java
 +++ b/src/java/com/android/internal/telephony/imsphone/ImsPhone.java
 @@ -492,7 +492,11 @@ public class ImsPhone extends ImsPhoneBase {
@@ -429,5 +429,5 @@ index a6bb1d66f0..2ebaca52ad 100644
          return mImsMmTelRegistrationHelper.getCallback();
      }
 -- 
-2.25.1
+2.34.1
 

@@ -1,0 +1,49 @@
+From f012b05eb7b922d34004b5e4d147f3758c37c1fb Mon Sep 17 00:00:00 2001
+From: Pierre-Hugues Husson <phh@phh.me>
+Date: Mon, 21 Dec 2020 20:19:11 +0100
+Subject: [PATCH 12/23] Make camera IDs filter-out optional
+
+Nowadays most people have Camera 2 apps, and would like to have all
+cameras, rather than limit which cameras are available.
+Add a property for that.
+---
+ .../common/CameraProviderManager.cpp             | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/services/camera/libcameraservice/common/CameraProviderManager.cpp b/services/camera/libcameraservice/common/CameraProviderManager.cpp
+index 1f01e95..0437ebc 100644
+--- a/services/camera/libcameraservice/common/CameraProviderManager.cpp
++++ b/services/camera/libcameraservice/common/CameraProviderManager.cpp
+@@ -328,7 +328,9 @@ std::vector<std::string> CameraProviderManager::getAPI1CompatibleCameraDeviceIds
+         // API1 app doesn't handle logical and physical camera devices well. So
+         // for each camera facing, only take the first id advertised by HAL in
+         // all [logical, physical1, physical2, ...] id combos, and filter out the rest.
+-        filterLogicalCameraIdsLocked(providerDeviceIds);
++        if(!property_get_bool("persist.sys.phh.include_all_cameras", false)) {
++            filterLogicalCameraIdsLocked(providerDeviceIds);
++        }
+         collectDeviceIdsLocked(providerDeviceIds, publicDeviceIds, systemDeviceIds);
+     }
+     auto sortFunc =
+@@ -1128,11 +1130,13 @@ CameraMetadata CameraProviderManager::ProviderInfo::DeviceInfo3::deviceInfo(
+ }
+ 
+ SystemCameraKind CameraProviderManager::ProviderInfo::DeviceInfo3::getSystemCameraKind() {
+-    camera_metadata_entry_t entryCap;
+-    entryCap = mCameraCharacteristics.find(ANDROID_REQUEST_AVAILABLE_CAPABILITIES);
+-    if (entryCap.count == 1 &&
+-            entryCap.data.u8[0] == ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SECURE_IMAGE_DATA) {
+-        return SystemCameraKind::HIDDEN_SECURE_CAMERA;
++    if(!property_get_bool("persist.sys.phh.include_all_cameras", false)) {
++        camera_metadata_entry_t entryCap;
++        entryCap = mCameraCharacteristics.find(ANDROID_REQUEST_AVAILABLE_CAPABILITIES);
++        if (entryCap.count == 1 &&
++                entryCap.data.u8[0] == ANDROID_REQUEST_AVAILABLE_CAPABILITIES_SECURE_IMAGE_DATA) {
++            return SystemCameraKind::HIDDEN_SECURE_CAMERA;
++        }
+     }
+     return SystemCameraKind::PUBLIC;
+ }
+-- 
+2.34.1
+

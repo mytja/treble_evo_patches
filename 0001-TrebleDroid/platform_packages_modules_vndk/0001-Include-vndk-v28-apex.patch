@@ -1,4 +1,4 @@
-From d31481328f865b04e778b8a7bad5278f0970a97f Mon Sep 17 00:00:00 2001
+From 96cd71954555f49a56ce568d77b5bbe385eba6fe Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 6 Oct 2023 05:18:39 -0400
 Subject: [PATCH] Include vndk v28 apex
