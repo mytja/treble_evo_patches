@@ -1,0 +1,42 @@
+From c9562474e57a7dea5dda5b1daf491796c88a9b8a Mon Sep 17 00:00:00 2001
+From: Ji Luo <ji.luo@nxp.com>
+Date: Thu, 25 Aug 2022 14:52:09 +0800
+Subject: [PATCH 3/3] bluetooth: abandon app local certificate
+
+bluetooth app is signed with local certificate ':com.android.bluetooth.certificate'
+which is located at 'android/app/certs/*' and is aligned with the certificate in
+'build/target/product/security'. However, some vendors may specify their own
+certificates path by 'PRODUCT_DEFAULT_DEV_CERTIFICATE' and generate their own
+release bluetooth certificates, bluetooth app will fail to load in such scenario
+because of the certificate doesn't match and cause selinux error:
+  ...
+  E SELinux : seapp_context_lookup:  No match for app with uid 1002, seinfo default, name com.android.bluetooth
+  E SELinux : selinux_android_setcontext:  Error setting context for app with uid 1002, seinfo default:privapp:targetSdkVersion=33:complete: Success
+  ...
+
+This CL use the certificate name 'bluetooth' so the app can be signed with the
+same certificate which is located at 'PRODUCT_DEFAULT_DEV_CERTIFICATE/*'.
+
+Test: Bluetooth on&off.
+
+Signed-off-by: Ji Luo <ji.luo@nxp.com>
+Change-Id: I286aed5a3b895272f5ffc077ecd1d76351e02af7
+---
+ service/tests/Android.bp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/service/tests/Android.bp b/service/tests/Android.bp
+index 96c8996..f40e60d 100644
+--- a/service/tests/Android.bp
++++ b/service/tests/Android.bp
+@@ -52,6 +52,7 @@ android_test {
+         "libdexmakerjvmtiagent",
+         "libstaticjvmtiagent",
+     ],
++    certificate: "bluetooth",
+ 
+     min_sdk_version: "Tiramisu",
+ 
+-- 
+2.34.1
+
