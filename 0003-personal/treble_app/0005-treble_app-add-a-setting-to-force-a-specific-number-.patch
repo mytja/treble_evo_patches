@@ -1,4 +1,4 @@
-From baa12038214ef430e2f92fdfcfeb3a0dfaa2cc06 Mon Sep 17 00:00:00 2001
+From 101332c963a1b188ca1bcf018518e19f1fb1daa5 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 20:29:53 +0100
 Subject: [PATCH 5/5] treble_app: add a setting to force a specific number of
@@ -16,10 +16,10 @@ Change-Id: I54cd19f02c7633912f0d272c7a038093182975c7
  4 files changed, 27 insertions(+)
 
 diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
-index 5fd2aa5..b191ffd 100644
+index f0fd26b..404142e 100644
 --- a/app/src/main/java/me/phh/treble/app/Misc.kt
 +++ b/app/src/main/java/me/phh/treble/app/Misc.kt
-@@ -185,6 +185,10 @@ object Misc: EntryStartup {
+@@ -187,6 +187,10 @@ object Misc: EntryStartup {
                      }
                  }
              }
@@ -31,12 +31,12 @@ index 5fd2aa5..b191ffd 100644
                  val thisModeIndex = sp.getString(key, "-1").toInt()
                  val displayInfo = displayManager.displays[0]
 diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-index 1f4520b..43039a7 100644
+index 55abb99..9257840 100644
 --- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
 +++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-@@ -23,6 +23,7 @@ object MiscSettings : Settings {
-     val bluetooth = "key_misc_bluetooth"
+@@ -24,6 +24,7 @@ object MiscSettings : Settings {
      val securize = "key_misc_securize"
+     val secureAdb = "key_misc_secure_adb"
      val removeTelephony = "key_misc_removetelephony"
 +    val simSlots = "key_misc_sim_slots"
      val remotectl = "key_misc_remotectl"
@@ -69,7 +69,7 @@ index ae3ae4f..8e38cb2 100644
        <item>"Don't force"</item>
        <item>"60fps"</item>
 diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
-index c45476d..815d0b0 100644
+index 233d15b..503dd6f 100644
 --- a/app/src/main/res/xml/pref_misc.xml
 +++ b/app/src/main/res/xml/pref_misc.xml
 @@ -218,6 +218,13 @@

@@ -1,4 +1,4 @@
-From 0e13f337a3e86a7832d93c3de808220a4ca4aa84 Mon Sep 17 00:00:00 2001
+From a5b2b857cb3528eef63742870af9fd3391a623e9 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 11 Oct 2024 21:38:39 +0200
 Subject: [PATCH 3/5] feat: add QS padding patch to Treble app
@@ -15,10 +15,10 @@ Change-Id: Id5f6b1e14606c08e40c3d3c687a2356f30f9e0b2
  3 files changed, 33 insertions(+), 3 deletions(-)
 
 diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
-index cfdfe67..9c6b3ab 100644
+index 406a070..5fa810a 100644
 --- a/app/src/main/java/me/phh/treble/app/Misc.kt
 +++ b/app/src/main/java/me/phh/treble/app/Misc.kt
-@@ -299,6 +299,22 @@ object Misc: EntryStartup {
+@@ -324,6 +324,22 @@ object Misc: EntryStartup {
                      SystemProperties.set("persist.sys.phh.status_bar_padding_end", null)
                  }
              }
@@ -42,10 +42,10 @@ index cfdfe67..9c6b3ab 100644
                  val value = sp.getBoolean(key, false)
                  SystemProperties.set("persist.sys.phh.low_gamma_brightness", if (value) "true" else "false")
 diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-index 0b46713..1ca1482 100644
+index 263cb0e..b374fae 100644
 --- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
 +++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-@@ -44,6 +44,8 @@ object MiscSettings : Settings {
+@@ -45,6 +45,8 @@ object MiscSettings : Settings {
      val statusbarpaddingtop = "key_misc_sb_padding_top"
      val statusbarpaddingstart = "key_misc_sb_padding_start"
      val statusbarpaddingend = "key_misc_sb_padding_end"
@@ -55,7 +55,7 @@ index 0b46713..1ca1482 100644
      val linearBrightness = "key_misc_linear_brightness"
      val forceDisplay5g = "key_misc_force_display_5g"
 diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
-index d154836..529be77 100644
+index 721f51e..e9db275 100644
 --- a/app/src/main/res/xml/pref_misc.xml
 +++ b/app/src/main/res/xml/pref_misc.xml
 @@ -50,19 +50,31 @@

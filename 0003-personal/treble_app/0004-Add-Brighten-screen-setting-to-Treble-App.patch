@@ -1,4 +1,4 @@
-From 028d6f4747714b279bb9c2f18d0a175134b4350f Mon Sep 17 00:00:00 2001
+From eb24ba594e7d5108fab1750162216686beba212c Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 18:52:24 +0100
 Subject: [PATCH 4/5] Add Brighten screen setting to Treble App
@@ -13,10 +13,10 @@ Change-Id: Ibab69bab7bb6b3a6e2a7de9eb284107d01691934
  3 files changed, 10 insertions(+)
 
 diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
-index 9c6b3ab..5fd2aa5 100644
+index 5fa810a..f0fd26b 100644
 --- a/app/src/main/java/me/phh/treble/app/Misc.kt
 +++ b/app/src/main/java/me/phh/treble/app/Misc.kt
-@@ -315,6 +315,10 @@ object Misc: EntryStartup {
+@@ -340,6 +340,10 @@ object Misc: EntryStartup {
                      SystemProperties.set("persist.sys.phh.qs_clock_right_padding", null)
                  }
              }
@@ -28,10 +28,10 @@ index 9c6b3ab..5fd2aa5 100644
                  val value = sp.getBoolean(key, false)
                  SystemProperties.set("persist.sys.phh.low_gamma_brightness", if (value) "true" else "false")
 diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-index 1ca1482..1f4520b 100644
+index b374fae..55abb99 100644
 --- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
 +++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-@@ -46,6 +46,7 @@ object MiscSettings : Settings {
+@@ -47,6 +47,7 @@ object MiscSettings : Settings {
      val statusbarpaddingend = "key_misc_sb_padding_end"
      val qsclockleftpadding = "key_misc_qs_clock_left_padding"
      val qsclockrightpadding = "key_misc_qs_clock_right_padding"
@@ -40,7 +40,7 @@ index 1ca1482..1f4520b 100644
      val linearBrightness = "key_misc_linear_brightness"
      val forceDisplay5g = "key_misc_force_display_5g"
 diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
-index 529be77..c45476d 100644
+index e9db275..233d15b 100644
 --- a/app/src/main/res/xml/pref_misc.xml
 +++ b/app/src/main/res/xml/pref_misc.xml
 @@ -75,6 +75,11 @@

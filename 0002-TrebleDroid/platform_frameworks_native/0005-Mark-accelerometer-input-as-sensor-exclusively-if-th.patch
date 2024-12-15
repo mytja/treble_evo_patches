@@ -1,4 +1,4 @@
-From e3c94fb11e47f9a1a80c0de5273b33e870d64a62 Mon Sep 17 00:00:00 2001
+From 45bffb42e1e58a202258daa732d0592d6e7b03e7 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 12 Dec 2021 08:45:36 -0500
 Subject: [PATCH 05/14] Mark accelerometer input as sensor exclusively if there
@@ -15,7 +15,7 @@ Change-Id: I491ab89724c908ef09a23a6427d24a8889bf806a
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/services/inputflinger/reader/EventHub.cpp b/services/inputflinger/reader/EventHub.cpp
-index fe70a51b81..50a4bfb898 100644
+index fe70a51..50a4bfb 100644
 --- a/services/inputflinger/reader/EventHub.cpp
 +++ b/services/inputflinger/reader/EventHub.cpp
 @@ -2432,7 +2432,13 @@ void EventHub::openDeviceLocked(const std::string& devicePath) {

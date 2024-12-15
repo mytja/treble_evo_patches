@@ -1,7 +1,7 @@
-From 6f0409e6cc930a327653417a2b825157aec5219f Mon Sep 17 00:00:00 2001
+From 75edc75bdee141acab5833af72460dab3e74b148 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 10 Feb 2024 09:30:19 -0500
-Subject: [PATCH 23/24] Allow using camera modes declared in Samsung
+Subject: [PATCH 23/25] Allow using camera modes declared in Samsung
  proprietary values
 
 ---

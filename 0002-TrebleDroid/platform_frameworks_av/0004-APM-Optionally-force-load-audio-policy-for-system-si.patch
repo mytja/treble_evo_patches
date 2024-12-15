@@ -1,7 +1,7 @@
-From 548924f91541662e9b5d29aef15fb2376385c8ba Mon Sep 17 00:00:00 2001
+From 9172a1f119501981bd23ad5fb9d064b8ca41210d Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 24 Aug 2022 15:42:39 -0400
-Subject: [PATCH 04/24] APM: Optionally force-load audio policy for system-side
+Subject: [PATCH 04/25] APM: Optionally force-load audio policy for system-side
  bt audio HAL
 
 Required to support our system-side bt audio implementation, i.e.

@@ -1,4 +1,4 @@
-From dc14c72ec488188ee9f29f2565fd80fbf0440ffa Mon Sep 17 00:00:00 2001
+From fcfb6a63125f93d64cec120c24ea2f6126e525dd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 25 Nov 2023 08:15:28 -0500
 Subject: [PATCH 09/14] Add MTK GED KPI support to fix broken Mediatek gpufreq
@@ -22,7 +22,7 @@ well)
  2 files changed, 205 insertions(+)
 
 diff --git a/libs/gui/Surface.cpp b/libs/gui/Surface.cpp
-index 87fd448f0c..8896973284 100644
+index 4a19f67..bd88cd5 100644
 --- a/libs/gui/Surface.cpp
 +++ b/libs/gui/Surface.cpp
 @@ -24,6 +24,9 @@
@@ -45,7 +45,7 @@ index 87fd448f0c..8896973284 100644
  
  #include <com_android_graphics_libgui_flags.h>
  
-@@ -76,6 +82,37 @@ bool isInterceptorRegistrationOp(int op) {
+@@ -253,6 +259,37 @@ inline static void feasDisconnect(const uint64_t& identifier) {
  }
  
  } // namespace
@@ -83,7 +83,7 @@ index 87fd448f0c..8896973284 100644
  
  Surface::Surface(const sp<IGraphicBufferProducer>& bufferProducer, bool controlledByApp,
                   const sp<IBinder>& surfaceControlHandle)
-@@ -128,6 +165,47 @@ Surface::Surface(const sp<IGraphicBufferProducer>& bufferProducer, bool controll
+@@ -305,6 +342,47 @@ Surface::Surface(const sp<IGraphicBufferProducer>& bufferProducer, bool controll
      mSwapIntervalZero = false;
      mMaxBufferCount = NUM_BUFFER_SLOTS;
      mSurfaceControlHandle = surfaceControlHandle;
@@ -131,7 +131,7 @@ index 87fd448f0c..8896973284 100644
  }
  
  Surface::~Surface() {
-@@ -668,6 +746,36 @@ int Surface::dequeueBuffer(android_native_buffer_t** buffer, int* fenceFd) {
+@@ -845,6 +923,36 @@ int Surface::dequeueBuffer(android_native_buffer_t** buffer, int* fenceFd) {
          }
      }
  
@@ -168,7 +168,7 @@ index 87fd448f0c..8896973284 100644
      if (fence->isValid()) {
          *fenceFd = fence->dup();
          if (*fenceFd == -1) {
-@@ -1111,6 +1219,60 @@ void Surface::onBufferQueuedLocked(int slot, sp<Fence> fence,
+@@ -1288,6 +1396,60 @@ void Surface::onBufferQueuedLocked(int slot, sp<Fence> fence,
      }
  
      mQueueBufferCondition.broadcast();
@@ -229,7 +229,7 @@ index 87fd448f0c..8896973284 100644
  
      if (CC_UNLIKELY(atrace_is_tag_enabled(ATRACE_TAG_GRAPHICS))) {
          static gui::FenceMonitor gpuCompletionThread("GPU completion");
-@@ -1899,6 +2061,46 @@ int Surface::connect(
+@@ -2080,6 +2242,46 @@ int Surface::connect(
  
          mConsumerRunningBehind = (output.numPendingBuffers >= 2);
      }
@@ -277,10 +277,10 @@ index 87fd448f0c..8896973284 100644
          mConnectedToCpu = true;
          // Clear the dirty region in case we're switching from a non-CPU API
 diff --git a/libs/gui/include/gui/Surface.h b/libs/gui/include/gui/Surface.h
-index bdcaaf2866..7cb27fca88 100644
+index aa823e3..ac90dde 100644
 --- a/libs/gui/include/gui/Surface.h
 +++ b/libs/gui/include/gui/Surface.h
-@@ -649,6 +649,9 @@ protected:
+@@ -659,6 +659,9 @@ protected:
  
      // Buffers that are successfully dequeued/attached and handed to clients
      std::unordered_set<int> mDequeuedSlots;

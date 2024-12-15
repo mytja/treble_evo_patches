@@ -1,4 +1,4 @@
-From 224beb4986f6c15176310da0260d978b7fc663f9 Mon Sep 17 00:00:00 2001
+From f165c4cbf784c4f0b1e32909695a2abd460fd373 Mon Sep 17 00:00:00 2001
 From: ChonDoit <thphantomblog@gmail.com>
 Date: Fri, 25 Aug 2023 09:18:32 -0300
 Subject: [PATCH 2/5] Add options for status bar paddings
@@ -10,10 +10,10 @@ Subject: [PATCH 2/5] Add options for status bar paddings
  3 files changed, 50 insertions(+), 1 deletion(-)
 
 diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
-index 77a37ec..cfdfe67 100644
+index 7c0c1c9..406a070 100644
 --- a/app/src/main/java/me/phh/treble/app/Misc.kt
 +++ b/app/src/main/java/me/phh/treble/app/Misc.kt
-@@ -141,6 +141,8 @@ object Misc: EntryStartup {
+@@ -143,6 +143,8 @@ object Misc: EntryStartup {
                  if (value >= 0) {
                      Settings.Secure.putInt(c.contentResolver, "sysui_rounded_content_padding", value)
                      SystemProperties.set("persist.sys.phh.rounded_corners_padding", value.toString())
@@ -22,7 +22,7 @@ index 77a37ec..cfdfe67 100644
                  }
              }
              MiscSettings.roundedCornersOverlay -> {
-@@ -272,6 +274,30 @@ object Misc: EntryStartup {
+@@ -297,6 +299,30 @@ object Misc: EntryStartup {
              MiscSettings.allowBinderThread -> {
                  val value = sp.getBoolean(key, false)
                  SystemProperties.set("persist.sys.phh.allow_binder_thread_on_incoming_calls", if(value) "1" else "0")
@@ -54,10 +54,10 @@ index 77a37ec..cfdfe67 100644
              MiscSettings.lowGammaBrightness -> {
                  val value = sp.getBoolean(key, false)
 diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-index 5c6259e..0b46713 100644
+index bb29106..263cb0e 100644
 --- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
 +++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
-@@ -41,6 +41,9 @@ object MiscSettings : Settings {
+@@ -42,6 +42,9 @@ object MiscSettings : Settings {
      val mtkTouchHintIsRotate = "key_misc_mediatek_touch_hint_rotate"
      val mtkGedKpi = "key_misc_mediatek_ged_kpi"
      val allowBinderThread = "key_misc_allow_binder_thread_on_incoming_calls"
@@ -68,7 +68,7 @@ index 5c6259e..0b46713 100644
      val linearBrightness = "key_misc_linear_brightness"
      val forceDisplay5g = "key_misc_force_display_5g"
 diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
-index d066265..d154836 100644
+index 950d3a2..721f51e 100644
 --- a/app/src/main/res/xml/pref_misc.xml
 +++ b/app/src/main/res/xml/pref_misc.xml
 @@ -33,7 +33,7 @@
