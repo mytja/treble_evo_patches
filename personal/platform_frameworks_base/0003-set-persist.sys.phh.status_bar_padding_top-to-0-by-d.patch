@@ -1,4 +1,4 @@
-From 5c97d558f3d8a0599fdbb472ca79d91615a79967 Mon Sep 17 00:00:00 2001
+From 01611b596b5a87465c93491778f2c893b944fb06 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 21:59:56 +0100
 Subject: [PATCH 3/5] set persist.sys.phh.status_bar_padding_top to 0 by

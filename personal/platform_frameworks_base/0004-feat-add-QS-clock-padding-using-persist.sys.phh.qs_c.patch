@@ -1,4 +1,4 @@
-From b14f479a460e8f7655d49097c7f04e864a5d6e4d Mon Sep 17 00:00:00 2001
+From 40e987ab8d0fcbc1880a493e0fa469de87cba043 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 11 Oct 2024 21:24:03 +0200
 Subject: [PATCH 4/5] feat: add QS clock padding using

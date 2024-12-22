@@ -1,4 +1,4 @@
-From c9562474e57a7dea5dda5b1daf491796c88a9b8a Mon Sep 17 00:00:00 2001
+From b8018ea966388100358e0fe4d4f5e34fcf6111f6 Mon Sep 17 00:00:00 2001
 From: Ji Luo <ji.luo@nxp.com>
 Date: Thu, 25 Aug 2022 14:52:09 +0800
 Subject: [PATCH 3/3] bluetooth: abandon app local certificate

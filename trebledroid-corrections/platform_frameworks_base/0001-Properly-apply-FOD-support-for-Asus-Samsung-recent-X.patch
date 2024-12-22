@@ -1,0 +1,40 @@
+From 651ab145abcb87ffdb81d9e58a5372b01dbe1b3b Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sat, 21 Dec 2024 19:11:39 +0100
+Subject: [PATCH 1/2] Properly apply "FOD support for Asus, Samsung recent
+ Xiaomi and  RedMagic 8 devices"
+
+Yes, I do have skill issue. Yes, I did not really check if it was in the right position.
+---
+ packages/SystemUI/Android.bp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/packages/SystemUI/Android.bp b/packages/SystemUI/Android.bp
+index 50e1db638..a75bc54f2 100644
+--- a/packages/SystemUI/Android.bp
++++ b/packages/SystemUI/Android.bp
+@@ -165,6 +165,10 @@ android_library {
+         "androidx.activity_activity-compose",
+         "androidx.compose.animation_animation-graphics",
+         "vendor.lineage.powershare-V1.0-java",
++        "vendor.goodix.hardware.biometrics.fingerprint-V2.1-java",
++        "vendor.xiaomi.hw.touchfeature-V1.0-java",
++        "vendor.xiaomi.hardware.fingerprintextension-V1.0-java",
++        "vendor.nubia.ifaa-V1.0-java",
+     ],
+     libs: [
+         "keepanno-annotations",
+@@ -304,10 +308,6 @@ android_library {
+         "androidx.activity_activity-compose",
+         "androidx.compose.animation_animation-graphics",
+         "vendor.lineage.powershare-V1.0-java",
+-        "vendor.goodix.hardware.biometrics.fingerprint-V2.1-java",
+-        "vendor.xiaomi.hw.touchfeature-V1.0-java",
+-        "vendor.xiaomi.hardware.fingerprintextension-V1.0-java",
+-        "vendor.nubia.ifaa-V1.0-java",
+     ],
+ }
+ 
+-- 
+2.34.1
+

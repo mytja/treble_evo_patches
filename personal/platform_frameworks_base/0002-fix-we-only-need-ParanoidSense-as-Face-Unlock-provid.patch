@@ -1,4 +1,4 @@
-From 0e535413f57c71e671d209bbe945c548b3c08794 Mon Sep 17 00:00:00 2001
+From 95c21b289c17758fe11c7ba4e98fab5d80c20763 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Sun, 27 Oct 2024 21:56:11 +0100
 Subject: [PATCH 2/5] fix: we only need ParanoidSense as Face Unlock provider
