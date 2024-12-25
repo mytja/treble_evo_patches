@@ -1,4 +1,4 @@
-From 17bad267e673b5f56114a7dae213d9951984a6bc Mon Sep 17 00:00:00 2001
+From f9544ba35258878dc12c13ab722281585b1b1fa6 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 18 Dec 2022 18:20:40 -0500
 Subject: [PATCH 32/47] FOD support for Asus, Samsung recent Xiaomi and
@@ -24,7 +24,7 @@ Try catch the Xiaomi calls
 Typo in observing Samsung brightness
 ---
  packages/SystemUI/Android.bp                  |   4 +
- .../systemui/biometrics/UdfpsController.java  |  74 ++++-
+ .../systemui/biometrics/UdfpsController.java  |  76 ++++-
  .../biometrics/UdfpsControllerOverlay.kt      |   7 +-
  .../android/systemui/biometrics/UdfpsView.kt  | 231 ++++++++++++++
  .../shared/DeviceEntryUdfpsRefactor.kt        |   2 +-
@@ -32,13 +32,13 @@ Typo in observing Samsung brightness
  .../server/biometrics/AuthService.java        | 296 +++++++++++++++++-
  .../fingerprint/FingerprintService.java       |   3 +-
  .../fingerprint/aidl/FingerprintProvider.java |  26 +-
- 9 files changed, 639 insertions(+), 9 deletions(-)
+ 9 files changed, 640 insertions(+), 10 deletions(-)
 
 diff --git a/packages/SystemUI/Android.bp b/packages/SystemUI/Android.bp
-index d4831ff75..50e1db638 100644
+index d4831ff75..a75bc54f2 100644
 --- a/packages/SystemUI/Android.bp
 +++ b/packages/SystemUI/Android.bp
-@@ -304,6 +304,10 @@ android_library {
+@@ -165,6 +165,10 @@ android_library {
          "androidx.activity_activity-compose",
          "androidx.compose.animation_animation-graphics",
          "vendor.lineage.powershare-V1.0-java",
@@ -47,10 +47,10 @@ index d4831ff75..50e1db638 100644
 +        "vendor.xiaomi.hardware.fingerprintextension-V1.0-java",
 +        "vendor.nubia.ifaa-V1.0-java",
      ],
- }
- 
+     libs: [
+         "keepanno-annotations",
 diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsController.java b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsController.java
-index 301071acd..148d5659e 100644
+index 301071acd..32456b953 100644
 --- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsController.java
 +++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsController.java
 @@ -44,12 +44,14 @@ import android.hardware.fingerprint.FingerprintSensorProperties;
@@ -137,14 +137,16 @@ index 301071acd..148d5659e 100644
  
      private ConfigurationController.ConfigurationListener mConfigurationListener =
              new ConfigurationController.ConfigurationListener() {
-@@ -736,6 +784,7 @@ public class UdfpsController implements DozeReceiver, Dumpable {
+@@ -736,7 +784,8 @@ public class UdfpsController implements DozeReceiver, Dumpable {
              @NonNull UdfpsOverlayInteractor udfpsOverlayInteractor,
              @NonNull PowerInteractor powerInteractor,
              @Application CoroutineScope scope,
-+            @NonNull ColorDisplayManager colorDisplayManager,
-             @NonNull AuthController authController) {
+-            @NonNull AuthController authController) {
++            @NonNull AuthController authController,
++            @NonNull ColorDisplayManager colorDisplayManager) {
          mContext = context;
          mExecution = execution;
+         mVibrator = vibrator;
 @@ -780,6 +829,7 @@ public class UdfpsController implements DozeReceiver, Dumpable {
          mFpsUnlockTracker = fpsUnlockTracker;
          mFpsUnlockTracker.startTracking();
@@ -181,14 +183,14 @@ index 301071acd..148d5659e 100644
              }
          }
 +        if(SystemProperties.get("ro.vendor.build.fingerprint").contains("nubia/NX669")) {
-+          processCmd(13, 0, 0, new byte[0], 0);
++            processCmd(13, 0, 0, new byte[0], 0);
 +        }
  
          for (Callback cb : mCallbacks) {
              cb.onFingerDown();
          }
 +        if(SystemProperties.get("ro.vendor.build.fingerprint").contains("nubia/NX669")) {
-+          processCmd(14, 0, 0, new byte[0], 0);
++            processCmd(14, 0, 0, new byte[0], 0);
 +        }
 +
          if (mUdfpsAnimation != null) {
@@ -237,7 +239,7 @@ index 92cd482c2..5db654614 100644
                  }
                  getTouchOverlay()?.apply {
 diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
-index c0588cb49..fc6b1364f 100644
+index c0588cb49..642ac53d4 100644
 --- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
 +++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
 @@ -19,18 +19,36 @@ import android.content.Context
@@ -342,7 +344,7 @@ index c0588cb49..fc6b1364f 100644
      /** Debug message. */
      var debugMessage: String? = null
          set(value) {
-@@ -130,9 +199,119 @@ class UdfpsView(
+@@ -130,6 +199,36 @@ class UdfpsView(
          }
      }
  
@@ -379,6 +381,10 @@ index c0588cb49..fc6b1364f 100644
      fun configureDisplay(onDisplayConfigured: Runnable) {
          isDisplayConfigured = true
          animationViewController?.onDisplayConfiguring()
+@@ -140,6 +239,86 @@ class UdfpsView(
+         } ?: {
+             doIlluminate(null /* surface */, onDisplayConfigured)
+         }
 +
 +        mySurfaceView.setVisibility(VISIBLE)
 +        Log.d("PHH", "setting surface visible!")
@@ -459,9 +465,9 @@ index c0588cb49..fc6b1364f 100644
 +            File(nubiaHbmState).writeText("4095")
 +          }
 +
-         ghbmView?.let { view ->
-             view.setGhbmIlluminationListener(this::doIlluminate)
-             view.visibility = VISIBLE
+     }
+ 
+     private fun doIlluminate(surface: Surface?, onDisplayConfigured: Runnable?) {
 @@ -161,5 +340,57 @@ class UdfpsView(
              view.visibility = INVISIBLE
          }

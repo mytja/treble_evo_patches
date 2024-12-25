@@ -1,4 +1,4 @@
-From bebce9f831aac5bc8a2f499cd67cf2401ca3ed97 Mon Sep 17 00:00:00 2001
+From 23a03717831b73106b923ded716534cf16777848 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 27 Dec 2021 17:57:11 -0500
 Subject: [PATCH 31/47] Once we integrate Samsung Power hal in libpowermanager,
