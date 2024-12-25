@@ -1,7 +1,7 @@
-From 79ae89697abce5b5681864e66ec24194490beacf Mon Sep 17 00:00:00 2001
+From a944ddbd3f6d29f3d6728c7ecee9dd398769ebb3 Mon Sep 17 00:00:00 2001
 From: William Escande <wescande@google.com>
 Date: Wed, 26 Jun 2024 13:39:38 -0700
-Subject: [PATCH 2/3] HeadsetService: Notify device changed at stop
+Subject: [PATCH 2/2] HeadsetService: Notify device changed at stop
 
 Notify the active device changed to null when the HeadsetService stops.
 

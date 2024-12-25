@@ -1,0 +1,112 @@
+From 4c779703518658cb84660e05053404bbc882938b Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Thu, 26 Dec 2024 00:14:47 +0100
+Subject: [PATCH 6/6] fix: alternative way of measuring network traffic
+
+Devices with Linux kernel versions 4.14 (maybe even 4.19) and below seem to have an issue
+reporting network traffic through TrafficStats.getXXBytes functions. This is likely because
+eBPF is required for this feature to work.
+
+This patch offers an additional method of measurement by using /sys/class/net/*/statistics/{tx/rx}_bytes
+files, offered by the Linux kernel since version 2.6.12. That feature does require only simple file
+reading in Java and used to be how TrafficStats.getXXBytes worked under the hood until Android
+switched to eBPF-required reading.
+
+Currently this patch only reads from wlan0. Additional testing is required to discover other
+potential network interfaces to measure.
+---
+ .../systemui/statusbar/NetworkTraffic.java    | 53 ++++++++++++++++---
+ 1 file changed, 47 insertions(+), 6 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
+index cb037a910..3a114f3fa 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
+@@ -44,6 +44,7 @@ import android.text.SpannableString;
+ import android.text.TextUtils;
+ import android.text.style.RelativeSizeSpan;
+ import android.util.AttributeSet;
++import android.util.Slog;
+ import android.view.Gravity;
+ import android.view.View;
+ import android.widget.TextView;
+@@ -59,9 +60,13 @@ import com.android.keyguard.KeyguardUpdateMonitorCallback;
+ 
+ import com.android.systemui.tuner.TunerService;
+ 
++import java.nio.file.Files;
++import java.nio.file.Path;
++import java.nio.file.Paths;
+ import java.text.DecimalFormat;
+ import java.util.ArrayList;
+ import java.util.HashMap;
++import java.util.List;
+ import java.util.stream.Stream;
+ 
+ /** @hide */
+@@ -186,13 +191,22 @@ public class NetworkTraffic extends TextView implements TunerService.Tunable,
+                 }
+             }
+ 
+-            private void recalculateStats() {
+-                final long now = SystemClock.elapsedRealtime();
+-                long timeDelta = now - mLastUpdateTime; /* ms */
+-
+-                if (timeDelta < mRefreshInterval * 1000 * 0.95f) {
+-                    return;
++            private long readFile(String file) {
++                final Path path = Paths.get(file);
++                long l = 0L;
++                try {
++                    final List<String> lines = Files.readAllLines(path);
++                    l = Long.parseLong(String.join("", lines));
++                } catch (Exception e) {
++                    Slog.e(TAG, "Could not read from file " + file + ": " + e);
++                    return 0L;
+                 }
++                return l;
++            }
++
++            // This is a wrapper function for TrafficStats.getXXBytes() and
++            // its workarounds on older kernels (<= 4.19)
++            private long[] calculateBytes() {
+                 // Sum tx and rx bytes from all sources of interest
+                 long txBytes = 0;
+                 long rxBytes = 0;
+@@ -209,6 +223,33 @@ public class NetworkTraffic extends TextView implements TunerService.Tunable,
+                     rxBytes += ifaceRxBytes;
+                 }
+ 
++                if (txBytes <= 0 && rxBytes <= 0) {
++                    // Cannot capture anything through TrafficStats.
++                    // This is an old kernel, not supporting eBPF.
++                    // Falling back to kernel file reading.
++                    txBytes += readFile("/sys/class/net/wlan0/statistics/tx_bytes");
++                    rxBytes += readFile("/sys/class/net/wlan0/statistics/rx_bytes");
++                    Slog.i(TAG, "Could not capture data through TrafficStats. Captured through kernel files: txBytes=" + txBytes + ", rxBytes=" + rxBytes);
++                }
++
++                long[] res = new long[2];
++                res[0] = txBytes;
++                res[1] = rxBytes;
++                return res;
++            }
++
++            private void recalculateStats() {
++                final long now = SystemClock.elapsedRealtime();
++                long timeDelta = now - mLastUpdateTime; /* ms */
++
++                if (timeDelta < mRefreshInterval * 1000 * 0.95f) {
++                    return;
++                }
++
++                final long[] bytes = calculateBytes();
++                final long txBytes = bytes[0];
++                final long rxBytes = bytes[1];
++
+                 final long txBytesDelta = txBytes - mLastTxBytes;
+                 final long rxBytesDelta = rxBytes - mLastRxBytes;
+ 
+-- 
+2.34.1
+
