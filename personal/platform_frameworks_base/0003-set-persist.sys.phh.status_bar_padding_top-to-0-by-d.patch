@@ -1,7 +1,7 @@
 From 2922e19894ddb789b2601f440297e3508f0b96e1 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 21:59:56 +0100
-Subject: [PATCH 3/6] set persist.sys.phh.status_bar_padding_top to 0 by
+Subject: [PATCH 3/8] set persist.sys.phh.status_bar_padding_top to 0 by
  default
 
 ---

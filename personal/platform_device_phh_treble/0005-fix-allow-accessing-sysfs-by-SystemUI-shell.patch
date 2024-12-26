@@ -1,0 +1,26 @@
+From c56f3546e01628e12441b2509fd6c17c94e976aa Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Thu, 26 Dec 2024 13:53:22 +0100
+Subject: [PATCH 5/5] fix: allow accessing sysfs by SystemUI & shell
+
+This allows NetworkTraffic class in SystemUI to obtain kernel
+network traffic statistics from /sys/class/net/*/statistics/{tx/rx}_bytes
+even when SELinux is enforcing.
+
+Change-Id: I94e88e2496b841530362275861f4ef6b4e5644c3
+---
+ sepolicy/sysfiles.te | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 sepolicy/sysfiles.te
+
+diff --git a/sepolicy/sysfiles.te b/sepolicy/sysfiles.te
+new file mode 100644
+index 0000000..181c921
+--- /dev/null
++++ b/sepolicy/sysfiles.te
+@@ -0,0 +1,2 @@
++allow shell sysfs:file { read open };
++allow platform_app sysfs:file { read open getattr };
+-- 
+2.34.1
+

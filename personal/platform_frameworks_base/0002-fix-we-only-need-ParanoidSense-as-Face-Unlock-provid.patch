@@ -1,7 +1,7 @@
 From 6fc76a836ddb081f25e273677b5a1e9e89519960 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Sun, 27 Oct 2024 21:56:11 +0100
-Subject: [PATCH 2/6] fix: we only need ParanoidSense as Face Unlock provider
+Subject: [PATCH 2/8] fix: we only need ParanoidSense as Face Unlock provider
 
 ---
  .../server/biometrics/sensors/face/FaceService.java | 13 -------------
