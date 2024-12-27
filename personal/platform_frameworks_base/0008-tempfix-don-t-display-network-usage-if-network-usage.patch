@@ -1,0 +1,33 @@
+From 1dc3cc1efd751d505d667c9df5206a367cfef17c Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Fri, 27 Dec 2024 20:07:31 +0100
+Subject: [PATCH 8/8] tempfix: don't display network usage if network usage is
+ 0
+
+Applicable to some devices with older kernels (<4.14) that don't report
+correct network usage (instead those devices report 0 as their network usage).
+
+I'm trying to find a better fix, however it's unlikely I'll come up with anything
+better.
+---
+ .../SystemUI/src/com/android/systemui/qs/QSFooterView.java    | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/qs/QSFooterView.java b/packages/SystemUI/src/com/android/systemui/qs/QSFooterView.java
+index 11b96685b..38f2b4200 100644
+--- a/packages/SystemUI/src/com/android/systemui/qs/QSFooterView.java
++++ b/packages/SystemUI/src/com/android/systemui/qs/QSFooterView.java
+@@ -150,6 +150,10 @@ public class QSFooterView extends FrameLayout {
+             Log.w(TAG, "setUsageText: DataUsageInfo is NULL.");
+             return;
+         }
++        if (info.usageLevel <= 0) {
++            Log.w(TAG, "setUsageText: no data usage");
++            return;
++        }
+         // Setting text actually triggers a layout pass (because the text view is set to
+         // wrap_content width and TextView always relayouts for this). Avoid needless
+         // relayout if the text didn't actually change.
+-- 
+2.34.1
+

@@ -1,4 +1,4 @@
-From 5b7cfc2eeca8793d07ca10e8d44c0dc0fafc098c Mon Sep 17 00:00:00 2001
+From a68cd572c67c3106c20dfa881570816508f2553d Mon Sep 17 00:00:00 2001
 From: wbs306 <wbs306@gmail.com>
 Date: Fri, 20 Jan 2023 17:07:41 +0800
 Subject: [PATCH 7/7] gd: hci: Ignore command READ_REMOTE_VERSION_INFORMATION

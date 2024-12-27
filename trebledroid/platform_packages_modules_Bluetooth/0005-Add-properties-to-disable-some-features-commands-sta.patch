@@ -1,26 +1,26 @@
-From 57908139e6e5aaa01db69bef5a2346fb118b95d2 Mon Sep 17 00:00:00 2001
+From bcaab2166c9c889e4f7e1577c714b43312e18293 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 27 May 2023 06:41:32 -0400
-Subject: [PATCH 7/7] Add properties to disable some features/commands/states
+Subject: [PATCH 5/7] Add properties to disable some features/commands/states
  that the ble chip declared but doesnt actually support
 
 ---
- system/gd/hci/controller.cc | 79 +++++++++++++++++++++++++++++++------
- 1 file changed, 67 insertions(+), 12 deletions(-)
+ system/gd/hci/controller.cc | 72 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 68 insertions(+), 4 deletions(-)
 
 diff --git a/system/gd/hci/controller.cc b/system/gd/hci/controller.cc
-index 5f48c01607..ec4b9f18cb 100644
+index 27ec07e..6125b50 100644
 --- a/system/gd/hci/controller.cc
 +++ b/system/gd/hci/controller.cc
-@@ -19,6 +19,7 @@
- #include <android-base/strings.h>
+@@ -18,6 +18,7 @@
+ 
  #include <android_bluetooth_flags.h>
  
 +#include <base/strings/string_split.h>
  #include <future>
  #include <memory>
  #include <string>
-@@ -34,6 +35,7 @@
+@@ -33,6 +34,7 @@
  #include "os/metrics.h"
  #include "os/system_properties.h"
  #include "sysprops/sysprops_module.h"
@@ -28,19 +28,11 @@ index 5f48c01607..ec4b9f18cb 100644
  
  namespace bluetooth {
  namespace hci {
-@@ -323,16 +325,23 @@ struct Controller::impl {
+@@ -320,7 +322,23 @@ struct Controller::impl {
      ASSERT(complete_view.IsValid());
      ErrorCode status = complete_view.GetStatus();
      ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
 -    local_supported_commands_ = complete_view.GetSupportedCommands();
--
--    if (auto disabledCommands = os::GetSystemProperty(kPropertyDisabledCommands)) {
--      for (const auto& command : android::base::Split(*disabledCommands, ",")) {
--        uint16_t index = std::stoi(command);
--        uint16_t byte_index = index / 10;
--        uint16_t bit_index = index % 10;
--        local_supported_commands_[byte_index] &= ~(1 << bit_index);
--      }
 +    //local_supported_commands_ = complete_view.GetSupportedCommands();
 +
 +    auto local_commands = complete_view.GetSupportedCommands();
@@ -55,13 +47,13 @@ index 5f48c01607..ec4b9f18cb 100644
 +            uint16_t bit_index = index % 10;
 +            local_commands[byte_index] &= ~(1 << bit_index);
 +        }
-     }
++    }
 +
 +    local_supported_commands_ = local_commands;
    }
  
    void read_local_extended_features_complete_handler(std::promise<void> promise, CommandCompleteView view) {
-@@ -341,7 +350,25 @@ struct Controller::impl {
+@@ -329,7 +347,25 @@ struct Controller::impl {
      ErrorCode status = complete_view.GetStatus();
      ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
      uint8_t page_number = complete_view.GetPageNumber();
@@ -88,7 +80,7 @@ index 5f48c01607..ec4b9f18cb 100644
      bluetooth::os::LogMetricBluetoothLocalSupportedFeatures(page_number, complete_view.GetExtendedLmpFeatures());
      // Query all extended features
      if (page_number < complete_view.GetMaximumPageNumber()) {
-@@ -494,7 +521,21 @@ struct Controller::impl {
+@@ -482,7 +518,21 @@ struct Controller::impl {
      ASSERT(complete_view.IsValid());
      ErrorCode status = complete_view.GetStatus();
      ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
@@ -111,7 +103,7 @@ index 5f48c01607..ec4b9f18cb 100644
    }
  
    void le_read_supported_states_handler(CommandCompleteView view) {
-@@ -502,7 +543,21 @@ struct Controller::impl {
+@@ -490,7 +540,21 @@ struct Controller::impl {
      ASSERT(complete_view.IsValid());
      ErrorCode status = complete_view.GetStatus();
      ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
@@ -135,5 +127,5 @@ index 5f48c01607..ec4b9f18cb 100644
  
    void le_read_accept_list_size_handler(CommandCompleteView view) {
 -- 
-2.25.1
+2.34.1
 
