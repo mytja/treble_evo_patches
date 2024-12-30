@@ -1,4 +1,4 @@
-From 4b64273cf35d832f453e0dd47ca3aa019badadda Mon Sep 17 00:00:00 2001
+From 311314f4a5a36bbb1ae49d6b4878f17cd08ef21f Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 26 Dec 2024 00:14:47 +0100
 Subject: [PATCH 6/8] fix: alternative way of measuring network traffic
@@ -21,11 +21,11 @@ to grab values. The negative value is likely -1. So also set values to minimum o
 Also includes:
 - fix(NetworkTraffic): set values to minimum of 0
 ---
- .../systemui/statusbar/NetworkTraffic.java    | 60 +++++++++++++++++--
- 1 file changed, 54 insertions(+), 6 deletions(-)
+ .../systemui/statusbar/NetworkTraffic.java    | 59 +++++++++++++++++--
+ 1 file changed, 53 insertions(+), 6 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
-index cb037a910..8482ca7ba 100644
+index cb037a910..29c90db24 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
 @@ -44,6 +44,7 @@ import android.text.SpannableString;
@@ -79,7 +79,7 @@ index cb037a910..8482ca7ba 100644
                  // Sum tx and rx bytes from all sources of interest
                  long txBytes = 0;
                  long rxBytes = 0;
-@@ -209,6 +223,40 @@ public class NetworkTraffic extends TextView implements TunerService.Tunable,
+@@ -209,6 +223,39 @@ public class NetworkTraffic extends TextView implements TunerService.Tunable,
                      rxBytes += ifaceRxBytes;
                  }
  
@@ -96,7 +96,6 @@ index cb037a910..8482ca7ba 100644
 +                    rxBytes += readFile("/sys/class/net/ccmni0/statistics/rx_bytes");
 +                    txBytes += readFile("/sys/class/net/ccmni1/statistics/tx_bytes");
 +                    rxBytes += readFile("/sys/class/net/ccmni1/statistics/rx_bytes");
-+                    Slog.i(TAG, "Could not capture data through TrafficStats. Captured through kernel files: txBytes=" + txBytes + ", rxBytes=" + rxBytes);
 +                }
 +
 +                long[] res = new long[2];
