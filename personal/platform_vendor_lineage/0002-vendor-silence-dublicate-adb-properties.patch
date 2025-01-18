@@ -1,0 +1,25 @@
+From b8fcb2600597771b676c23154191838d7811cf3d Mon Sep 17 00:00:00 2001
+From: ItsLynix <lynixthewolf@gmail.com>
+Date: Fri, 24 May 2024 09:54:35 +0200
+Subject: [PATCH 2/3] vendor: silence dublicate adb properties
+
+---
+ config/common.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config/common.mk b/config/common.mk
+index 8109f0e..db61031 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -42,7 +42,7 @@ ifdef WITH_ADB_INSECURE
+ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
+ else
+ # Enable ADB authentication
+-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
++#PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
+ endif
+ 
+ # Disable extra StrictMode features on all non-engineering builds
+-- 
+2.34.1
+

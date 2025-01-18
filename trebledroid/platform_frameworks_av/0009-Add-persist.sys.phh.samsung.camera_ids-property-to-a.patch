@@ -1,7 +1,7 @@
-From e60c7312646ba03890908ecc44d2d32dc65d9d45 Mon Sep 17 00:00:00 2001
+From 4220ebe9a25bceb69b8fa4a68cdcf8bba8662e24 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 14 May 2020 19:54:55 +0200
-Subject: [PATCH 09/25] Add persist.sys.phh.samsung.camera_ids property to
+Subject: [PATCH 09/24] Add persist.sys.phh.samsung.camera_ids property to
  access hidden Samsung cameras
 
 Change-Id: I2c7bf535272acc28ed2277e96c78ddd28a0b4593
@@ -11,7 +11,7 @@ Change-Id: I2c7bf535272acc28ed2277e96c78ddd28a0b4593
  2 files changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/services/camera/libcameraservice/Android.bp b/services/camera/libcameraservice/Android.bp
-index e1eed7c..bbd7713 100644
+index 8ccae01b48..84b31a655d 100644
 --- a/services/camera/libcameraservice/Android.bp
 +++ b/services/camera/libcameraservice/Android.bp
 @@ -111,6 +111,7 @@ cc_defaults {
@@ -23,7 +23,7 @@ index e1eed7c..bbd7713 100644
          "libbinderthreadstateutils",
          "libcameraservice_device_independent",
 diff --git a/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp b/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp
-index 6cedb04..6f8faa3 100644
+index 6cedb04bb9..6f8faa30cd 100644
 --- a/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp
 +++ b/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp
 @@ -29,6 +29,7 @@

@@ -1,0 +1,53 @@
+From 1d720e868221606e4b038d4ed624fbe309ed5ae2 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sat, 18 Jan 2025 14:31:16 +0100
+Subject: [PATCH 3/3] Nuke some relatively unused apps
+
+- Etar (Calendar)
+- Glimpse (Gallery)
+- AOSP messaging (AOSP Messages)
+---
+ config/common_mobile.mk      | 1 -
+ config/common_mobile_full.mk | 1 -
+ config/telephony.mk          | 1 -
+ 3 files changed, 3 deletions(-)
+
+diff --git a/config/common_mobile.mk b/config/common_mobile.mk
+index bce9711..bf045ee 100644
+--- a/config/common_mobile.mk
++++ b/config/common_mobile.mk
+@@ -23,7 +23,6 @@ endif
+ PRODUCT_PACKAGES += \
+     AvatarPicker \
+     Backgrounds \
+-    Glimpse \
+     LatinIME
+ 
+ # Charger
+diff --git a/config/common_mobile_full.mk b/config/common_mobile_full.mk
+index 75d9402..b4bcbf0 100644
+--- a/config/common_mobile_full.mk
++++ b/config/common_mobile_full.mk
+@@ -6,7 +6,6 @@ PRODUCT_SIZE := full
+ # Apps
+ PRODUCT_PACKAGES += \
+     Camelot \
+-    Etar \
+     Profiles \
+     Recorder \
+     Seedvault
+diff --git a/config/telephony.mk b/config/telephony.mk
+index f8f0756..6242700 100644
+--- a/config/telephony.mk
++++ b/config/telephony.mk
+@@ -13,7 +13,6 @@ PRODUCT_PACKAGES += \
+ 
+ # Telephony packages
+ PRODUCT_PACKAGES += \
+-    messaging \
+     Stk
+ 
+ # Default ringtone
+-- 
+2.34.1
+

@@ -1,7 +1,7 @@
-From 1695dd1f0930fd11336d8b928912ee88978f36f3 Mon Sep 17 00:00:00 2001
+From 338068ad5b0d1b2f0c98a7c59d5a05501110536c Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 5 Sep 2024 15:15:51 +0200
-Subject: [PATCH 2/3] make builds RO
+Subject: [PATCH 2/5] make builds RO
 
 Change-Id: I264f8a2a7ef685865fbd725252cfc040be1c8ce9
 ---
@@ -19,5 +19,5 @@ index 2cb5dbc..e493d1c 100644
 +
 +BOARD_EXT4_SHARE_DUP_BLOCKS := true
 -- 
-2.25.1
+2.34.1
 

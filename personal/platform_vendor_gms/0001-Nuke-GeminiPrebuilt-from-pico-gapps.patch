@@ -1,0 +1,24 @@
+From 4162f08074f08eb4889a866c65104a586020235f Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sat, 18 Jan 2025 14:28:46 +0100
+Subject: [PATCH] Nuke GeminiPrebuilt from pico gapps
+
+---
+ gms_pico.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gms_pico.mk b/gms_pico.mk
+index f759593..25847b8 100644
+--- a/gms_pico.mk
++++ b/gms_pico.mk
+@@ -25,7 +25,6 @@ PRODUCT_PACKAGES += \
+     CalculatorGooglePrebuilt_85005407 \
+     Chrome \
+     Chrome-Stub \
+-    GeminiPrebuilt \
+     GoogleContacts \
+     GoogleTTS \
+     LatinIMEGooglePrebuilt \
+-- 
+2.34.1
+

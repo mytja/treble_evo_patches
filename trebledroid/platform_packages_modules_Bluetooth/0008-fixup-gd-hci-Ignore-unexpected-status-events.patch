@@ -1,4 +1,4 @@
-From ed976327a6728b9d428053643e633075d6fcd576 Mon Sep 17 00:00:00 2001
+From fdbf52b3ce5ba5702bf54d1bec5014628b12729c Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Mon, 18 Nov 2024 15:32:49 +0000
 Subject: [PATCH 8/8] fixup! gd: hci: Ignore unexpected status events
@@ -8,7 +8,7 @@ Subject: [PATCH 8/8] fixup! gd: hci: Ignore unexpected status events
  1 file changed, 2 insertions(+), 11 deletions(-)
 
 diff --git a/system/gd/hci/hci_layer.cc b/system/gd/hci/hci_layer.cc
-index 1231ba1..bf2fb42 100644
+index 89e192a..768d0fd 100644
 --- a/system/gd/hci/hci_layer.cc
 +++ b/system/gd/hci/hci_layer.cc
 @@ -216,8 +216,7 @@ struct HciLayer::impl {

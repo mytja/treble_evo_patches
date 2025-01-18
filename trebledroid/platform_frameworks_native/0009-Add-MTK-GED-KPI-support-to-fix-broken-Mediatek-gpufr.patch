@@ -1,4 +1,4 @@
-From d0335cd128830dab4e87930d2836bc0030c6a5b2 Mon Sep 17 00:00:00 2001
+From 256e7d574df8c1061bb8347f860ba05742d44089 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 25 Nov 2023 08:15:28 -0500
 Subject: [PATCH 09/14] Add MTK GED KPI support to fix broken Mediatek gpufreq
@@ -16,13 +16,15 @@ than just standard DVFS.
 
 Thanks @sarthakroy2002 for the help and support (other people helped as
 well)
+
+Change-Id: Ic29a231ea8651efd598083611197aaa9e3c1fbbe
 ---
  libs/gui/Surface.cpp           | 202 +++++++++++++++++++++++++++++++++
  libs/gui/include/gui/Surface.h |   3 +
  2 files changed, 205 insertions(+)
 
 diff --git a/libs/gui/Surface.cpp b/libs/gui/Surface.cpp
-index 6473ec0..a56b58c 100644
+index f7d02d0..72cb145 100644
 --- a/libs/gui/Surface.cpp
 +++ b/libs/gui/Surface.cpp
 @@ -26,6 +26,9 @@
@@ -238,7 +240,7 @@ index 6473ec0..a56b58c 100644
 +    // and also know whether that owner is surfaceflinger
 +    if (api == NATIVE_WINDOW_API_EGL && ged_fd >= 0) {
 +        IPCThreadState *ipc = IPCThreadState::selfOrNull();
-+        const sp<IBinder>& token = listener->asBinder(listener);
++        const sp<IBinder>& token = IInterface::asBinder(mGraphicBufferProducer);
 +        mPid =  (token != NULL && NULL != token->localBinder())
 +            ? getpid()
 +            : (ipc != nullptr)?ipc->getCallingPid():-1;
@@ -277,10 +279,10 @@ index 6473ec0..a56b58c 100644
          mConnectedToCpu = true;
          // Clear the dirty region in case we're switching from a non-CPU API
 diff --git a/libs/gui/include/gui/Surface.h b/libs/gui/include/gui/Surface.h
-index 14a3513..e0843a8 100644
+index 127e5c1..2a51f97 100644
 --- a/libs/gui/include/gui/Surface.h
 +++ b/libs/gui/include/gui/Surface.h
-@@ -742,6 +742,9 @@ protected:
+@@ -744,6 +744,9 @@ protected:
  
      // Buffers that are successfully dequeued/attached and handed to clients
      std::unordered_set<int> mDequeuedSlots;

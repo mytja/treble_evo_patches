@@ -1,7 +1,7 @@
-From 1632936dc54d21f4ae0a87f8938225a67d0b9f41 Mon Sep 17 00:00:00 2001
+From ac5d9e244eb407bd18ed9cc69d744e48266aec41 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 7 Feb 2024 05:06:32 -0500
-Subject: [PATCH 22/25] Include Samsung AIDL camera ids
+Subject: [PATCH 22/24] Include Samsung AIDL camera ids
 
 ---
  services/camera/libcameraservice/Android.bp   |  1 +
@@ -9,7 +9,7 @@ Subject: [PATCH 22/25] Include Samsung AIDL camera ids
  2 files changed, 22 insertions(+)
 
 diff --git a/services/camera/libcameraservice/Android.bp b/services/camera/libcameraservice/Android.bp
-index 61cba15..c416702 100644
+index 195dd82169..a0d6ad28f6 100644
 --- a/services/camera/libcameraservice/Android.bp
 +++ b/services/camera/libcameraservice/Android.bp
 @@ -115,6 +115,7 @@ cc_defaults {
@@ -21,7 +21,7 @@ index 61cba15..c416702 100644
          "libbinderthreadstateutils",
          "libcameraservice_device_independent",
 diff --git a/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp b/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
-index 4bfe11d..a640286 100644
+index 4bfe11d5c6..a640286a0a 100644
 --- a/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
 +++ b/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
 @@ -33,6 +33,8 @@

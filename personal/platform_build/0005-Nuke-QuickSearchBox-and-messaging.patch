@@ -1,0 +1,49 @@
+From b3825e30d037881a15a97a52337a7b6e5cee2e55 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sat, 18 Jan 2025 14:33:35 +0100
+Subject: [PATCH 5/5] Nuke QuickSearchBox and messaging
+
+---
+ target/product/aosp_base_telephony.mk | 3 ---
+ target/product/aosp_product.mk        | 1 -
+ target/product/handheld_product.mk    | 1 -
+ 3 files changed, 5 deletions(-)
+
+diff --git a/target/product/aosp_base_telephony.mk b/target/product/aosp_base_telephony.mk
+index 0d4e333..f326a00 100644
+--- a/target/product/aosp_base_telephony.mk
++++ b/target/product/aosp_base_telephony.mk
+@@ -14,6 +14,3 @@
+ # limitations under the License.
+ #
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+-
+-PRODUCT_PACKAGES += \
+-    messaging
+diff --git a/target/product/aosp_product.mk b/target/product/aosp_product.mk
+index 5dae7db..7c0a58c 100644
+--- a/target/product/aosp_product.mk
++++ b/target/product/aosp_product.mk
+@@ -32,7 +32,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
+ # More AOSP packages
+ PRODUCT_PACKAGES += \
+     initial-package-stopped-states-aosp.xml \
+-    messaging \
+     PhotoTable \
+     preinstalled-packages-platform-aosp-product.xml \
+     ThemePicker \
+diff --git a/target/product/handheld_product.mk b/target/product/handheld_product.mk
+index 3864555..fa884f9 100644
+--- a/target/product/handheld_product.mk
++++ b/target/product/handheld_product.mk
+@@ -29,7 +29,6 @@ PRODUCT_PACKAGES += \
+     Gallery2 \
+     Music \
+     preinstalled-packages-platform-handheld-product.xml \
+-    QuickSearchBox \
+     SettingsIntelligence \
+     frameworks-base-overlays
+ 
+-- 
+2.34.1
+

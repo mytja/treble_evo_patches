@@ -1,4 +1,4 @@
-From e2453450a21bf0364c83018668cf2ebc199eb08e Mon Sep 17 00:00:00 2001
+From ef32bde32267016a4426492794c76f34e9409354 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Thu, 2 Nov 2023 10:23:56 +0000
 Subject: [PATCH 3/3] Revert "[Wi-Fi] Check if domain field is not empty when

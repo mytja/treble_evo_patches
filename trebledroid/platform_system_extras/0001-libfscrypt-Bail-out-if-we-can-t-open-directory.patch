@@ -1,4 +1,4 @@
-From b7c9f03968d615a2b6e84ffb76b222ac59e650c1 Mon Sep 17 00:00:00 2001
+From 89e85e9baf35d963405c99e953d30a376b84079c Mon Sep 17 00:00:00 2001
 From: Luca Stefani <luca.stefani.ge1@gmail.com>
 Date: Wed, 9 Sep 2020 12:43:54 +0200
 Subject: [PATCH] libfscrypt: Bail out if we can't open directory
@@ -18,7 +18,7 @@ Change-Id: I5ea37019221cd0887b8a5d7454f5a42ac01335c7
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libfscrypt/fscrypt.cpp b/libfscrypt/fscrypt.cpp
-index 4c756b18..f3b106e9 100644
+index 4c756b1..f3b106e 100644
 --- a/libfscrypt/fscrypt.cpp
 +++ b/libfscrypt/fscrypt.cpp
 @@ -354,7 +354,7 @@ bool EnsurePolicy(const EncryptionPolicy& policy, const std::string& directory)

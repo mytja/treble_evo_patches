@@ -1,4 +1,4 @@
-From 1c192abb66a28ffacde126fe4e0becdf7842e956 Mon Sep 17 00:00:00 2001
+From 9126789ea729ac97cab370c368588cae3df40cd7 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 20 Dec 2023 09:48:04 -0500
 Subject: [PATCH 10/14] Fix loading unnamed GLES

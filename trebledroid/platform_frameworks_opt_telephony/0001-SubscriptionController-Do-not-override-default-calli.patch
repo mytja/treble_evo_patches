@@ -1,4 +1,4 @@
-From e229e19f107a37c7197db87cd19b2ff765b200f4 Mon Sep 17 00:00:00 2001
+From 351167142520277309774d360736c9e17aa895c8 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Mon, 5 Sep 2022 14:02:37 -0400
 Subject: [PATCH 1/9] SubscriptionController: Do not override default calling
@@ -18,7 +18,7 @@ Change-Id: Iccab64e9b3b3ab4773bd8944d47c2006f229d472
  1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/src/java/com/android/internal/telephony/subscription/SubscriptionManagerService.java b/src/java/com/android/internal/telephony/subscription/SubscriptionManagerService.java
-index 0e98a9e..c511b1f 100644
+index 353493b..9857641 100644
 --- a/src/java/com/android/internal/telephony/subscription/SubscriptionManagerService.java
 +++ b/src/java/com/android/internal/telephony/subscription/SubscriptionManagerService.java
 @@ -86,6 +86,7 @@ import android.util.Base64;
@@ -29,7 +29,7 @@ index 0e98a9e..c511b1f 100644
  
  import com.android.internal.R;
  import com.android.internal.annotations.VisibleForTesting;
-@@ -3221,7 +3222,22 @@ public class SubscriptionManagerService extends ISub.Stub {
+@@ -3268,7 +3269,22 @@ public class SubscriptionManagerService extends ISub.Stub {
  
                  TelecomManager telecomManager = mContext.getSystemService(TelecomManager.class);
                  if (telecomManager != null) {

@@ -1,7 +1,7 @@
-From 7c112da712fd69a4adbe31fb5d1d637212a83473 Mon Sep 17 00:00:00 2001
+From f5239bd90fc531938be1872eb178e2af7f1f9db4 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 23 Oct 2024 09:51:50 -0400
-Subject: [PATCH 11/11] Fix conflicting sepolicy for compaction_proactiveness
+Subject: [PATCH 11/12] Fix conflicting sepolicy for compaction_proactiveness
  on Galaxy A12s
 
 ---

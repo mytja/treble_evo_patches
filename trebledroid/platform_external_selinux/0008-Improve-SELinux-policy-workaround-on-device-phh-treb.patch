@@ -1,7 +1,7 @@
-From 88f0ca2ae05ae14db49d9efb116e01fb9e3bac15 Mon Sep 17 00:00:00 2001
+From 4d61ceafe3618d534ff5fd8eeca5ff2a8b4eff17 Mon Sep 17 00:00:00 2001
 From: ponces <ponces26@gmail.com>
 Date: Mon, 7 Nov 2022 16:14:20 +0000
-Subject: [PATCH 08/11] Improve SELinux policy workaround on device/phh/treble
+Subject: [PATCH 08/12] Improve SELinux policy workaround on device/phh/treble
  conflict to exit with SEPOL_OK instead of SEPOL_EEXIST
 
 This fixes boot on many Samsung devices as exiting with SEPOL_EEXIST will prevent them to boot
@@ -10,7 +10,7 @@ This fixes boot on many Samsung devices as exiting with SEPOL_EEXIST will preven
  1 file changed, 1 deletion(-)
 
 diff --git a/libsepol/cil/src/cil_build_ast.c b/libsepol/cil/src/cil_build_ast.c
-index 7f181bc..f655af1 100644
+index 0c9e80b..f7e1d53 100644
 --- a/libsepol/cil/src/cil_build_ast.c
 +++ b/libsepol/cil/src/cil_build_ast.c
 @@ -186,7 +186,6 @@ int cil_add_decl_to_symtab(struct cil_db *db, symtab_t *symtab, hashtab_key_t ke

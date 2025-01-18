@@ -1,4 +1,4 @@
-From d049843b3876090717712d54b848ee1ffb5a8160 Mon Sep 17 00:00:00 2001
+From 084e91e02d8bc3cb928e860a4445e8e58140cef3 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Tue, 7 May 2024 22:34:40 +0000
 Subject: [PATCH 12/14] Disable gpuservice on old BPF-less kernel

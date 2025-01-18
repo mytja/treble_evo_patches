@@ -1,4 +1,4 @@
-From 101332c963a1b188ca1bcf018518e19f1fb1daa5 Mon Sep 17 00:00:00 2001
+From ba988b61f1d06f032d0efcfac8940d912ddb1c08 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 20:29:53 +0100
 Subject: [PATCH 5/5] treble_app: add a setting to force a specific number of
