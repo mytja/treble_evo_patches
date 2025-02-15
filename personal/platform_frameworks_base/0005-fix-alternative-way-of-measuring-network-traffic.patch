@@ -1,4 +1,4 @@
-From 5018509b69eb95de8f8170e73222d8e4629a673a Mon Sep 17 00:00:00 2001
+From 109a2472a314a10cbf6721aee734570cf7668a99 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 26 Dec 2024 00:14:47 +0100
 Subject: [PATCH 5/8] fix: alternative way of measuring network traffic
@@ -25,7 +25,7 @@ Also includes:
  1 file changed, 53 insertions(+), 6 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
-index 4442b75a2b82..24e5e62a51f2 100644
+index 9335e9e3e..d905b6408 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/NetworkTraffic.java
 @@ -44,6 +44,7 @@ import android.text.SpannableString;

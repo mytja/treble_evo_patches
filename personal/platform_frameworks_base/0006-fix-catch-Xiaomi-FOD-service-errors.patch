@@ -1,4 +1,4 @@
-From cf3153cd3e1553b58d4260094d015f9166b4f36d Mon Sep 17 00:00:00 2001
+From f17ae31b2ef481dd03c264ef8d23e4dbc73cbe09 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 26 Dec 2024 12:58:26 +0100
 Subject: [PATCH 6/8] fix: catch Xiaomi FOD service errors
@@ -8,10 +8,10 @@ Subject: [PATCH 6/8] fix: catch Xiaomi FOD service errors
  1 file changed, 4 insertions(+)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
-index 278977e0c9ab..725ae8decdbf 100644
+index 7ce6ecbb6..7f6faec52 100644
 --- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
 +++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
-@@ -349,8 +349,12 @@ class UdfpsView(
+@@ -330,8 +330,12 @@ class UdfpsView(
              };
              fodFileObserver?.startWatching();
          } else if(hasXiaomiLhbm) {

@@ -1,4 +1,4 @@
-From 235ee4c5198b664437f49ec501728e2436701554 Mon Sep 17 00:00:00 2001
+From 903fd789db629424efd286a9fa115f392471b45f Mon Sep 17 00:00:00 2001
 From: "Christopher A. Williamson" <home@chrisaw.com>
 Date: Mon, 22 Jan 2024 16:06:43 +0000
 Subject: [PATCH 1/3] Disable generated kernel headers
@@ -8,7 +8,7 @@ Subject: [PATCH 1/3] Disable generated kernel headers
  1 file changed, 12 deletions(-)
 
 diff --git a/build/soong/Android.bp b/build/soong/Android.bp
-index ed7d11b..4e3bf0c 100644
+index f8b4fc9..17e502c 100644
 --- a/build/soong/Android.bp
 +++ b/build/soong/Android.bp
 @@ -20,9 +20,6 @@ bootstrap_go_package {
@@ -36,7 +36,7 @@ index ed7d11b..4e3bf0c 100644
 -    ],
  }
  
- cc_defaults {
+ bootstrap_go_package {
 -- 
 2.34.1
 
