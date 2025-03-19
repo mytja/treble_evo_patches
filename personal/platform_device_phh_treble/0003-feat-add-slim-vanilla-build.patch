@@ -1,16 +1,16 @@
-From ff6e9144baef4e2560996abe89938dd0eb858558 Mon Sep 17 00:00:00 2001
+From a507d71b88de5d4ea9ca928759a6ae9f1dd573a0 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 5 Sep 2024 19:02:20 +0200
-Subject: [PATCH 3/5] Add slim build
+Subject: [PATCH 3/5] feat: add slim & vanilla build
 
 Co-authored-by: ahnet-69 <syedmusicrealise@gmail.com>
 Change-Id: I4823c831a2355a4d1811e83a2eded0755702b91a
 ---
- generate.sh | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+ generate.sh | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/generate.sh b/generate.sh
-index 461eff1..0432e40 100644
+index 461eff1..8972f23 100644
 --- a/generate.sh
 +++ b/generate.sh
 @@ -15,7 +15,7 @@ fi
@@ -47,6 +47,15 @@ index 461eff1..0432e40 100644
  				fi
  				if [ "$apps" == "foss" ];then
  					apps_suffix="f"
+@@ -41,7 +43,7 @@ for part in a ab;do
+ 				fi
+ 				if [ "$apps" == "vanilla" ];then
+ 					apps_suffix="v"
+-					apps_script=''
++					apps_script='WITH_GMS := false'
+ 					apps_name="vanilla"
+ 				fi
+ 				if [ "$arch" == "arm" ];then
 @@ -64,7 +66,7 @@ for part in a ab;do
  					optional_base='$(call inherit-product, device/phh/treble/base-sas.mk)'
  				fi

@@ -1,4 +1,4 @@
-From 4630e8c20554d2d7722ca31c1aabd2918f81ac3f Mon Sep 17 00:00:00 2001
+From 71f774f73a4a308264347ba3a591bf570a2f82ab Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Wed, 21 Jun 2023 17:55:48 +0000
 Subject: [PATCH 1/5] Revert "treble : add pixel charger 2/3"

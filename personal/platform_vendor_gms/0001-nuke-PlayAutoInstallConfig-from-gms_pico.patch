@@ -1,0 +1,24 @@
+From b726b900c8c2d69c8fea444100b7f0fd213d3682 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sun, 16 Mar 2025 18:31:37 +0100
+Subject: [PATCH] nuke PlayAutoInstallConfig from gms_pico
+
+---
+ gms_pico.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gms_pico.mk b/gms_pico.mk
+index 0eee23b..3ed6999 100644
+--- a/gms_pico.mk
++++ b/gms_pico.mk
+@@ -32,7 +32,6 @@ PRODUCT_PACKAGES += \
+     MarkupGoogle_v2 \
+     PixelThemesStub \
+     PixelThemesStub2022_and_newer \
+-    PlayAutoInstallConfig \
+     PrebuiltDeskClockGoogle_76003530 \
+     PrebuiltBugle \
+     SoundPickerPrebuilt \
+-- 
+2.34.1
+

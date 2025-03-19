@@ -1,4 +1,4 @@
-From 1cafdd62247bf8fbbdb6ea7defd89c31ee94b55d Mon Sep 17 00:00:00 2001
+From cfdfeb8bb142ba2d99711879b9da7bbfc18db9f6 Mon Sep 17 00:00:00 2001
 From: Victor Bo <bvoid@yandex.ru>
 Date: Tue, 15 Sep 2020 21:26:45 -0400
 Subject: [PATCH 4/5] treble: add offline charger sepolicy
