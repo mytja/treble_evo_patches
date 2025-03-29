@@ -1,4 +1,4 @@
-From bf4550d688dddbfa78c67eb0c80358ea22620168 Mon Sep 17 00:00:00 2001
+From aba30a78b8769d45cc007c14aba6d1802dba6675 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 7 Mar 2020 14:49:09 +0100
 Subject: [PATCH 2/5] Failing to create facedata shouldn't be fatal

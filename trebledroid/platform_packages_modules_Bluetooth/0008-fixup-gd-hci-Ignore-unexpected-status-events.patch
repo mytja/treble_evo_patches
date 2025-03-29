@@ -1,4 +1,4 @@
-From fdbf52b3ce5ba5702bf54d1bec5014628b12729c Mon Sep 17 00:00:00 2001
+From 38127a4fb0ed2a9001e7dfcf90211bb1d00be595 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Mon, 18 Nov 2024 15:32:49 +0000
 Subject: [PATCH 8/8] fixup! gd: hci: Ignore unexpected status events

@@ -1,25 +1,29 @@
-From 593dabeae699383b3274dae914537d66727e26e8 Mon Sep 17 00:00:00 2001
+From 186654861578cb1d98e70b85e39856a3face93d6 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 11 Mar 2020 14:02:35 +0100
 Subject: [PATCH 5/5] Every voldmanaged storage is adoptable
 
 ---
- main.cpp | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ main.cpp | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/main.cpp b/main.cpp
-index 10407df..4f02e83 100644
+index 10407df..76c65db 100644
 --- a/main.cpp
 +++ b/main.cpp
-@@ -277,7 +277,7 @@ static int process_config(VolumeManager* vm, VoldConfigs* configs) {
+@@ -277,10 +277,8 @@ static int process_config(VolumeManager* vm, VoldConfigs* configs) {
              int partnum = entry.partnum;
              int flags = 0;
  
 -            if (entry.is_encryptable()) {
-+            if (entry.is_encryptable() || true) {
-                 flags |= android::vold::Disk::Flags::kAdoptable;
-                 configs->has_adoptable = true;
-             }
+-                flags |= android::vold::Disk::Flags::kAdoptable;
+-                configs->has_adoptable = true;
+-            }
++            flags |= android::vold::Disk::Flags::kAdoptable;
++            configs->has_adoptable = true;
+             if (entry.fs_mgr_flags.no_emulated_sd ||
+                 android::base::GetBoolProperty("vold.debug.default_primary", false)) {
+                 flags |= android::vold::Disk::Flags::kDefaultPrimary;
 -- 
 2.34.1
 

@@ -1,4 +1,4 @@
-From a8992c288c0fc82e761f9d536670dc810a5d056e Mon Sep 17 00:00:00 2001
+From 87f8d6acb37b9a2eb78ac09e7e34287ff3860a5c Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Fri, 29 Nov 2024 20:11:52 -0500
 Subject: [PATCH 24/24] Tell Unihertz/Agold we are not a GSI. Fixes aux cam on
@@ -10,7 +10,7 @@ Subject: [PATCH 24/24] Tell Unihertz/Agold we are not a GSI. Fixes aux cam on
  2 files changed, 11 insertions(+)
 
 diff --git a/services/camera/libcameraservice/Android.bp b/services/camera/libcameraservice/Android.bp
-index a0d6ad28f6..522a0099c4 100644
+index f758f08..f3af38b 100644
 --- a/services/camera/libcameraservice/Android.bp
 +++ b/services/camera/libcameraservice/Android.bp
 @@ -113,6 +113,7 @@ cc_defaults {
@@ -22,7 +22,7 @@ index a0d6ad28f6..522a0099c4 100644
          "vendor.samsung.hardware.camera.provider@4.0",
          "vendor.samsung.hardware.camera.provider-V1-ndk",
 diff --git a/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp b/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
-index a640286a0a..d6ab9508f9 100644
+index a640286..d6ab950 100644
 --- a/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
 +++ b/services/camera/libcameraservice/common/aidl/AidlProviderInfo.cpp
 @@ -34,6 +34,7 @@

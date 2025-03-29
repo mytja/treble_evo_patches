@@ -1,7 +1,7 @@
-From aeae1de48d2ee9d4e9e3befe610161600299761f Mon Sep 17 00:00:00 2001
+From 528b7f3968d436fd3e39b3edc7dfe2cddaefa322 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 25 Feb 2024 10:23:29 -0500
-Subject: [PATCH 9/9] When reading SMSC, ignore invalid SMSC
+Subject: [PATCH 09/10] When reading SMSC, ignore invalid SMSC
 
 On Samsung, when reading SMSC we get weird strings like
 "4392084000100",149

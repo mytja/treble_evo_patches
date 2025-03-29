@@ -1,4 +1,4 @@
-From 412b911244c879ec1b5e96c7465f3d6a5dc5b234 Mon Sep 17 00:00:00 2001
+From 55922cbbe62a81fbb7090a7fbad6fd02ddbaf360 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 26 Oct 2022 18:11:10 -0400
 Subject: [PATCH 2/7] Support non-working BPF maps on old BPF-less kernel

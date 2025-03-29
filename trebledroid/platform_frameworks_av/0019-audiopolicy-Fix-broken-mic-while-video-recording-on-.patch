@@ -1,4 +1,4 @@
-From db00892c7ff987fff818021e5a3822e30053b97f Mon Sep 17 00:00:00 2001
+From 09e7e6d00a2cc0417f883c8f2bdec646729c4f1b Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Sun, 30 Apr 2023 23:29:04 +0100
 Subject: [PATCH 19/24] audiopolicy: Fix broken mic while video recording on
@@ -11,7 +11,7 @@ Credits to @haridhayal11.
  1 file changed, 7 insertions(+)
 
 diff --git a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
-index b9f71cc42b..77a96b47a4 100644
+index b9f71cc..77a96b4 100644
 --- a/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 +++ b/services/audiopolicy/common/managerdefinitions/src/Serializer.cpp
 @@ -662,6 +662,9 @@ std::variant<status_t, RouteTraits::Element> PolicySerializer::deserialize<Route
