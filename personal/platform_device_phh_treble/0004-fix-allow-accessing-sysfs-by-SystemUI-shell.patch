@@ -1,7 +1,7 @@
-From e87151fa9f456fa89fb5651f33e6565a62b42724 Mon Sep 17 00:00:00 2001
+From 805fd945846d4b93d487996aeece7098bc0ad6de Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 26 Dec 2024 13:53:22 +0100
-Subject: [PATCH 5/5] fix: allow accessing sysfs by SystemUI & shell
+Subject: [PATCH 4/5] fix: allow accessing sysfs by SystemUI & shell
 
 This allows NetworkTraffic class in SystemUI to obtain kernel
 network traffic statistics from /sys/class/net/*/statistics/{tx/rx}_bytes

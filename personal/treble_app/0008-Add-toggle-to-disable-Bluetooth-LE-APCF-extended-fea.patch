@@ -1,0 +1,57 @@
+From 03992036f34b4bf8b517b7df577c05cde71f2e20 Mon Sep 17 00:00:00 2001
+From: ChonDoit <thphantomblog@gmail.com>
+Date: Mon, 10 Mar 2025 23:08:52 -0300
+Subject: [PATCH 8/8] Add toggle to disable Bluetooth LE APCF extended features
+
+---
+ app/src/main/java/me/phh/treble/app/Misc.kt         | 4 ++++
+ app/src/main/java/me/phh/treble/app/MiscSettings.kt | 1 +
+ app/src/main/res/xml/pref_misc.xml                  | 5 +++++
+ 3 files changed, 10 insertions(+)
+
+diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
+index 0e7a553..f2514d4 100644
+--- a/app/src/main/java/me/phh/treble/app/Misc.kt
++++ b/app/src/main/java/me/phh/treble/app/Misc.kt
+@@ -394,6 +394,10 @@ object Misc: EntryStartup {
+                 val value = sp.getBoolean(key, false)
+                 SystemProperties.set("persist.sys.phh.adb_secure", if (value) "1" else "0")
+             }
++            MiscSettings.disableLeApcfExtended -> {
++                val value = sp.getBoolean(key, false)
++                SystemProperties.set("persist.sys.bt.le.disable_apcf_extended_features", if (value) "1" else "0")
++            }
+         }
+     }
+ 
+diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
+index 6a97f63..d793e9a 100644
+--- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
++++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
+@@ -58,6 +58,7 @@ object MiscSettings : Settings {
+     val disableSfHwcBackpressure = "key_misc_disable_sf_hwc_backpressure"
+     val disableSaeUpgrade = "key_misc_disable_sae_upgrade"
+     val escoTransportUnitSize = "key_misc_esco_transport_unit_size"
++    val disableLeApcfExtended = "key_misc_disable_le_apcfe"
+ 
+     override fun enabled() = true
+ }
+diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
+index 66164fe..9430e85 100644
+--- a/app/src/main/res/xml/pref_misc.xml
++++ b/app/src/main/res/xml/pref_misc.xml
+@@ -183,6 +183,11 @@
+             android:defaultValue="true"
+             android:key="key_misc_dynamic_sysbta"
+             android:title="Use System Wide BT HAL" />
++        <SwitchPreference
++            android:key="key_misc_disable_le_apcfe"
++            android:defaultValue="false"
++            android:title="Disable LE APCF Extended features"
++            android:summary="Fix bluetooth crashing on some devices" />
+         <ListPreference
+             android:defaultValue="0"
+             android:entries="@array/pref_misc_bluetooth"
+-- 
+2.34.1
+

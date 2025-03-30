@@ -1,7 +1,7 @@
-From f17ae31b2ef481dd03c264ef8d23e4dbc73cbe09 Mon Sep 17 00:00:00 2001
+From fa794a0632790bb64b7b95e0fd848e3ed016660b Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 26 Dec 2024 12:58:26 +0100
-Subject: [PATCH 6/8] fix: catch Xiaomi FOD service errors
+Subject: [PATCH 6/9] fix: catch Xiaomi FOD service errors
 
 ---
  .../SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt | 4 ++++

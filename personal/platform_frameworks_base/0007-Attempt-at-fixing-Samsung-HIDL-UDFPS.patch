@@ -1,7 +1,7 @@
-From f6909024ae63708714df3245a124b93404497fe8 Mon Sep 17 00:00:00 2001
+From 220410cd0654f7dcb6b3da1bf88c141b0685b299 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 20 Dec 2024 22:14:35 +0100
-Subject: [PATCH 7/8] Attempt at fixing Samsung HIDL UDFPS
+Subject: [PATCH 7/9] Attempt at fixing Samsung HIDL UDFPS
 
 Now it's at least getting detected & getting placed in the right position.
 ---
@@ -40,7 +40,7 @@ index ae65ffb99..893475455 100644
          registerFaceSensors(mInjector.getFaceAidlInstances(),
                  mInjector.getFaceConfiguration(getContext()), getContext(),
 diff --git a/services/core/java/com/android/server/biometrics/sensors/fingerprint/aidl/FingerprintProvider.java b/services/core/java/com/android/server/biometrics/sensors/fingerprint/aidl/FingerprintProvider.java
-index 688935439..89ca92049 100644
+index 4fa70d465..c74ea10db 100644
 --- a/services/core/java/com/android/server/biometrics/sensors/fingerprint/aidl/FingerprintProvider.java
 +++ b/services/core/java/com/android/server/biometrics/sensors/fingerprint/aidl/FingerprintProvider.java
 @@ -58,6 +58,7 @@ import android.os.UserManager;
@@ -59,7 +59,7 @@ index 688935439..89ca92049 100644
  import com.android.server.biometrics.log.BiometricContext;
  import com.android.server.biometrics.log.BiometricLogger;
  import com.android.server.biometrics.sensors.AuthSessionCoordinator;
-@@ -258,6 +260,49 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
+@@ -253,6 +255,49 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
              @NonNull List<SensorLocationInternal> workaroundLocations,
              boolean resetLockoutRequiresHardwareAuthToken) {
          final int sensorId = prop.commonProps.sensorId;
@@ -109,7 +109,7 @@ index 688935439..89ca92049 100644
          final Sensor sensor = new HidlToAidlSensorAdapter(this, mContext, mHandler, prop,
                  mLockoutResetDispatcher, mBiometricContext, workaroundLocations,
                  resetLockoutRequiresHardwareAuthToken,
-@@ -281,12 +326,25 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
+@@ -276,12 +321,25 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
              @NonNull List<SensorLocationInternal> workaroundLocations,
              boolean resetLockoutRequiresHardwareAuthToken) {
          final int sensorId = prop.commonProps.sensorId;
@@ -136,7 +136,7 @@ index 688935439..89ca92049 100644
              try {
                  int[] otherValues = com.android.server.biometrics.AuthService.dynamicUdfpsProps(mContext);
                  if (otherValues.length > 0) {
-@@ -295,16 +353,21 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
+@@ -290,16 +348,21 @@ public class FingerprintProvider implements IBinder.DeathRecipient, ServiceProvi
                      loc.sensorLocationY = otherValues[1];
                      loc.sensorRadius = otherValues[2];
                      prop.sensorLocations[0] = loc;
