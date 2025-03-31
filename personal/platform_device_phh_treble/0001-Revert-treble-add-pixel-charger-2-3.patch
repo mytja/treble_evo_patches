@@ -1,7 +1,7 @@
-From 71f774f73a4a308264347ba3a591bf570a2f82ab Mon Sep 17 00:00:00 2001
+From 53cf29de02a28e1cdeafa66f50fd82a8c2eea36f Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Wed, 21 Jun 2023 17:55:48 +0000
-Subject: [PATCH 1/5] Revert "treble : add pixel charger 2/3"
+Subject: [PATCH 1/6] Revert "treble : add pixel charger 2/3"
 
 This reverts commit c8e77687288263848d9a92936c0138fefe0fdb8d.
 ---
@@ -213,7 +213,7 @@ This reverts commit c8e77687288263848d9a92936c0138fefe0fdb8d.
  create mode 100644 huawei_charger/files/800x1280/percent_sign.png
 
 diff --git a/base.mk b/base.mk
-index 43e261b..bf7d5c9 100644
+index 463eb18..942e17f 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -51,10 +51,6 @@ PRODUCT_COPY_FILES += \
