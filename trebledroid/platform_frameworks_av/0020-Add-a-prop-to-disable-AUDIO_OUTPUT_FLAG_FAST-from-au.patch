@@ -1,4 +1,4 @@
-From cbb363cf0ac968aa0ae0458b365813b2fe8d9883 Mon Sep 17 00:00:00 2001
+From 3ba1003c97f87432b532913fe673fb63cc85e372 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Mon, 30 Oct 2023 10:30:58 -0400
 Subject: [PATCH 20/24] Add a prop to disable AUDIO_OUTPUT_FLAG_FAST from audio

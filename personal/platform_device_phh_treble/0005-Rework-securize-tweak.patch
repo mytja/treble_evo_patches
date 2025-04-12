@@ -1,37 +1,34 @@
-From 054203c034548d218181c40df21a54fa7f4dc8e0 Mon Sep 17 00:00:00 2001
+From 48aa90b345c0c415e3b57d52962accfb085e6eab Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Wed, 25 Dec 2019 12:34:05 +0200
 Subject: [PATCH 5/5] Rework securize tweak
 
 ---
  base.mk      |  1 -
- rw-system.sh | 54 ++++++++++++++++++++++++++++++++--------------------
- 2 files changed, 33 insertions(+), 22 deletions(-)
+ rw-system.sh | 49 ++++++++++++++++++++++++++++++-------------------
+ 2 files changed, 30 insertions(+), 20 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index 942e17f..9dc53c8 100644
+index e69d151..ac1e297 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -172,7 +172,6 @@ PRODUCT_PACKAGES += \
- 	resetprop_phh
+@@ -164,7 +164,6 @@ PRODUCT_PACKAGES += \
+     resetprop_phh
  
  PRODUCT_COPY_FILES += \
--	device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
- 	device/phh/treble/files/ota.sh:system/bin/ota.sh \
+-    device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
+     device/phh/treble/files/ota.sh:system/bin/ota.sh \
  
  PRODUCT_COPY_FILES += \
 diff --git a/rw-system.sh b/rw-system.sh
-index 28c4272..1c70b25 100644
+index 055c2cd..6903559 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -784,35 +784,62 @@ copyprop() {
+@@ -785,32 +785,59 @@ copyprop() {
          resetprop_phh "$1" "$(getprop "$2")"
      fi
  }
 -if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
-+
-+# Do not spoof props if full gapps build - breaks ROM spoofing
-+if [ ! -f /system/priv-app/Velvet.apk ]; then
      copyprop ro.build.device ro.vendor.build.device
      copyprop ro.system.build.fingerprint ro.vendor.build.fingerprint
      copyprop ro.bootimage.build.fingerprint ro.vendor.build.fingerprint
@@ -84,24 +81,20 @@ index 28c4272..1c70b25 100644
 +    copyprop ro.product.system_ext.manufacturer ro.vendor.product.manufacturer
      copyprop ro.system.product.manufacturer ro.product.vendor.manufacturer
      copyprop ro.product.manufacturer ro.product.vendor.manufacturer
--    (getprop ro.vendor.build.security_patch; getprop ro.keymaster.xxx.security_patch) |sort |tail -n 1 |while read v;do
--        [ -n "$v" ] && resetprop_phh ro.build.version.security_patch "$v"
--    done
 +    copyprop ro.product.system.manufacturer ro.product.vendor.manufacturer
 +    copyprop ro.product.product.manufacturer ro.product.vendor.manufacturer
 +    copyprop ro.product.system_ext.manufacturer ro.product.vendor.manufacturer
- 
-     resetprop_phh ro.build.user nobody
-     resetprop_phh ro.build.host android-build
-@@ -837,21 +864,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
-     resetprop_phh --delete ro.build.selinux
+     (getprop ro.vendor.build.security_patch; getprop ro.keymaster.xxx.security_patch) |sort |tail -n 1 |while read v;do
+         [ -n "$v" ] && resetprop_phh ro.build.version.security_patch "$v"
+     done
+@@ -839,22 +866,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
  
      resetprop_phh ro.adb.secure 1
--
+ 
 -    # Hide system/xbin/su
 -    mount /mnt/phh/empty_dir /system/xbin
 -    mount /mnt/phh/empty_dir /system/app/me.phh.superuser
--    mount /system/phh/empty /system/xbin/phh-su
+-    mount /mnt/phh/empty /system/xbin/phh-su
 -else
 -    mkdir /mnt/phh/xbin
 -    chmod 0755 /mnt/phh/xbin
@@ -112,9 +105,11 @@ index 28c4272..1c70b25 100644
 -    chcon u:object_r:system_file:s0 /mnt/phh/xbin/su
 -
 -    mount -o bind /mnt/phh/xbin /system/xbin
- fi
- 
+-fi
+-
  for abi in "" 64;do
+     f=/vendor/lib$abi/libstagefright_foundation.so
+     if [ -f "$f" ];then
 -- 
 2.34.1
 

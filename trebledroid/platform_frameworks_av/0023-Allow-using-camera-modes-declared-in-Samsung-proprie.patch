@@ -1,23 +1,24 @@
-From 1b83af89efec3e1122ea7cd81c0c5c2608ca8011 Mon Sep 17 00:00:00 2001
+From bd2a62f01d0e49430623e180505a7b02e4ffba07 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 10 Feb 2024 09:30:19 -0500
 Subject: [PATCH 23/24] Allow using camera modes declared in Samsung
  proprietary values
 
 ---
- .../utils/SessionConfigurationUtils.cpp       | 79 +++++++++++++------
- 1 file changed, 53 insertions(+), 26 deletions(-)
+ .../utils/SessionConfigurationUtils.cpp       | 81 ++++++++++++-------
+ 1 file changed, 54 insertions(+), 27 deletions(-)
 
 diff --git a/services/camera/libcameraservice/utils/SessionConfigurationUtils.cpp b/services/camera/libcameraservice/utils/SessionConfigurationUtils.cpp
-index 02e4315..72ff09b 100644
+index a3ea0d8..b4df585 100644
 --- a/services/camera/libcameraservice/utils/SessionConfigurationUtils.cpp
 +++ b/services/camera/libcameraservice/utils/SessionConfigurationUtils.cpp
-@@ -170,35 +170,62 @@ bool roundBufferDimensionNearest(int32_t width, int32_t height,
- 
-     bool isJpegRDataSpace = (dataSpace == static_cast<android_dataspace_t>(
+@@ -178,36 +178,63 @@ bool roundBufferDimensionNearest(int32_t width, int32_t height,
                  ::aidl::android::hardware::graphics::common::Dataspace::JPEG_R));
+     bool isHeicUltraHDRDataSpace = (dataSpace == static_cast<android_dataspace_t>(
+                 ::aidl::android::hardware::graphics::common::Dataspace::HEIF_ULTRAHDR));
 -    camera_metadata_ro_entry streamConfigs =
 -            (isJpegRDataSpace) ? info.find(jpegRSizesTag) :
+-            (isHeicUltraHDRDataSpace) ? info.find(heicUltraHDRSizesTag) :
 -            (dataSpace == HAL_DATASPACE_DEPTH) ? info.find(depthSizesTag) :
 -            (dataSpace == static_cast<android_dataspace>(HAL_DATASPACE_HEIF)) ?
 -            info.find(heicSizesTag) :
@@ -25,6 +26,7 @@ index 02e4315..72ff09b 100644
 +    bool isDepth = dataSpace == HAL_DATASPACE_DEPTH;
 +    bool isHeif = dataSpace == static_cast<android_dataspace>(HAL_DATASPACE_HEIF);
 +    int32_t selectedTag = isJpegRDataSpace ? jpegRSizesTag :
++        isHeicUltraHDRDataSpace ? heicUltraHDRSizesTag :
 +        isDepth ? depthSizesTag :
 +        isHeif ? heicSizesTag : scalerSizesTag;
 +

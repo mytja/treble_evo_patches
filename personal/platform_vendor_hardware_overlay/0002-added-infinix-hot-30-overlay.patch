@@ -1,0 +1,258 @@
+From 910da821c95484fa0f8550997f260eb41dfa8386 Mon Sep 17 00:00:00 2001
+From: Moheshwar Amarnath Biswas <fluentmoheshwar@outlook.com>
+Date: Tue, 4 Feb 2025 01:14:49 +0600
+Subject: [PATCH] added infinix hot 30 overlay
+
+Also includes commit(s):
+fix: update package name and properties for Infinix Hot30 overlay
+---
+ Infinix/Hot30/Android.mk                |   8 ++
+ Infinix/Hot30/AndroidManifest.xml       |  10 ++
+ Infinix/Hot30/res/values/config.xml     |  63 +++++++++++++
+ Infinix/Hot30/res/xml/power_profile.xml | 119 ++++++++++++++++++++++++
+ overlay.mk                              |   1 +
+ 5 files changed, 201 insertions(+)
+ create mode 100644 Infinix/Hot30/Android.mk
+ create mode 100644 Infinix/Hot30/AndroidManifest.xml
+ create mode 100644 Infinix/Hot30/res/values/config.xml
+ create mode 100644 Infinix/Hot30/res/xml/power_profile.xml
+
+diff --git a/Infinix/Hot30/Android.mk b/Infinix/Hot30/Android.mk
+new file mode 100644
+index 0000000..e3939bd
+--- /dev/null
++++ b/Infinix/Hot30/Android.mk
+@@ -0,0 +1,8 @@
++LOCAL_PATH := $(call my-dir)
++include $(CLEAR_VARS)
++LOCAL_MODULE_TAGS := optional
++LOCAL_PACKAGE_NAME := treble-overlay-infinix-hot30
++LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT)/overlay
++LOCAL_IS_RUNTIME_RESOURCE_OVERLAY := true
++LOCAL_PRIVATE_PLATFORM_APIS := true
++include $(BUILD_PACKAGE)
+diff --git a/Infinix/Hot30/AndroidManifest.xml b/Infinix/Hot30/AndroidManifest.xml
+new file mode 100644
+index 0000000..c070c22
+--- /dev/null
++++ b/Infinix/Hot30/AndroidManifest.xml
+@@ -0,0 +1,10 @@
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++        package="me.phh.treble.overlay.infinix.hot30"
++        android:versionCode="1"
++        android:versionName="1.0">
++        <overlay android:targetPackage="android"
++        	android:requiredSystemPropertyName="ro.product.vendor.device"
++        	android:requiredSystemPropertyValue="Infinix-X6831"
++		android:priority="423"
++		android:isStatic="true" />
++</manifest>
+diff --git a/Infinix/Hot30/res/values/config.xml b/Infinix/Hot30/res/values/config.xml
+new file mode 100644
+index 0000000..0a5f037
+--- /dev/null
++++ b/Infinix/Hot30/res/values/config.xml
+@@ -0,0 +1,63 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++<string-array name="config_defaultPinnerServiceFiles">
++        <item>/system/framework/arm/boot-mediatek-framework.vdex</item>
++        <item>/system/lib/libjavacrypto.so</item>
++        <item>/system/lib/libhidltransport.so</item>
++        <item>/system/framework/arm/boot-core-libart.oat</item>
++        <item>/system/framework/arm/boot-conscrypt.oat</item>
++        <item>/system/framework/arm/boot-core-libart.vdex</item>
++        <item>/system/framework/arm/boot-ext.vdex</item>
++        <item>/system/framework/arm/boot.vdex</item>
++        <item>/system/framework/arm/boot-framework.vdex</item>
++    </string-array>
++    <string-array name="config_tether_bluetooth_regexs">
++        <item>bt-pan</item>
++        <item>bt-dun</item>
++    </string-array>
++    <string-array name="config_tether_usb_regexs">
++        <item>rndis\\d</item>
++    </string-array>
++    <string-array name="config_tether_wifi_regexs">
++        <item>ap\\d</item>
++    </string-array>
++    <string-array name="networkAttributes">
++        <item>wifi,1,1,1,-1,true</item>
++        <item>mobile,0,0,0,-1,true</item>
++        <item>mobile_mms,2,0,2,60000,true</item>
++        <item>mobile_supl,3,0,2,60000,true</item>
++        <item>mobile_dun,4,0,2,60000,true</item>
++        <item>mobile_hipri,5,0,3,60000,true</item>
++        <item>ethernet,9,9,9,-1,true</item>
++        <item>mobile_fota,10,0,2,60000,true</item>
++        <item>mobile_ims,11,0,-1,-1,true</item>
++        <item>mobile_cbs,12,0,2,60000,true</item>
++        <item>wifi_p2p,13,1,0,-1,true</item>
++        <item>mobile_ia,14,0,2,-1,true</item>
++        <item>mobile_emergency,15,0,2,-1,true</item>
++        <item>mobile_mcx,1001,0,3,60000,true</item>
++        <item>mobile_xcap,1002,0,3,60000,true</item>
++        <item>mobile_rcs,2001,0,3,60000,true</item>
++        <item>mobile_bip,2002,0,3,60000,true</item>
++        <item>mobile_vsim,2003,0,-1,60000,true</item>
++    </string-array>
++    <bool name="config_fillMainBuiltInDisplayCutout">false</bool>
++    <bool name="config_hotswapCapable">true</bool>
++    <bool name="config_setColorTransformAccelerated">true</bool>
++    <bool name="config_showNavigationBar">true</bool>
++    <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
++    <bool name="config_useDevInputEventForAudioJack">true</bool>
++    <bool name="skip_restoring_network_selection">true</bool>
++    <bool name="config_device_volte_available">true</bool>
++    <bool name="config_device_vt_available">true</bool>
++    <bool name="config_device_wfc_ims_available">true</bool>
++    <item type="dimen" name="config_screenBrightnessSettingMinimumFloat">3.24254E-4</item>
++    <dimen name="navigation_bar_height">40.0dip</dimen>
++    <dimen name="navigation_bar_height_landscape">40.0dip</dimen>
++    <dimen name="navigation_bar_width">40.0dip</dimen>
++    <dimen name="quick_qs_offset_height">36.0dip</dimen>
++    <dimen name="status_bar_height_landscape">28.0dip</dimen>
++    <dimen name="status_bar_height_portrait">36.0dip</dimen>
++    <integer name="config_shutdownBatteryTemperature">599</integer>
++    <string name="config_mainBuiltInDisplayCutout">M -24,0 L -24,36 L 24,36 L 24,0 Z @dp</string>
++</resources>
+diff --git a/Infinix/Hot30/res/xml/power_profile.xml b/Infinix/Hot30/res/xml/power_profile.xml
+new file mode 100644
+index 0000000..49467d6
+--- /dev/null
++++ b/Infinix/Hot30/res/xml/power_profile.xml
+@@ -0,0 +1,119 @@
++<?xml version="1.0" encoding="utf-8"?>
++<device name="Android">
++    <item name="none">0</item>
++    <item name="screen.on">63.6</item>
++    <item name="screen.full">335.49</item>
++    <item name="bluetooth.active">27.83</item>
++    <item name="bluetooth.on">1.06</item>
++    <item name="wifi.on">0.14</item>
++    <item name="wifi.active">391.78</item>
++    <item name="wifi.scan">50.97</item>
++    <item name="dsp.audio">19.86</item>
++    <item name="dsp.video">74.67</item>
++    <item name="camera.flashlight">348.94</item>
++    <item name="camera.avg">886.68</item>
++    <item name="gps.on">30.82</item>
++    <item name="radio.active">15</item>
++    <item name="radio.scanning">25.31</item>
++    <array name="radio.on">
++        <value>3.05</value>
++        <value>3.05</value>
++    </array>
++    <item name="modem.controller.idle">17</item>
++    <item name="modem.controller.rx">106.4</item>
++    <item name="modem.controller.tx">157.3</item>
++    <item name="modem.controller.voltage">0</item>
++    <array name="cpu.clusters.cores">
++        <value>6</value>
++        <value>2</value>
++    </array>
++    <array name="cpu.speeds.cluster0">
++        <value>500000</value>
++        <value>650000</value>
++        <value>703000</value>
++        <value>756000</value>
++        <value>862000</value>
++        <value>968000</value>
++        <value>1048000</value>
++        <value>1128000</value>
++        <value>1287000</value>
++        <value>1393000</value>
++        <value>1500000</value>
++        <value>1645000</value>
++        <value>1750000</value>
++        <value>1812000</value>
++        <value>1916000</value>
++        <value>2000000</value>
++    </array>
++    <array name="cpu.speeds.cluster1">
++        <value>725000</value>
++        <value>840000</value>
++        <value>898000</value>
++        <value>985000</value>
++        <value>1042000</value>
++        <value>1129000</value>
++        <value>1274000</value>
++        <value>1418000</value>
++        <value>1534000</value>
++        <value>1650000</value>
++        <value>1837000</value>
++        <value>1993000</value>
++        <value>2118000</value>
++        <value>2203000</value>
++        <value>2306000</value>
++        <value>2400000</value>
++    </array>
++    <array name="cpu.active.cluster0">
++        <value>7.97</value>
++        <value>10.92</value>
++        <value>12.31</value>
++        <value>14.27</value>
++        <value>15.09</value>
++        <value>17.33</value>
++        <value>19.52</value>
++        <value>21.17</value>
++        <value>24.15</value>
++        <value>27.77</value>
++        <value>30.33</value>
++        <value>33.50</value>
++        <value>37.52</value>
++        <value>39.83</value>
++        <value>45.35</value>
++        <value>49.36</value>
++    </array>
++    <array name="cpu.active.cluster1">
++        <value>22.64</value>
++        <value>27.78</value>
++        <value>31.47</value>
++        <value>38.23</value>
++        <value>44.37</value>
++        <value>53.14</value>
++        <value>60.46</value>
++        <value>68.39</value>
++        <value>78.25</value>
++        <value>88.69</value>
++        <value>101.35</value>
++        <value>112.58</value>
++        <value>122.47</value>
++        <value>130.81</value>
++        <value>143.09</value>
++        <value>151.02</value>
++    </array>
++    <item name="cpu.idle">3.03</item>
++    <array name="memory.bandwidths">
++        <value>22.7</value>
++    </array>
++    <item name="battery.capacity">5000</item>
++    <item name="wifi.controller.idle">15.2</item>
++    <item name="wifi.controller.rx">220.55</item>
++    <item name="wifi.controller.tx">362.94</item>
++    <array name="wifi.controller.tx_levels" />
++    <item name="wifi.controller.voltage">0</item>
++    <array name="wifi.batchedscan">
++        <value>36.02</value>
++        <value>36.02</value>
++        <value>36.02</value>
++        <value>36.02</value>
++        <value>36.02</value>
++    </array>
++</device>
+diff --git a/overlay.mk b/overlay.mk
+index 1a8bb00..91f682c 100644
+--- a/overlay.mk
++++ b/overlay.mk
+@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
+ 	treble-overlay-huawei-VTR \
+ 	treble-overlay-huawei-WAS \
+ 	treble-overlay-hw-ims \
++	treble-overlay-infinix-hot30 \
+ 	treble-overlay-infinix-note10 \
+ 	treble-overlay-infinix-note10pro \
+ 	treble-overlay-infinix-note12v2023 \
+-- 
+2.34.1
+

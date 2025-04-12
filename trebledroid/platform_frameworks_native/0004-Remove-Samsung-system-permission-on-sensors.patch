@@ -1,4 +1,4 @@
-From c27fcf42aaa3d88d515460f014995be897865643 Mon Sep 17 00:00:00 2001
+From 2734d5115baadf665116e7c6d89f89301cdb1ed3 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 31 Mar 2021 23:36:03 +0200
 Subject: [PATCH 04/14] Remove Samsung system permission on sensors
@@ -9,10 +9,10 @@ Subject: [PATCH 04/14] Remove Samsung system permission on sensors
  2 files changed, 2 insertions(+)
 
 diff --git a/libs/sensor/Sensor.cpp b/libs/sensor/Sensor.cpp
-index a1549ea..3eec309 100644
+index 797efbe..5295af9 100644
 --- a/libs/sensor/Sensor.cpp
 +++ b/libs/sensor/Sensor.cpp
-@@ -429,6 +429,7 @@ const String8& Sensor::getStringType() const {
+@@ -443,6 +443,7 @@ const String8& Sensor::getStringType() const {
  }
  
  const String8& Sensor::getRequiredPermission() const {

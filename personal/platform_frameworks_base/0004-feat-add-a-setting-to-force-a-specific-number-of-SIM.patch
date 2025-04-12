@@ -1,7 +1,7 @@
-From a7532ff911d7fe302d22e8607e086b471d610ff9 Mon Sep 17 00:00:00 2001
+From 3a8ed81d8ae2b465372a929a4ddaa313ecfa8901 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 20:32:36 +0100
-Subject: [PATCH 4/9] feat: add a setting to force a specific number of SIM
+Subject: [PATCH 04/10] feat: add a setting to force a specific number of SIM
  slots
 
 Some device models seemingly report a wrong number of SIM slots.
@@ -11,10 +11,10 @@ This patch should in combination with another one inside frameworks/base be a te
  1 file changed, 20 insertions(+)
 
 diff --git a/telephony/java/android/telephony/TelephonyManager.java b/telephony/java/android/telephony/TelephonyManager.java
-index 0700e34e0..330a5446d 100644
+index 2050ebf72..6b052e846 100644
 --- a/telephony/java/android/telephony/TelephonyManager.java
 +++ b/telephony/java/android/telephony/TelephonyManager.java
-@@ -467,6 +467,8 @@ public class TelephonyManager {
+@@ -468,6 +468,8 @@ public class TelephonyManager {
              "cache_key.telephony.phone_account_to_subid";
      private static final int CACHE_MAX_SIZE = 4;
  
@@ -23,7 +23,7 @@ index 0700e34e0..330a5446d 100644
      /**
       * A {@link PropertyInvalidatedCache} which lives in an app's {@link TelephonyManager} instance.
       * Caches any queries for a mapping between {@link PhoneAccountHandle} and {@code subscription
-@@ -643,6 +645,15 @@ public class TelephonyManager {
+@@ -644,6 +646,15 @@ public class TelephonyManager {
      public MultiSimVariants getMultiSimConfiguration() {
          String mSimConfig =
                  TelephonyProperties.multi_sim_config().orElse("");
@@ -39,7 +39,7 @@ index 0700e34e0..330a5446d 100644
          if (mSimConfig.equals("dsds")) {
              return MultiSimVariants.DSDS;
          } else if (mSimConfig.equals("dsda")) {
-@@ -677,6 +688,11 @@ public class TelephonyManager {
+@@ -678,6 +689,11 @@ public class TelephonyManager {
       */
      public int getActiveModemCount() {
          int modemCount = 1;
@@ -51,7 +51,7 @@ index 0700e34e0..330a5446d 100644
          switch (getMultiSimConfiguration()) {
              case UNKNOWN:
                  modemCount = 1;
-@@ -704,6 +720,10 @@ public class TelephonyManager {
+@@ -705,6 +721,10 @@ public class TelephonyManager {
       * {@link #getActiveModemCount} returns 1 while this API returns 2.
       */
      public int getSupportedModemCount() {

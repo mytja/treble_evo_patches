@@ -1,0 +1,34 @@
+From f8d86f979746f324c748660912f826fb431d0d73 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sun, 6 Apr 2025 15:45:16 +0200
+Subject: [PATCH 09/10] fix: my own stupidity
+
+---
+ .../java/com/android/server/wm/DisplayPolicy.java     | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/services/core/java/com/android/server/wm/DisplayPolicy.java b/services/core/java/com/android/server/wm/DisplayPolicy.java
+index 9e7365399..54a9dd941 100644
+--- a/services/core/java/com/android/server/wm/DisplayPolicy.java
++++ b/services/core/java/com/android/server/wm/DisplayPolicy.java
+@@ -609,17 +609,6 @@ public class DisplayPolicy {
+                                  Boost.DISPLAY_UPDATE_IMMINENT, 500);
+                         }
+                     }
+-                    if(mOldMtkPerf != null) {
+-                        try {
+-                            android.util.Log.d("PHH-Power", "mtk1 fling power hint");
+-                            int hint = 36; // MTKPOWER_HINT_APP_TOUCH
+-                            if("rotate".equals(SystemProperties.get("persist.sys.phh.touch_hint")))
+-                                    hint = 35; // MTKPOWER_HINT_APP_ROTATE
+-                            mOldMtkPerf.mtkPowerHint(hint, duration);
+-                        } catch(Throwable t) {
+-                            android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
+-                        }
+-                    }
+                 }
+ 
+                 @Override
+-- 
+2.34.1
+

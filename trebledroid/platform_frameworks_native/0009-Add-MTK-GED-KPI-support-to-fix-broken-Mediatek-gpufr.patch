@@ -1,4 +1,4 @@
-From 5566e7c9fe87a52ebe1ddee691a5b649796acd8e Mon Sep 17 00:00:00 2001
+From 8c128f99c7376a53dc5fd72dd049d03b55b1c64e Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 25 Nov 2023 08:15:28 -0500
 Subject: [PATCH 09/14] Add MTK GED KPI support to fix broken Mediatek gpufreq
@@ -24,7 +24,7 @@ Change-Id: Ic29a231ea8651efd598083611197aaa9e3c1fbbe
  2 files changed, 205 insertions(+)
 
 diff --git a/libs/gui/Surface.cpp b/libs/gui/Surface.cpp
-index f7d02d0..72cb145 100644
+index bc4589b..635f267 100644
 --- a/libs/gui/Surface.cpp
 +++ b/libs/gui/Surface.cpp
 @@ -26,6 +26,9 @@

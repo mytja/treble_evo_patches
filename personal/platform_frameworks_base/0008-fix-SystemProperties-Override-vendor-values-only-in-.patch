@@ -1,0 +1,43 @@
+From d91f2e958e0c565bce4a6fec5d9bdefd458d0e18 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Sun, 30 Mar 2025 19:19:14 +0200
+Subject: [PATCH 08/10] fix: SystemProperties: Override vendor values only in
+ case vendor is userdebug/test-keys
+
+Fixes Treble App not showing vendor-specific pages on Evolution X GSI, except for Google as per
+https://github.com/Evolution-X/frameworks_base/commit/92f5f52ed8366cc87c23ac987f5b705a82a8b543
+
+Google doesn't have its own subpage in any case and Pixels in any case have the most ROMs available,
+so this shouldn't be an issue for Pixel users.
+---
+ core/java/android/os/SystemProperties.java | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/core/java/android/os/SystemProperties.java b/core/java/android/os/SystemProperties.java
+index 898cfcbee..40b93c465 100644
+--- a/core/java/android/os/SystemProperties.java
++++ b/core/java/android/os/SystemProperties.java
+@@ -102,16 +102,18 @@ public class SystemProperties {
+     // indicates. Let's just live with having a Java function with a very unusual name.
+     @UnsupportedAppUsage
+     private static String native_get(String key) {
+-        if (key.startsWith("ro.vendor.build.")) {
++        String value = native_get(key, "");
++        if (key.startsWith("ro.vendor.build.") && (value.contains("userdebug") || value.contains("test-keys"))) {
+             if (key.matches(".*\\.(date|fingerprint|id|tags|type)")) {
+                 key = key.replace("ro.vendor.build.", "ro.system.build.");
++                value = native_get(key, "");
+             }
+         } else if (key.endsWith(".build.tags")) {
+             return "release-keys";
+         } else if (key.endsWith(".build.type")) {
+             return "user";
+         }
+-        return native_get(key, "");
++        return value;
+     }
+ 
+     @FastNative
+-- 
+2.34.1
+

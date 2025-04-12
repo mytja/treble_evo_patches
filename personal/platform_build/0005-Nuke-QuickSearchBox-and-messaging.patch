@@ -1,4 +1,4 @@
-From b3825e30d037881a15a97a52337a7b6e5cee2e55 Mon Sep 17 00:00:00 2001
+From 238459c9af0a1f2475d358a346587d5496da1e0b Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sat, 18 Jan 2025 14:33:35 +0100
 Subject: [PATCH 5/5] Nuke QuickSearchBox and messaging

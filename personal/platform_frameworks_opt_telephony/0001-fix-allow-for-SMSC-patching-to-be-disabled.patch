@@ -1,4 +1,4 @@
-From 5f9c5dc4459c98ed2bd1498a959a889e203e1306 Mon Sep 17 00:00:00 2001
+From 80dc105da7aea37361fdd5f2d58dadb3a66a35d1 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 30 Mar 2025 17:38:53 +0200
 Subject: [PATCH] fix: allow for SMSC patching to be disabled

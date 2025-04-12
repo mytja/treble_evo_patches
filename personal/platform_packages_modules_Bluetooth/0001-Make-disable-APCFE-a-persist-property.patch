@@ -1,4 +1,4 @@
-From 71ae22e8fcd9a10a73450c6180fb9cd769edbe5f Mon Sep 17 00:00:00 2001
+From 6e304fefa3eafd8c6239429b32cfab7aaf638ce9 Mon Sep 17 00:00:00 2001
 From: ChonDoit <42556721+ChonDoit@users.noreply.github.com>
 Date: Mon, 10 Mar 2025 23:16:56 -0300
 Subject: [PATCH] Make disable APCFE a persist property
@@ -8,10 +8,10 @@ Subject: [PATCH] Make disable APCFE a persist property
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/system/gd/hci/le_scanning_manager.cc b/system/gd/hci/le_scanning_manager.cc
-index 1c6f1c1..3e65d6f 100644
+index c4263ed..5a74b33 100644
 --- a/system/gd/hci/le_scanning_manager.cc
 +++ b/system/gd/hci/le_scanning_manager.cc
-@@ -60,7 +60,7 @@ constexpr uint8_t kDataStatusBits = 5;
+@@ -59,7 +59,7 @@ constexpr uint8_t kDataStatusBits = 5;
  
  // system properties
  const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";

@@ -1,4 +1,4 @@
-From 39c3d09abac6b930b6f314c374637008eb004a7f Mon Sep 17 00:00:00 2001
+From a67a9021d2cfa010770391dc22377fe7e8dec1f7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Mitja=20=C5=A0everkar?= <mytja@protonmail.com>
 Date: Mon, 23 Sep 2024 18:09:42 +0000
 Subject: [PATCH 2/2] fix: announce exfat support with alternative drivers

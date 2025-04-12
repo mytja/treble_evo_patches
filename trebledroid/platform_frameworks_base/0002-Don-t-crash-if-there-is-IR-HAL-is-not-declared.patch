@@ -1,7 +1,7 @@
-From c58ac4e5749411f74d2a189fe62b8f04bb7fb513 Mon Sep 17 00:00:00 2001
+From 49780b8b5840726d010ac4e149720ff30e66fd5f Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 17 May 2018 20:28:35 +0200
-Subject: [PATCH 02/43] Don't crash if there is IR HAL is not declared
+Subject: [PATCH 02/41] Don't crash if there is IR HAL is not declared
 
 Change-Id: I3afded27441bbee8244d5fda544b3e6d1238dc1b
 ---
@@ -10,10 +10,10 @@ Change-Id: I3afded27441bbee8244d5fda544b3e6d1238dc1b
  2 files changed, 1 insertion(+), 9 deletions(-)
 
 diff --git a/services/core/java/com/android/server/ConsumerIrService.java b/services/core/java/com/android/server/ConsumerIrService.java
-index ee6d808aa..be8e2bb95 100644
+index 8362079b9..030265567 100644
 --- a/services/core/java/com/android/server/ConsumerIrService.java
 +++ b/services/core/java/com/android/server/ConsumerIrService.java
-@@ -53,14 +53,6 @@ public class ConsumerIrService extends IConsumerIrService.Stub {
+@@ -59,14 +59,6 @@ public class ConsumerIrService extends IConsumerIrService.Stub {
          mWakeLock.setReferenceCounted(true);
  
          mHasNativeHal = getHalService();

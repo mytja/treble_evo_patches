@@ -1,4 +1,4 @@
-From 747354042ce8832b23caef28970edc650babf00c Mon Sep 17 00:00:00 2001
+From a98905ef15ed4ba1529f7c89c09183c2cf8d4630 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 9 Sep 2020 22:36:42 +0200
 Subject: [PATCH 02/12] Revert "libsepol: Make an unknown permission an error
@@ -14,7 +14,7 @@ This is required because some targets calls undefined permissions:
  1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/libsepol/cil/src/cil_resolve_ast.c b/libsepol/cil/src/cil_resolve_ast.c
-index 427a320..b8ca533 100644
+index da8863c..6c5b633 100644
 --- a/libsepol/cil/src/cil_resolve_ast.c
 +++ b/libsepol/cil/src/cil_resolve_ast.c
 @@ -93,14 +93,18 @@ static int __cil_resolve_perms(symtab_t *class_symtab, symtab_t *common_symtab,

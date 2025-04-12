@@ -1,4 +1,4 @@
-From d5151e22541e4c4df1afacf430b26294ca359983 Mon Sep 17 00:00:00 2001
+From c193b0eecb60ff160b18fd95c5e9ec0cea803ec1 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 17 Oct 2024 06:59:48 -0400
 Subject: [PATCH 7/7] Additional bpf prevent-crash
@@ -34,10 +34,10 @@ index 408294c..287116a 100644
          final long blockingMatches = (uidRuleConfig & ~uidMatch & sMaskDropIfUnset)
                  | (uidRuleConfig & uidMatch & sMaskDropIfSet);
 diff --git a/service-t/src/com/android/server/net/NetworkStatsService.java b/service-t/src/com/android/server/net/NetworkStatsService.java
-index 88f9b74..de20793 100644
+index 01ba86c..8db8bab 100644
 --- a/service-t/src/com/android/server/net/NetworkStatsService.java
 +++ b/service-t/src/com/android/server/net/NetworkStatsService.java
-@@ -3313,7 +3313,8 @@ public class NetworkStatsService extends INetworkStatsService.Stub {
+@@ -3391,7 +3391,8 @@ public class NetworkStatsService extends INetworkStatsService.Stub {
          try {
              return mStatsFactory.readNetworkStatsDetail(uid, ifaces, tag);
          } catch (IOException e) {
