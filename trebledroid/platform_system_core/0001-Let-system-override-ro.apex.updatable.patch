@@ -1,7 +1,7 @@
-From 7428e1544fbab22792215d5a37ddb97343c0e8f6 Mon Sep 17 00:00:00 2001
+From 99dbfdbd33e9811304a3f3d0a1161c7615223b3a Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 23 Feb 2022 17:37:47 -0500
-Subject: [PATCH 01/24] Let system override ro.apex.updatable
+Subject: [PATCH 01/25] Let system override ro.apex.updatable
 
 APEX are broken because of a kernel bug in Android 10 devices
 So we have system set ro.apex.updatable = false

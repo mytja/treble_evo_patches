@@ -1,7 +1,7 @@
-From 12f7848e30d1c3e44f7c735f5c9d35f5b5c79cad Mon Sep 17 00:00:00 2001
+From e52ca7c1eeb97a882f9f80befa7eb3c87360df4d Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 31 Mar 2024 17:18:05 -0400
-Subject: [PATCH 22/24] If AVB fails, ignore/disable AVB
+Subject: [PATCH 22/25] If AVB fails, ignore/disable AVB
 
 DO NOT INCLUDE THIS PATCH If you want to run GSIs on a locked bootloader
 

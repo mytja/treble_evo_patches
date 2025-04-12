@@ -1,7 +1,7 @@
-From d82a5db1464efd829847fd2efff073477a79aab3 Mon Sep 17 00:00:00 2001
+From 021650634db821584b435ff7ad1b39da6dbf8982 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Thu, 25 Jan 2024 15:20:10 -0500
-Subject: [PATCH 21/24] When setting ro.apex.updatable, actually set the value
+Subject: [PATCH 21/25] When setting ro.apex.updatable, actually set the value
 
 Before this change, we were only changing the override, but on newest
 Android 14 vendor, they don't explicitly set ro.apex.updatable=true
