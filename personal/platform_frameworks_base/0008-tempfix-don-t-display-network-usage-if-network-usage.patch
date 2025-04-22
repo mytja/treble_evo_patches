@@ -1,7 +1,7 @@
-From 4fdbc01b63a4a51b486022137da241b4b0e5ff8d Mon Sep 17 00:00:00 2001
+From 8025f740e771d822f06ac201462397b1876194a2 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 27 Dec 2024 20:07:31 +0100
-Subject: [PATCH 7/8] tempfix: don't display network usage if network usage is
+Subject: [PATCH 8/9] tempfix: don't display network usage if network usage is
  0
 
 Applicable to some devices with older kernels (<4.14) that don't report

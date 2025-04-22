@@ -1,4 +1,4 @@
-From 7655b0acfad361592da6c00c6d511c61a22f738e Mon Sep 17 00:00:00 2001
+From 808fdcd56ab8219948421fdf136a5536f11a7575 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Thu, 5 Sep 2024 15:15:51 +0200
 Subject: [PATCH 2/6] make builds RO

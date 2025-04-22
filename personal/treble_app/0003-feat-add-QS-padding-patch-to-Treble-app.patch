@@ -1,7 +1,7 @@
-From 9c8e81128916ee87b4cc0bcc2ec7e932f8eb84b4 Mon Sep 17 00:00:00 2001
+From 4a162e2136fe7804b6598799e38ee366bd1537e3 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Fri, 11 Oct 2024 21:38:39 +0200
-Subject: [PATCH 3/7] feat: add QS padding patch to Treble app
+Subject: [PATCH 3/8] feat: add QS padding patch to Treble app
 
 This commit uses the patch, available in frameworks/base, in order to modify padding of QS clock.
 

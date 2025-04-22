@@ -1,7 +1,7 @@
-From fe1326e2637097ab90c46bca097086cd0da34f24 Mon Sep 17 00:00:00 2001
+From 3d73d9ae62d014e110e54d7179a40f8913e5f391 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 30 Mar 2025 17:47:05 +0200
-Subject: [PATCH 7/7] feat: Add Patch SMSC setting to Treble App
+Subject: [PATCH 7/8] feat: Add Patch SMSC setting to Treble App
 
 Requires a personal patch in platform_frameworks_opt_telephony.
 Primarily intended for Samsung devices. Some require turning this off.

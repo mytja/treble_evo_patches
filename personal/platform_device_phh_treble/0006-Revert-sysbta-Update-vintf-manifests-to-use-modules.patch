@@ -1,4 +1,4 @@
-From 2e94daa8eec22c87e38f4b23de849f15adfcedbb Mon Sep 17 00:00:00 2001
+From a739e814cd6b4ea8262e00f5e31fa736f4e36f58 Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Mon, 31 Mar 2025 16:05:19 +0200
 Subject: [PATCH 6/6] Revert "sysbta: Update vintf manifests to use modules"

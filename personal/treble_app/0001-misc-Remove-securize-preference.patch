@@ -1,7 +1,7 @@
-From 00d33e203e1688c77590551c75a797a36c082d0f Mon Sep 17 00:00:00 2001
+From 2463ac14fcc2be547693a5fbf77da22e838368e0 Mon Sep 17 00:00:00 2001
 From: Alberto Ponces <ponces26@gmail.com>
 Date: Tue, 8 Jun 2021 09:44:26 +0100
-Subject: [PATCH 1/7] misc: Remove securize preference
+Subject: [PATCH 1/8] misc: Remove securize preference
 
 ---
  .../java/me/phh/treble/app/MiscSettings.kt    | 33 -------------------

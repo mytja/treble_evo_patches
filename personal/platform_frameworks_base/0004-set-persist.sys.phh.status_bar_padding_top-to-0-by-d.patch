@@ -1,7 +1,7 @@
-From 2922e19894ddb789b2601f440297e3508f0b96e1 Mon Sep 17 00:00:00 2001
+From dbf51ebeaefd183b077a1542c98b84b30a90c82a Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 27 Oct 2024 21:59:56 +0100
-Subject: [PATCH 3/8] set persist.sys.phh.status_bar_padding_top to 0 by
+Subject: [PATCH 4/9] set persist.sys.phh.status_bar_padding_top to 0 by
  default
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 3/8] set persist.sys.phh.status_bar_padding_top to 0 by
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
-index b13c97001..347903236 100644
+index b235216c3..8e292cd50 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
 @@ -357,7 +357,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
