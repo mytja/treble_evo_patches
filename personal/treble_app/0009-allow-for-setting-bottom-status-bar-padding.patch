@@ -1,0 +1,63 @@
+From 8f1311399183ba3e51bfcbf3fb066c853b27bce8 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Mon, 21 Apr 2025 23:27:22 +0200
+Subject: [PATCH 9/9] allow for setting bottom status bar padding
+
+Change-Id: Ice6e857042baf1ef4f00a132e66e23f732559403
+---
+ app/src/main/java/me/phh/treble/app/Misc.kt         | 8 ++++++++
+ app/src/main/java/me/phh/treble/app/MiscSettings.kt | 1 +
+ app/src/main/res/xml/pref_misc.xml                  | 6 ++++++
+ 3 files changed, 15 insertions(+)
+
+diff --git a/app/src/main/java/me/phh/treble/app/Misc.kt b/app/src/main/java/me/phh/treble/app/Misc.kt
+index f2514d4..f32d821 100644
+--- a/app/src/main/java/me/phh/treble/app/Misc.kt
++++ b/app/src/main/java/me/phh/treble/app/Misc.kt
+@@ -332,6 +332,14 @@ object Misc: EntryStartup {
+                     SystemProperties.set("persist.sys.phh.status_bar_padding_end", null)
+                 }
+             }
++            MiscSettings.statusbarpaddingbottom -> {
++                val value = sp.getString(key, "-1").toInt()
++                if(value != -1) {
++                SystemProperties.set("persist.sys.phh.status_bar_padding_bottom", value.toString())
++                } else {
++                    SystemProperties.set("persist.sys.phh.status_bar_padding_bottom", null)
++                }
++            }
+             MiscSettings.qsclockleftpadding -> {
+                 val value = sp.getString(key, "-1").toInt()
+                 if(value != -1) {
+diff --git a/app/src/main/java/me/phh/treble/app/MiscSettings.kt b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
+index d793e9a..d19551a 100644
+--- a/app/src/main/java/me/phh/treble/app/MiscSettings.kt
++++ b/app/src/main/java/me/phh/treble/app/MiscSettings.kt
+@@ -47,6 +47,7 @@ object MiscSettings : Settings {
+     val statusbarpaddingtop = "key_misc_sb_padding_top"
+     val statusbarpaddingstart = "key_misc_sb_padding_start"
+     val statusbarpaddingend = "key_misc_sb_padding_end"
++    val statusbarpaddingbottom = "key_misc_sb_padding_bottom"
+     val qsclockleftpadding = "key_misc_qs_clock_left_padding"
+     val qsclockrightpadding = "key_misc_qs_clock_right_padding"
+     val brightenScreenFaceUnlock = "key_misc_brighten_screen_face_unlock"
+diff --git a/app/src/main/res/xml/pref_misc.xml b/app/src/main/res/xml/pref_misc.xml
+index 9430e85..1637d8c 100644
+--- a/app/src/main/res/xml/pref_misc.xml
++++ b/app/src/main/res/xml/pref_misc.xml
+@@ -63,6 +63,12 @@
+ 			android:title="Set status bar end padding"
+ 			android:inputType="number"
+ 			android:summary="Requires a SystemUI restart" />
++        <EditTextPreference
++			android:defaultValue="-1"
++			android:key="key_misc_sb_padding_bottom"
++			android:title="Set status bar bottom padding"
++			android:inputType="number"
++			android:summary="Requires a SystemUI restart" />
+         <EditTextPreference
+ 			android:defaultValue="-1"
+ 			android:key="key_misc_qs_clock_left_padding"
+-- 
+2.34.1
+

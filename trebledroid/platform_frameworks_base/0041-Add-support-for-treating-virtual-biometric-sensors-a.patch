@@ -1,4 +1,4 @@
-From 7547e591ecf15181045833070793466cb9a4ebdd Mon Sep 17 00:00:00 2001
+From a8a2f1e2d86a5166b8cae05435bbfc9430ac2250 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Sat, 21 Dec 2024 11:04:35 -0500
 Subject: [PATCH 41/41] Add support for treating virtual biometric sensors as

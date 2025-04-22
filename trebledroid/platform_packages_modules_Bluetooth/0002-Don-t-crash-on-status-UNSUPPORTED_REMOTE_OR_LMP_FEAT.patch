@@ -1,4 +1,4 @@
-From 5b1559274c0eb62429b77cc78187da720dfa9940 Mon Sep 17 00:00:00 2001
+From 31d1484e3d927f2ad8cb1b5e6975fcaccc24ba50 Mon Sep 17 00:00:00 2001
 From: DerTeufel <dominik-kassel@gmx.de>
 Date: Wed, 4 Jan 2023 21:39:37 +0100
 Subject: [PATCH 2/8] Don't crash on status:UNSUPPORTED_REMOTE_OR_LMP_FEATURE
@@ -11,7 +11,7 @@ Change-Id: Ic57d6631185370cbfdeafdac00801c6ca27fb755
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/system/gd/hci/hci_layer.cc b/system/gd/hci/hci_layer.cc
-index 1311815..7b91388 100644
+index 1311815633..7b913888b2 100644
 --- a/system/gd/hci/hci_layer.cc
 +++ b/system/gd/hci/hci_layer.cc
 @@ -238,8 +238,10 @@ struct HciLayer::impl {
@@ -28,5 +28,5 @@ index 1311815..7b91388 100644
        // we can't treat this as hard failure since we have no way of probing this lack of support at
        // earlier time. Instead we let the command complete handler handle a empty Command Complete
 -- 
-2.34.1
+2.43.0
 

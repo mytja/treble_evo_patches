@@ -1,4 +1,4 @@
-From c7dfe353dbd7d7b75f6ea35e2a5ddbc270f17743 Mon Sep 17 00:00:00 2001
+From 567568f96329ea4b1bba2c7442d345950fdef630 Mon Sep 17 00:00:00 2001
 From: wbs306 <wbs306@gmail.com>
 Date: Fri, 20 Jan 2023 17:07:41 +0800
 Subject: [PATCH 8/8] gd: hci: Ignore command READ_REMOTE_VERSION_INFORMATION
@@ -14,7 +14,7 @@ It means this command isn't in the command_queue_, we can just ignore it.
  1 file changed, 4 insertions(+)
 
 diff --git a/system/gd/hci/hci_layer.cc b/system/gd/hci/hci_layer.cc
-index 7b91388..ea154ae 100644
+index 7b913888b2..ea154ae065 100644
 --- a/system/gd/hci/hci_layer.cc
 +++ b/system/gd/hci/hci_layer.cc
 @@ -444,6 +444,10 @@ struct HciLayer::impl {
@@ -29,5 +29,5 @@ index 7b91388..ea154ae 100644
                           "Received {} event with OpCode {} without a waiting command(is the HAL "
                           "sending commands, but not handling the events?)",
 -- 
-2.34.1
+2.43.0
 

@@ -1,4 +1,4 @@
-From 78e81615877bca730f493527169475debf90a861 Mon Sep 17 00:00:00 2001
+From 4edcd74911f3670529761b1fd99321d0b837f4ad Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 5 Jul 2023 10:50:36 -0400
 Subject: [PATCH 25/41] Detect Moto dynamic hardware feature

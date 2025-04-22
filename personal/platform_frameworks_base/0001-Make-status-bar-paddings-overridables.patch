@@ -1,4 +1,4 @@
-From 48885518e1add852893ca0b69f9ed7f0d5e9cd8e Mon Sep 17 00:00:00 2001
+From c731d1afca5540e5f5b97034274518d45b14fcbd Mon Sep 17 00:00:00 2001
 From: ChonDoit <thphantomblog@gmail.com>
 Date: Sun, 27 Oct 2024 21:52:42 +0100
 Subject: [PATCH 01/10] Make status bar paddings overridables

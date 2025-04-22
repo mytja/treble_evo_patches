@@ -1,4 +1,4 @@
-From 6019b5036d50734ccf99823370934833f591d7d8 Mon Sep 17 00:00:00 2001
+From f30b490daacd64ffd67934b663a3dc880cfbe7fd Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sat, 17 Jun 2023 08:31:55 -0400
 Subject: [PATCH 24/41] Add Mediatek power hints on touch
@@ -23,8 +23,8 @@ smoother.
 Change-Id: I9f1eac5a20b98920a5d0c8204fe4d165ba069f5a
 ---
  services/core/Android.bp                      |  3 +
- .../com/android/server/wm/DisplayPolicy.java  | 82 +++++++++++++++++++
- 2 files changed, 85 insertions(+)
+ .../com/android/server/wm/DisplayPolicy.java  | 71 +++++++++++++++++++
+ 2 files changed, 74 insertions(+)
 
 diff --git a/services/core/Android.bp b/services/core/Android.bp
 index 5df0d6829..591a5a2cd 100644
@@ -41,7 +41,7 @@ index 5df0d6829..591a5a2cd 100644
      javac_shard_size: 50,
      javacflags: [
 diff --git a/services/core/java/com/android/server/wm/DisplayPolicy.java b/services/core/java/com/android/server/wm/DisplayPolicy.java
-index 372394e62..9e7365399 100644
+index 372394e62..54a9dd941 100644
 --- a/services/core/java/com/android/server/wm/DisplayPolicy.java
 +++ b/services/core/java/com/android/server/wm/DisplayPolicy.java
 @@ -217,6 +217,9 @@ public class DisplayPolicy {
@@ -128,25 +128,7 @@ index 372394e62..9e7365399 100644
                  }
  
                  @Override
-@@ -560,6 +609,17 @@ public class DisplayPolicy {
-                                  Boost.DISPLAY_UPDATE_IMMINENT, 500);
-                         }
-                     }
-+                    if(mOldMtkPerf != null) {
-+                        try {
-+                            android.util.Log.d("PHH-Power", "mtk1 fling power hint");
-+                            int hint = 36; // MTKPOWER_HINT_APP_TOUCH
-+                            if("rotate".equals(SystemProperties.get("persist.sys.phh.touch_hint")))
-+                                    hint = 35; // MTKPOWER_HINT_APP_ROTATE
-+                            mOldMtkPerf.mtkPowerHint(hint, duration);
-+                        } catch(Throwable t) {
-+                            android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
-+                        }
-+                    }
-                 }
- 
-                 @Override
-@@ -578,6 +638,28 @@ public class DisplayPolicy {
+@@ -578,6 +627,28 @@ public class DisplayPolicy {
                      if (listener != null) {
                          listener.onTouchStart();
                      }

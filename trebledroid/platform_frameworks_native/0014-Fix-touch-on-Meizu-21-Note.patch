@@ -1,7 +1,7 @@
-From d36870c735851435db96e8a3f34271eb369b5a19 Mon Sep 17 00:00:00 2001
+From a24e79428b7950cb53ebeb4d00bef97dbe6fbb59 Mon Sep 17 00:00:00 2001
 From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
 Date: Sat, 17 Aug 2024 20:49:53 +0800
-Subject: [PATCH 14/14] Fix touch on Meizu 21 / Note
+Subject: [PATCH 14/18] Fix touch on Meizu 21 / Note
 
 Raw values from the panel are multiplied by 10,
 causing most touch events to fall out of bounds and get dropped

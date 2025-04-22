@@ -1,0 +1,38 @@
+From 6be5932fafc88d058c691ee30f87a1e0017d21e2 Mon Sep 17 00:00:00 2001
+From: mytja <mitja@severkar.eu>
+Date: Mon, 21 Apr 2025 23:18:40 +0200
+Subject: [PATCH 02/10] fix: make bottom padding overridable too
+
+with
+persist.sys.phh.status_bar_padding_bottom
+---
+ .../systemui/statusbar/phone/PhoneStatusBarView.java        | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
+index bde73b57e..8064edb70 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java
+@@ -380,6 +380,10 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
+         int statusBarPaddingEnd = SystemProperties.getInt("persist.sys.phh.status_bar_padding_end", -1);
+         if(statusBarPaddingEnd == -1)
+             statusBarPaddingEnd = getResources().getDimensionPixelSize(R.dimen.status_bar_padding_end);
++        
++        int statusBarPaddingBottom = SystemProperties.getInt("persist.sys.phh.status_bar_padding_bottom", -1);
++        if(statusBarPaddingBottom == -1)
++            statusBarPaddingBottom = getResources().getDimensionPixelSize(R.dimen.status_bar_icons_padding_bottom);
+ 
+         mStatusBarContents.setPaddingRelative(
+                 (int) statusBarPaddingStart,
+@@ -394,7 +398,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
+                 (int) statusBarPaddingStart,
+                 (int) statusBarPaddingTop,
+                 (int) statusBarPaddingEnd,
+-                getResources().getDimensionPixelSize(R.dimen.status_bar_icons_padding_bottom)
++                (int) statusBarPaddingBottom
+         );
+     }
+ 
+-- 
+2.34.1
+

@@ -1,4 +1,4 @@
-From 4e4249656f5408f7284cab05ece9c66271afcfd4 Mon Sep 17 00:00:00 2001
+From 6764ff6e738111444934bbccf471fe5ecb187ad0 Mon Sep 17 00:00:00 2001
 From: Andreas Schneider <asn@cryptomilk.org>
 Date: Sat, 12 Nov 2022 00:35:46 +0000
 Subject: [PATCH 5/8] On Samsung devices, we need to tell Audio HAL if we're
@@ -12,7 +12,7 @@ Change-Id: I7802b7a29c017a2cd7018e82772183df1dfa0b89
  1 file changed, 8 insertions(+)
 
 diff --git a/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java b/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java
-index fd56faa..ad2cb41 100644
+index fd56faa613..ad2cb417df 100644
 --- a/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java
 +++ b/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java
 @@ -145,6 +145,7 @@ class HeadsetStateMachine extends StateMachine {
@@ -66,5 +66,5 @@ index fd56faa..ad2cb41 100644
              default:
                  Log.e(TAG, "processWBSEvent: unknown wbsConfig " + wbsConfig);
 -- 
-2.34.1
+2.43.0
 

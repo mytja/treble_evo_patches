@@ -1,4 +1,4 @@
-From 249d2a85186ce2ab45587c73437615d2c96abca1 Mon Sep 17 00:00:00 2001
+From 6f387a16035861dbfc6bf2673c3850ff4f7e468e Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Wed, 21 Feb 2024 16:19:47 -0500
 Subject: [PATCH 37/41] Include vendor.samsung.hardware.radio-V2.2-java HIDL in

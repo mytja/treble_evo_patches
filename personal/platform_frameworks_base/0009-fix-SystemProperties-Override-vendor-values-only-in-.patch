@@ -1,7 +1,7 @@
-From d91f2e958e0c565bce4a6fec5d9bdefd458d0e18 Mon Sep 17 00:00:00 2001
+From 1dff36f97e00ebfa9d726ee37f6976bf5e99d1ae Mon Sep 17 00:00:00 2001
 From: mytja <mitja@severkar.eu>
 Date: Sun, 30 Mar 2025 19:19:14 +0200
-Subject: [PATCH 08/10] fix: SystemProperties: Override vendor values only in
+Subject: [PATCH 09/10] fix: SystemProperties: Override vendor values only in
  case vendor is userdebug/test-keys
 
 Fixes Treble App not showing vendor-specific pages on Evolution X GSI, except for Google as per

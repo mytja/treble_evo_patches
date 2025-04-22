@@ -1,4 +1,4 @@
-From 1c3578dd6f7b971e18b54399967b3dd0bc6c426e Mon Sep 17 00:00:00 2001
+From 81baf40eb85da63c55bab2f7edb395182d95dd51 Mon Sep 17 00:00:00 2001
 From: Peter Cai <peter@typeblog.net>
 Date: Wed, 1 Jun 2022 16:56:20 -0400
 Subject: [PATCH 03/41] Implement a persistent property to override the default
@@ -27,10 +27,10 @@ index e8eba3627..b24348b07 100644
          CameraInfo cameraInfo = new CameraInfo();
          for (int i = 0; i < numberOfCameras; i++) {
 diff --git a/core/java/android/hardware/camera2/CameraManager.java b/core/java/android/hardware/camera2/CameraManager.java
-index 0967354e7..fe6516ba1 100644
+index b2c0854a1..b748cf81b 100644
 --- a/core/java/android/hardware/camera2/CameraManager.java
 +++ b/core/java/android/hardware/camera2/CameraManager.java
-@@ -2591,6 +2591,15 @@ public final class CameraManager {
+@@ -2597,6 +2597,15 @@ public final class CameraManager {
                              return s1.compareTo(s2);
                          }
                      }});

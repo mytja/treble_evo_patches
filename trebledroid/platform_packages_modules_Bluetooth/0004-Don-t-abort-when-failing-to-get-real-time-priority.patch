@@ -1,4 +1,4 @@
-From 45a2207e730dd2f29adf1c5c2724f1194fcbbc04 Mon Sep 17 00:00:00 2001
+From 899d3d0a4bfcd5555f042a3cc90aa69db2305852 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 17 Oct 2021 17:17:13 -0400
 Subject: [PATCH 4/8] Don't abort when failing to get real-time priority
@@ -19,7 +19,7 @@ Change-Id: Id25dac186628e933185bdfd640498004459b375a
  4 files changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/system/btif/src/btif_a2dp_sink.cc b/system/btif/src/btif_a2dp_sink.cc
-index 2d214b0..693dc31 100644
+index 2d214b0521..693dc317cc 100644
 --- a/system/btif/src/btif_a2dp_sink.cc
 +++ b/system/btif/src/btif_a2dp_sink.cc
 @@ -204,7 +204,7 @@ bool btif_a2dp_sink_init() {
@@ -32,7 +32,7 @@ index 2d214b0..693dc31 100644
    }
    btif_a2dp_sink_cb.worker_thread.DoInThread(FROM_HERE,
 diff --git a/system/btif/src/btif_a2dp_source.cc b/system/btif/src/btif_a2dp_source.cc
-index a7ba4fa..0da8a8a 100644
+index a7ba4fa0dc..0da8a8ad40 100644
 --- a/system/btif/src/btif_a2dp_source.cc
 +++ b/system/btif/src/btif_a2dp_source.cc
 @@ -451,7 +451,7 @@ static void btif_a2dp_source_startup_delayed() {
@@ -45,7 +45,7 @@ index a7ba4fa..0da8a8a 100644
    }
    if (!bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
 diff --git a/system/osi/src/alarm.cc b/system/osi/src/alarm.cc
-index c1a1b6d..90bd938 100644
+index c1a1b6da10..90bd938c64 100644
 --- a/system/osi/src/alarm.cc
 +++ b/system/osi/src/alarm.cc
 @@ -680,7 +680,17 @@ static bool timer_create_internal(const clockid_t clock_id, timer_t* timer) {
@@ -68,7 +68,7 @@ index c1a1b6d..90bd938 100644
      if (clock_id == CLOCK_BOOTTIME_ALARM) {
        log::error(
 diff --git a/system/stack/btu/main_thread.cc b/system/stack/btu/main_thread.cc
-index 6223e66..e748d61 100644
+index 6223e66716..e748d6116e 100644
 --- a/system/stack/btu/main_thread.cc
 +++ b/system/stack/btu/main_thread.cc
 @@ -69,7 +69,7 @@ void main_thread_start_up() {
@@ -81,5 +81,5 @@ index 6223e66..e748d61 100644
      log::error("unable to enable real time scheduling");
  #endif
 -- 
-2.34.1
+2.43.0
 

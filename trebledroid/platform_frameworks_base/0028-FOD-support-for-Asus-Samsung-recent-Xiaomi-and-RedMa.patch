@@ -1,4 +1,4 @@
-From 914f6c386aca9bf69d19bcdc95d152df00ddfff4 Mon Sep 17 00:00:00 2001
+From 7bc5c27fc1e3822071dd7b4b6cf29eeec50fcbf3 Mon Sep 17 00:00:00 2001
 From: Pierre-Hugues Husson <phh@phh.me>
 Date: Sun, 18 Dec 2022 18:20:40 -0500
 Subject: [PATCH 28/41] FOD support for Asus, Samsung recent Xiaomi and
@@ -35,10 +35,10 @@ Change-Id: I7af81218276c60afbfea6dac702c7bcd584f397a
  5 files changed, 400 insertions(+), 11 deletions(-)
 
 diff --git a/packages/SystemUI/Android.bp b/packages/SystemUI/Android.bp
-index 745fcf4f8..f0a577aaa 100644
+index 6c8299be2..ab300ac1b 100644
 --- a/packages/SystemUI/Android.bp
 +++ b/packages/SystemUI/Android.bp
-@@ -516,6 +516,10 @@ android_library {
+@@ -514,6 +514,10 @@ android_library {
          "androidx.lifecycle_lifecycle-viewmodel-compose",
          "vendor.lineage.powershare-V1.0-java",
          "FadingEdgeLayoutLib",
